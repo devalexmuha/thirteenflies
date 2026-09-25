@@ -16,10 +16,13 @@ Route::delete('/categories/{category}', [CategoriesController::class, 'destroy']
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
 
-
-// try to understand better how Nested Set Model pattern works
-// work on db structure category / pages / filters / URLs / seo related
-
+// BUILDING DB STRUCTURE
+// setup translations with require spatie/laravel-translatable
+// work on products categories brands sales
+// work on filters
+// work on seo related (top and bottom seo text, title, description, h1, robots)
+// work on checkout related
+// work on settings related
 
 
 // how to build reliable api like web project with session and csrf tokens

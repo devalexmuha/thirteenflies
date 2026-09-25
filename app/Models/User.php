@@ -21,6 +21,8 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, HasApiTokens;
 
+    protected $guarded = [];
+
     /**
      * Get the attributes that should be cast.
      *
@@ -52,4 +54,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Product::class, 'wishlists')->withTimestamps();
     }
 
+    public function cart(): HasOne
+    {
+        return $this->hasOne(Cart::class);
+    }
 }

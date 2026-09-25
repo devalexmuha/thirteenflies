@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
@@ -18,8 +19,18 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
     public function wishedBy(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'wishlists')->withTimestamps();
+    }
+
+    public function carts(): BelongsToMany
+    {
+        return $this->belongsToMany(Cart::class);
     }
 }
