@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->nestedSet();
             $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('description_top')->nullable();
+            $table->text('description_bottom')->nullable();
+            $table->string('image')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

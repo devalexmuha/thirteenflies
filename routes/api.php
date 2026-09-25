@@ -16,12 +16,9 @@ Route::delete('/categories/{category}', [CategoriesController::class, 'destroy']
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
 
-// working on user related db structure
-// fill up now all relationships
-// setup wish list
-// move to mysql
-// make migration
-// how to make infinite nested category with product related to one category and to all parents categories?
+
+// try to understand better how Nested Set Model pattern works
+// work on db structure category / pages / filters / URLs / seo related
 
 
 
