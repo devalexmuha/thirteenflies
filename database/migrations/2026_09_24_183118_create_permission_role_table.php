@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Role::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Permission::class)->constrained()->cascadeOnDelete();
+            $table->unique(['role_id', 'permission_id']);
         });
     }
 

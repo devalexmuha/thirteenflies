@@ -19,7 +19,25 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('price');
+            $table->string('sku', 64)->unique();
+            $table->string('slug')->unique();
+            $table->json('name');
+            $table->json('short_description')->nullable();
+            $table->json('description')->nullable();
+            $table->unsignedInteger('price');                        // cents
+            $table->unsignedInteger('sale_price')->nullable();       // cents
+            $table->timestamp('sale_starts_at')->nullable();
+            $table->timestamp('sale_ends_at')->nullable();
+            $table->string('condition', 20)->default('new');         // ProductCondition
+            $table->unsignedInteger('stock_qty')->default(0);
+            $table->boolean('in_stock')->default(false);
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_featured')->default(false);          // home page
             $table->timestamps();
+
+            $table->index('price');
+            $table->index('sale_price');
+            $table->index('condition');
         });
     }
 

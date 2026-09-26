@@ -44,9 +44,31 @@ class User extends Authenticatable
         return $this->hasMany(Address::class);
     }
 
+    public function defaultAddress(): HasOne
+    {
+        return $this->hasOne(Address::class)->where('is_default', true);
+    }
+
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function hasRole(string $name): bool
+    {
+        return $this->roles->contains('name', $name);
+    }
+
+    public function hasPermission(string $name): bool
+    {
+        return $this->roles()
+                    ->whereHas('permissions', fn ($q) => $q->where('name', $name))
+                    ->exists();
+    }
+
+    public function canAccessPanel(): bool
+    {
+        return $this->roles()->where('name', '!=', 'subscriber')->exists();
     }
 
     public function wishlist(): BelongsToMany
