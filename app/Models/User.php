@@ -66,9 +66,9 @@ class User extends Authenticatable
                     ->exists();
     }
 
-    public function canAccessPanel(): bool
+    public function reviews(): HasMany
     {
-        return $this->roles()->where('name', '!=', 'subscriber')->exists();
+        return $this->hasMany(Review::class);
     }
 
     public function wishlist(): BelongsToMany
@@ -79,5 +79,10 @@ class User extends Authenticatable
     public function cart(): HasOne
     {
         return $this->hasOne(Cart::class);
+    }
+
+    public function canAccessPanel(): bool
+    {
+        return $this->roles()->where('name', '!=', 'subscriber')->exists();
     }
 }

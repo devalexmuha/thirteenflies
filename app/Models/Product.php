@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Product extends Model
 {
@@ -14,6 +17,13 @@ class Product extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public array $translatable = ['slug', 'name', 'short_description', 'description'];
+
+    protected function casts(): array
+    {
+        return ['is_active' => 'boolean'];
+    }
 
     public function categories(): BelongsToMany
     {
@@ -28,6 +38,26 @@ class Product extends Model
     public function relatedProducts(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'product_relations', 'product_id', 'related_product_id');
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function videos(): HasMany
+    {
+        return $this->hasMany(Video::class);
+    }
+
+//    public function attributes(): morphToMany
+//    {
+//        return $this->morphToMany(Attribute::class, 'attributable');
+//    }
+
+    public function attributeValues(): MorphToMany
+    {
+        return $this->morphToMany(AttributeValue::class, 'attribute_valuable');
     }
 
     public function wishedBy(): BelongsToMany
@@ -57,5 +87,17 @@ class Product extends Model
         $ids = $category->descendants()->pluck('id')->push($category->id);
 
         $query->whereHas('categories', fn ($q) => $q->whereIn('category_id', $ids));
+    }
+
+    public function refreshRating(): void
+    {
+        $stats = $this->reviews()
+                      ->selectRaw('COUNT(*) as total, AVG(rating) as average')
+                      ->first();
+
+        $this->updateQuietly([
+            'reviews_count' => $stats->total,
+            'rating_avg' => $stats->total ? round($stats->average, 2) : null,
+        ]);
     }
 }

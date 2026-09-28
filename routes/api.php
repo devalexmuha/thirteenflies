@@ -24,6 +24,8 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 // work on checkout related
 // work on settings related
 
-
+// do not forget abt ratingable (products, articles, services) => "Content topic"
+// review on product can add only user bought this product (in user -> orders -> complete -> exist this product)
+// do not forget to add sorting functionality additionally to filtering
 // how to build reliable api like web project with session and csrf tokens
 // put | patch
