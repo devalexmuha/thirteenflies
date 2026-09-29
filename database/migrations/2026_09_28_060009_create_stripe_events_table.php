@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Cart;
-use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cart_products', function (Blueprint $table) {
+        Schema::create('stripe_events', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Cart::class)->constrained()->cascadeOnDelete();
+            $table->string('stripe_event_id')->unique();   // evt_...
+            $table->string('type', 100)->index();          // checkout.session.completed
+            $table->json('payload');
+            $table->timestamp('processed_at')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cart_products');
+        Schema::dropIfExists('stripe_events');
     }
 };

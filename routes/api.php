@@ -29,3 +29,5 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 // do not forget to add sorting functionality additionally to filtering
 // how to build reliable api like web project with session and csrf tokens
 // put | patch
+// implement stripe checkout https://www.youtube.com/watch?v=J13Xe939Bh8
+//TOPIC 4 — Order & payment related

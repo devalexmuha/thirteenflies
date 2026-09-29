@@ -81,6 +81,11 @@ class User extends Authenticatable
         return $this->hasOne(Cart::class);
     }
 
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function canAccessPanel(): bool
     {
         return $this->roles()->where('name', '!=', 'subscriber')->exists();
