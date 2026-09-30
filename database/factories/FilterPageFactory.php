@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\FilterPage;
+use App\Models\Filters\FilterPage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\SeoTemplate;
+use App\Models\Seo\SeoTemplate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

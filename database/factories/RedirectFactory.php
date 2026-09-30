@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Redirect;
+use App\Models\Seo\Redirect;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

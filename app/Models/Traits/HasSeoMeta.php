@@ -2,8 +2,7 @@
 
 namespace App\Models\Traits;
 
-use App\Models\SeoMeta;
-use App\Models\SeoTemplate;
+use App\Models\Seo\SeoMeta;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasSeoMeta

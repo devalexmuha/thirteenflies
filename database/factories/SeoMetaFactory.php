@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\SeoMeta;
+use App\Models\Seo\SeoMeta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

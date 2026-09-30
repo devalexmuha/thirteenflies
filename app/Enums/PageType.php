@@ -20,7 +20,7 @@ enum PageType: string
             self::Category => 'Categories',
             self::Brand => 'Brands',
             self::Product => 'Products',
-            self::FilterPage => 'SEO filter pages',
+            self::FilterPage => 'Seo filter pages',
             self::Service => 'Services',
             self::Article => 'Articles',
             self::Author => 'Authors',

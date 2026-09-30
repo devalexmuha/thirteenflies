@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\OrderStatusLog;
+use App\Models\Sales\OrderStatusLog;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

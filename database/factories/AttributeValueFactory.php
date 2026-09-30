@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\AttributeValue;
+use App\Models\Filters\AttributeValue;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
