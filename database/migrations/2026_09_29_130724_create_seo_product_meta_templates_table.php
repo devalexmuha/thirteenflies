@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Catalog\Brand;
+use App\Models\Catalog\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,15 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('filter_pages', function (Blueprint $table) {
+        Schema::create('seo_product_meta_templates', function (Blueprint $table) {
             $table->id();
-            $table->morphs('filterable', 'filterable_morph_index');
-            $table->string('flt_key');
-            $table->boolean('is_active')->default(true);
+            $table->foreignIdFor(Category::class)->unique()->constrained()->cascadeOnDelete();
+            $table->json('meta_title')->nullable();
+            $table->json('meta_description')->nullable();
             $table->timestamps();
-
-            $table->unique(['filterable_type', 'filterable_id', 'flt_key'], 'filterable_unique');
-
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('filter_pages');
+        Schema::dropIfExists('seo_poduct_meta_templates');
     }
 };

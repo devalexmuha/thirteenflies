@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('attribute_valuables', function (Blueprint $table) {
             $table->id();
+            $table->morphs('attribute_valuable', 'attribute_valuables_morph_index');
             $table->foreignIdFor(AttributeValue::class)->constrained()->cascadeOnDelete();
-            $table->morphs('attribute_valuable');
-            $table->unique(['attribute_value_id', 'attribute_valuable_type', 'attribute_valuable_id']);
+            $table->unique(['attribute_value_id', 'attribute_valuable_type', 'attribute_valuable_id'], 'attribute_valuables_unique');
         });
     }
 

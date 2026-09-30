@@ -3,6 +3,7 @@
 namespace App\Models\Filters;
 
 use App\Models\Traits\HasSeoMeta;
+use App\Models\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -12,11 +13,11 @@ use Spatie\Translatable\HasTranslations;
 class FilterPage extends Model
 {
     /** @use HasFactory<\Database\Factories\FilterPageFactory> */
-    use HasFactory, HasTranslations, HasSeoMeta;
+    use HasFactory, HasTranslations, HasSlug, HasSeoMeta;
 
     public array $translatable = ['name'];
 
-    protected $fillable = ['filterable_type', 'filterable_id', 'brand_id', 'name', 'seo_path', 'is_active'];
+    protected $guarded = [];
 
     protected function casts(): array
     {

@@ -29,3 +29,9 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 // php artisan make:middleware AttachRedirectOn404
 // make shure all slugs are clean (fix ->unique)
 
+// migrate (check unique on filter page),
+// check how category relationships work? why I need node tait? Is only parent_id enough? What will happen to childs If some middle root category will be deleted?
+// check what endpoints I will have for products and categories, how to make product live in route /stainwey-grad-piano-model-d-dlfd but know that this is a product
+// make factories and seeding for products categories and users
+// seed
+// install filament

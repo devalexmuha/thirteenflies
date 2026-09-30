@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('seo_metas', function (Blueprint $table) {
             $table->id();
-            $table->morphs('seoable');
+            $table->morphs('seoable', 'seoable_morph');
             $table->json('meta_title')->nullable();
             $table->json('meta_description')->nullable();
             $table->json('h1')->nullable();
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->json('schema')->nullable();
             $table->timestamps();
 
-            $table->unique(['seoable_type', 'seoable_id']);
+            $table->unique(['seoable_type', 'seoable_id'], 'seoable_unique');
         });
     }
 

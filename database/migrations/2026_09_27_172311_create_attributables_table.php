@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Filters\Attribute;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,10 +14,10 @@ return new class extends Migration
     {
         Schema::create('attributables', function (Blueprint $table) {
             $table->id();
+            $table->morphs('attributable', 'attributable_morph_index');
             $table->foreignIdFor(Attribute::class)->constrained()->cascadeOnDelete();
-            $table->morphs('attributable');
 
-            $table->unique(['attribute_id', 'attributable_type', 'attributable_id']);
+            $table->unique(['attribute_id', 'attributable_type', 'attributable_id'], 'attributables_unique');
         });
     }
 

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Account\User;
 use App\Models\Catalog\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,12 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wishlists', function (Blueprint $table) {
+        Schema::create('product_relations', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Product::class, 'related_product_id')->constrained()->cascadeOnDelete();
+            $table->unique(['product_id', 'related_product_id'], 'related_product_unique');
+            $table->index('related_product_id');
             $table->timestamps();
-            $table->unique(['user_id', 'product_id']);
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wishlist');
+        Schema::dropIfExists('product_relations');
     }
 };

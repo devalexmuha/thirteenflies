@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('locale', 5);
             $table->string('slug');
 
-            $table->unique(['sluggable_type', 'sluggable_id', 'locale']);
-            $table->unique(['sluggable_type', 'locale', 'slug']);
+            $table->unique(['sluggable_type', 'sluggable_id', 'locale'], 'unique_parent_per_locale');
+            $table->unique(['sluggable_type', 'locale', 'slug'], 'unique_slug_per_parent_type_locale');
         });
     }
 

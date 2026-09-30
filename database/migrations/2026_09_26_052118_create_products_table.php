@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Brand::class)->nullable()->constrained()->nullOnDelete();
             $table->string('sku', 64)->unique();
-            $table->json('slug')->unique();
             $table->json('name');
             $table->json('short_description')->nullable();
             $table->json('description')->nullable();
