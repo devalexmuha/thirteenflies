@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
 {
-    /** @use HasFactory<\Database\Factories\Settings\MenuFactory> */
+    /** @use HasFactory<\Database\Factories\MenuFactory> */
     use HasFactory;
 
     protected $guarded = [];

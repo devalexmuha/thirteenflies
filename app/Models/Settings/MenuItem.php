@@ -9,7 +9,7 @@ use Spatie\Translatable\HasTranslations;
 
 class MenuItem extends Model
 {
-    /** @use HasFactory<\Database\Factories\Settings\MenuItemFactory> */
+    /** @use HasFactory<\Database\Factories\MenuItemFactory> */
     use HasFactory, HasTranslations;
 
     public $timestamps = false;
