@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create('slugs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->boolean('is_active')->default(true);
-            $table->timestamps();
+            $table->morphs('sluggable');
+            $table->string('locale', 5);
+            $table->string('slug');
+
+            $table->unique(['sluggable_type', 'sluggable_id', 'locale']);
+            $table->unique(['sluggable_type', 'locale', 'slug']);
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('brands');
+        Schema::dropIfExists('slugs');
     }
 };

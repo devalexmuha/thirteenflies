@@ -6,6 +6,7 @@ use App\Models\Filters\Attribute;
 use App\Models\Filters\FilterPage;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
+use App\Models\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,7 +17,7 @@ use Spatie\Translatable\HasTranslations;
 class Brand extends Model
 {
     /** @use HasFactory<\Database\Factories\BrandFactory> */
-    use HasFactory, HasTranslations, HasSeoMeta, HasMedia;
+    use HasFactory, HasTranslations, HasSeoMeta, HasSlug, HasMedia;
 
     protected $guarded = [];
 

@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Author::class)->nullable()->constrained()->nullOnDelete();
-            $table->string('slug')->unique();
             $table->json('title');
             $table->json('excerpt')->nullable();
             $table->json('content');

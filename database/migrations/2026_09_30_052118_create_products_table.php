@@ -14,8 +14,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Brand::class)->constrained()->cascadeOnDelete();
-            $table->integer('price');
+            $table->foreignIdFor(Brand::class)->nullable()->constrained()->nullOnDelete();
             $table->string('sku', 64)->unique();
             $table->json('slug')->unique();
             $table->json('name');
@@ -30,7 +29,7 @@ return new class extends Migration
             $table->boolean('in_stock')->default(false);
             $table->boolean('is_active')->default(true);
             $table->boolean('is_featured')->default(false);          // home page
-            $table->unsignedTinyInteger('avr_rating');
+            $table->unsignedTinyInteger('avr_rating')->default(0);
             $table->timestamps();
 
             $table->index('price');

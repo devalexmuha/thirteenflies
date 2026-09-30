@@ -22,8 +22,8 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
-            $table->unique(['filterable_type', 'filterable_id', 'seo_path'], 'filter_pages_seo_path_unique');
-            $table->unique(['filterable_type', 'filterable_id', 'filters_key'], 'filter_pages_filters_key_unique');
+            $table->unique(['filterable_type', 'filterable_id', 'seo_path']);
+            $table->unique(['filterable_type', 'filterable_id', 'filters_key']);
 
         });
     }
