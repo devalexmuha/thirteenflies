@@ -16,9 +16,10 @@ Route::delete('/categories/{category}', [CategoriesController::class, 'destroy']
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
 
-// BUILDING DB STRUCTURE
-// work on settings related
+// BUILDING ADMIN PANEL
 
+
+// before next seeding refactor factories by mirroring models namespaces
 
 // review on product can add only user bought this product (in user -> orders -> complete -> exist this product)
 // do not forget to add sorting functionality additionally to filtering
@@ -28,5 +29,3 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 // implement stripe checkout https://www.youtube.com/watch?v=J13Xe939Bh8
 // php artisan make:middleware AttachRedirectOn404
 
-// before next seeding refactor factories by mirroring models namespaces
-// install filament

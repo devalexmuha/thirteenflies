@@ -91,6 +91,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function getFilamentName(): string
+    {
+        return $this->userProfile?->first_name ?: $this->email;
+    }
+
     public function canAccessPanel(): bool
     {
         return $this->roles()->where('name', '!=', 'subscriber')->exists();
