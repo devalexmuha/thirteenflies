@@ -6,6 +6,7 @@ use App\Models\Account\User;
 use App\Models\Filters\AttributeValue;
 use App\Models\Sales\CartItem;
 use App\Models\Sales\OrderItem;
+use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +20,7 @@ use Spatie\Translatable\HasTranslations;
 class Product extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductFactory> */
-    use HasFactory, HasTranslations, HasSeoMeta;
+    use HasFactory, HasTranslations, HasSeoMeta, HasMedia;
 
     protected $guarded = [];
 

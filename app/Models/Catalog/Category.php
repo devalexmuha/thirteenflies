@@ -5,6 +5,7 @@ namespace App\Models\Catalog;
 use App\Models\Filters\Attribute;
 use App\Models\Filters\FilterPage;
 use App\Models\Seo\ProductMetaTemplate;
+use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,7 +19,7 @@ use Spatie\Translatable\HasTranslations;
 class Category extends Model
 {
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
-    use HasFactory, NodeTrait, HasTranslations, HasSeoMeta;
+    use HasFactory, NodeTrait, HasTranslations, HasSeoMeta, HasMedia;
 
     protected $guarded = [];
 

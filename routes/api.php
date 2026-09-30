@@ -24,8 +24,8 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 // do not forget to add sorting functionality additionally to filtering
 // how to build reliable api like web project with session and csrf tokens
 // put | patch
+
 // implement stripe checkout https://www.youtube.com/watch?v=J13Xe939Bh8
 // php artisan make:middleware AttachRedirectOn404
 // make shure all slugs are clean (fix ->unique)
-// add mediable (featured image, baner image, etc type of image)
 

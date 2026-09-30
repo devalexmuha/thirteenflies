@@ -2,6 +2,7 @@
 
 namespace App\Models\Content;
 
+use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Spatie\Translatable\HasTranslations;
 class Service extends Model
 {
     /** @use HasFactory<\Database\Factories\ServiceFactory> */
-    use HasFactory, HasTranslations, HasSeoMeta;
+    use HasFactory, HasTranslations, HasSeoMeta, HasMedia;
 
     public array $translatable = ['title', 'excerpt', 'blocks'];
 

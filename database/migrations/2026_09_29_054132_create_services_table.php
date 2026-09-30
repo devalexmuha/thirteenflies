@@ -19,7 +19,6 @@ return new class extends Migration
             $table->json('title');
             $table->json('excerpt')->nullable();
             $table->json('blocks')->nullable();
-            $table->string('image_url')->nullable();
             $table->unsignedInteger('price_from')->nullable();
             $table->unsignedInteger('sort_order')->default(0);
             $table->boolean('is_active')->default(true);

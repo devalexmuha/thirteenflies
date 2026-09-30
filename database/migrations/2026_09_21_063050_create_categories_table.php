@@ -16,7 +16,6 @@ return new class extends Migration
             $table->nestedSet();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('image')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->unique();
-            $table->json('title');
-            $table->json('blocks')->nullable();
-            $table->boolean('is_active')->default(true);
-            $table->boolean('show_in_header')->default(false);
-            $table->boolean('show_in_footer')->default(false);
+            $table->string('name');
+            $table->string('location', 30)->unique();
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('menus');
     }
 };

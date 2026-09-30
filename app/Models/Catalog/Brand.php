@@ -4,6 +4,7 @@ namespace App\Models\Catalog;
 
 use App\Models\Filters\Attribute;
 use App\Models\Filters\FilterPage;
+use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,7 @@ use Spatie\Translatable\HasTranslations;
 class Brand extends Model
 {
     /** @use HasFactory<\Database\Factories\BrandFactory> */
-    use HasFactory, HasTranslations, HasSeoMeta;
+    use HasFactory, HasTranslations, HasSeoMeta, HasMedia;
 
     protected $guarded = [];
 
