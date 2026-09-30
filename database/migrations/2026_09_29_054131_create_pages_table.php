@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->unique();
             $table->json('title');
             $table->json('blocks')->nullable();
             $table->boolean('is_active')->default(true);

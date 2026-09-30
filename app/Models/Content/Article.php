@@ -4,6 +4,7 @@ namespace App\Models\Content;
 
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
+use App\Models\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,7 +13,7 @@ use Spatie\Translatable\HasTranslations;
 class Article extends Model
 {
     /** @use HasFactory<\Database\Factories\ArticleFactory> */
-    use HasFactory, HasTranslations, HasSeoMeta, HasMedia;
+    use HasFactory, HasTranslations, HasSeoMeta, HasSlug, HasMedia;
 
     public array $translatable = ['title', 'excerpt', 'content'];
 
