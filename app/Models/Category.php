@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\SEO\ProductMetaTemplate;
+use App\Models\Traits\HasSeoMeta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Kalnoy\Nestedset\NodeTrait;
@@ -13,7 +16,7 @@ use Spatie\Translatable\HasTranslations;
 class Category extends Model
 {
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
-    use HasFactory, NodeTrait, HasTranslations;
+    use HasFactory, NodeTrait, HasTranslations, HasSeoMeta;
 
     protected $guarded = [];
 
@@ -43,4 +46,9 @@ class Category extends Model
     {
         return $this->morphMany(FilterPage::class, 'filterable');
     }
+
+    public function productMetaTemplate(): HasOne
+    {
+        return $this->hasOne(ProductMetaTemplate::class);
+    } // check will it work, why claude suggest many to one and refactor models to put seo related into its namespace
 }

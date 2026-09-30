@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasSeoMeta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -11,7 +12,7 @@ use Spatie\Translatable\HasTranslations;
 class FilterPage extends Model
 {
     /** @use HasFactory<\Database\Factories\FilterPageFactory> */
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, HasSeoMeta;
 
     public array $translatable = ['name'];
 

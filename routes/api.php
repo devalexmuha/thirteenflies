@@ -30,4 +30,8 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 // how to build reliable api like web project with session and csrf tokens
 // put | patch
 // implement stripe checkout https://www.youtube.com/watch?v=J13Xe939Bh8
-//TOPIC 4 — Order & payment related
+// php artisan make:middleware AttachRedirectOn404
+// for writing redirects for seo filter page feature, check filter page model
+// make shure all slugs are clean (fix ->unique)
+// add mediable (featured image, baner image, etc type of image)
+
