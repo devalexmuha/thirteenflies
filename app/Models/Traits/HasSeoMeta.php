@@ -11,4 +11,9 @@ trait HasSeoMeta
     {
         return $this->morphOne(SeoMeta::class, 'seoable');
     }
+
+    public static function bootHasSeoMeta(): void
+    {
+        static::deleting(fn ($model) => $model->seoMeta()->delete());
+    }
 }

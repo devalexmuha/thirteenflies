@@ -54,5 +54,5 @@ class Category extends Model
     public function productMetaTemplate(): HasOne
     {
         return $this->hasOne(ProductMetaTemplate::class);
-    } // check will it work, why claude suggest many to one and refactor models to put seo related into its namespace
+    }
 }

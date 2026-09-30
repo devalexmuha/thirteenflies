@@ -11,4 +11,9 @@ trait HasSlug
     {
         return $this->morphMany(Slug::class, 'sluggable');
     }
+
+    public static function bootHasSlug(): void
+    {
+        static::deleting(fn ($model) => $model->slugs()->delete());
+    }
 }

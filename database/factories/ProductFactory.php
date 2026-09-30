@@ -15,12 +15,19 @@ class ProductFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Product::class;
+
     public function definition(): array
     {
+        $stock = fake()->numberBetween(0, 10);
+
         return [
-            'name'        => fake()->word(),
-            'description' => fake()->paragraph(),
-            'price'       => rand(1000, 99999),
+            'sku'         => fake()->unique()->bothify('TF-#####'),
+            'name'        => ['en' => 'Guitar ' . ucfirst(fake()->word())],
+            'description' => ['en' => fake()->paragraph()],
+            'price'       => fake()->numberBetween(10_000, 200_000),
+            'stock_qty'   => $stock,
+            'in_stock'    => $stock > 0,
         ];
     }
 }

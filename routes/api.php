@@ -22,16 +22,11 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 
 // review on product can add only user bought this product (in user -> orders -> complete -> exist this product)
 // do not forget to add sorting functionality additionally to filtering
-// how to build reliable api like web project with session and csrf tokens
+// how to build reliable api like web project with session and csrf tokens + what are the endpoints?
 // put | patch
 
 // implement stripe checkout https://www.youtube.com/watch?v=J13Xe939Bh8
 // php artisan make:middleware AttachRedirectOn404
-// make shure all slugs are clean (fix ->unique)
 
-// migrate (check unique on filter page),
-// check how category relationships work? why I need node tait? Is only parent_id enough? What will happen to childs If some middle root category will be deleted?
-// check what endpoints I will have for products and categories, how to make product live in route /stainwey-grad-piano-model-d-dlfd but know that this is a product
-// make factories and seeding for products categories and users
-// seed
+// before next seeding refactor factories by mirroring models namespaces
 // install filament
