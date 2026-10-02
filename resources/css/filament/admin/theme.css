@@ -1,0 +1,68 @@
+@import url('https://fonts.bunny.net/css?family=literata:600,700&display=swap');
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+@theme {
+    --text-xs: 0.9375rem;
+    --text-sm: 1.125rem;
+    --text-base: 1.125rem;
+    --text-lg: 1.25rem;
+    --text-xl: 1.5rem;
+    --text-2xl: 1.75rem;
+    --text-3xl: 2rem;
+}
+
+.fi-header-heading,
+.fi-section-header-heading,
+.fi-modal-heading,
+.fi-simple-header-heading {
+    font-family: 'Literata', serif;
+    font-weight: 600;
+}
+
+.fi-btn.fi-color-primary:not(.fi-outlined),
+.fi-btn.fi-color-danger:not(.fi-outlined) {
+    color: #fff;
+    font-size: var(--text-base);
+}
+
+.fi-btn.fi-color-primary:not(.fi-outlined) {
+    background-color: #006039;
+}
+
+.fi-btn.fi-color-primary:not(.fi-outlined):hover {
+    background-color: #004A2C;
+}
+
+.fi-btn.fi-color-danger:not(.fi-outlined) {
+    background-color: #B40610;
+}
+
+.fi-btn.fi-color-danger:not(.fi-outlined):hover {
+    background-color: #8F050D;
+}
+
+.fi-btn.fi-color-primary:not(.fi-outlined) .fi-icon,
+.fi-btn.fi-color-danger:not(.fi-outlined) .fi-icon {
+    color: #fff;
+}
+
+.fi-checkbox-input:checked:not(:disabled),
+.fi-checkbox-input:indeterminate:not(:disabled) {
+    background-color: #006039;
+    border-color: #006039;
+}
+
+.fi-checkbox-input:focus-visible {
+    --tw-ring-color: #006039;
+}
+
+.fi-toggle[aria-checked="true"] {
+    background-color: #006039;
+}
+
+.fi-toggle[aria-checked="true"]:hover {
+    background-color: #004A2C;
+}

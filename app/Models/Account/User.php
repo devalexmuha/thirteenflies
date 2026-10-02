@@ -9,6 +9,9 @@ use App\Models\Catalog\Review;
 use App\Models\Sales\Cart;
 use App\Models\Sales\Order;
 use Database\Factories\UserFactory;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,11 +20,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, HasName
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, HasApiTokens;
@@ -39,6 +43,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getFilamentName(): string
+    {
+        return $this->userProfile?->firstName ?: Str::before($this->email, '@');
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->email === 'admin@thirteenflies.com';
     }
 
     public function userProfile(): HasOne {
@@ -91,13 +105,4 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    public function getFilamentName(): string
-    {
-        return $this->userProfile?->first_name ?: $this->email;
-    }
-
-    public function canAccessPanel(): bool
-    {
-        return $this->roles()->where('name', '!=', 'subscriber')->exists();
-    }
 }

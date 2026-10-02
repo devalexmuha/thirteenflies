@@ -17,7 +17,13 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
 
 // BUILDING ADMIN PANEL
+// build catalog (products, brands, categories, filterPages, attributes)
+// build pages
+// build blog (make it look like wp)
+// build settings (seo settings?)
+// build dashboard
 
+// outline: plan admin panel structure (for now just how sidebar will structured).
 
 // before next seeding refactor factories by mirroring models namespaces
 

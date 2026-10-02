@@ -14,7 +14,10 @@ class Media extends Model
     use HasFactory, HasTranslations;
 
     protected $table = 'media';
+
     protected $guarded = [];
+
+    public array $translatable = ['alt'];
 
     protected static function booted(): void
     {
