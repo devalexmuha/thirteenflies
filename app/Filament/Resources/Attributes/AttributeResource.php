@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Attributes;
 use App\Filament\Resources\Attributes\Pages\ManageAttributes;
 use App\Models\Filters\Attribute;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -21,6 +22,9 @@ class AttributeResource extends Resource
     protected static ?string $model = Attribute::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Catalog';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {

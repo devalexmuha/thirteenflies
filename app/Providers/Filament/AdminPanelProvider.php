@@ -32,6 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
             ->brandName('Thirteen Flies')
+            ->favicon(asset('images/fly-shape.png'))
             ->colors([
                 'primary' => '#006039',
                 'success' => '#006039',
