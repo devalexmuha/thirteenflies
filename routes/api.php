@@ -17,7 +17,9 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
 
 // BUILDING ADMIN PANEL
-// build admin sidebar
+// on categories create attributes
+// on products create values
+// fill in catalog functionality from the admin prospective + filter pages
 
 // how seo json ld templates will work?
 // before next seeding refactor factories by mirroring models namespaces

@@ -51,9 +51,9 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    public function collection(): BelongsTo
+    public function collection(): BelongsToMany
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsToMany(Brand::class);
     }
 
     public function relatedProducts(): BelongsToMany

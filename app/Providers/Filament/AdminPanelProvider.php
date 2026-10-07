@@ -68,7 +68,9 @@ class AdminPanelProvider extends PanelProvider
             ->resourceCreatePageRedirect('index')
             ->resourceEditPageRedirect('index')
             ->navigationGroups([
-                NavigationGroup::make('Catalog')
+                NavigationGroup::make('Catalog'),
+                NavigationGroup::make('Content'),
+                NavigationGroup::make('SEO')
                                ->collapsed(),
             ]);
     }
