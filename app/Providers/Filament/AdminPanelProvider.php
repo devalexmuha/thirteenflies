@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Enums\Locale;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -13,13 +14,13 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -72,6 +73,13 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make('Content'),
                 NavigationGroup::make('SEO')
                                ->collapsed(),
-            ]);
+            ])->plugins(
+                [
+                    SpatieTranslatablePlugin::make()
+                                            ->defaultLocales(array_column(Locale::cases(), 'value'))
+                                            ->persist()
+                                            ->getLocaleLabelUsing(fn(string $locale) => Locale::from($locale)->label()),
+                ]
+            );
     }
 }

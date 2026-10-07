@@ -13,12 +13,9 @@ class CategoryForm
         return $schema
             ->components([
                 TextInput::make('name')
-                         ->required()
-                         ->formatStateUsing(fn($record) => $record?->getTranslation('name', app()->getLocale())),
+                         ->required(),
                 Toggle::make('is_active')
                       ->default(true),
             ]);
     }
 }
-
-// check what is simple resource, move on (check how to enable slug, seo meta, media in this form)

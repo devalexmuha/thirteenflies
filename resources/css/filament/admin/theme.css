@@ -1,4 +1,4 @@
-@import url('https://fonts.bunny.net/css?family=literata:600,700&display=swap');
+@import url('https://fonts.bunny.net/css?family=literata:400,500,600,700&display=swap');
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
 
 @source '../../../../app/Filament/**/*';
@@ -12,6 +12,11 @@
     --text-xl: 1.5rem;
     --text-2xl: 1.75rem;
     --text-3xl: 2rem;
+}
+
+body,
+.fi-body {
+    font-family: 'Crimson Pro', 'Literata', Georgia, serif;
 }
 
 .fi-header-heading,
