@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\Catalog\Collections\Tables;
+namespace App\Filament\Resources\Catalog\Promotions\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 
-class CollectionsTable
+class PromotionsTable
 {
     public static function configure(Table $table): Table
     {

@@ -23,7 +23,8 @@ class CategoriesTable
                           ->sortable(),
                 TextColumn::make('products_count')
                           ->label('Products')
-                          ->counts('products'),
+                          ->counts('products')
+                          ->sortable(),
             ])
             ->filters([
                 //

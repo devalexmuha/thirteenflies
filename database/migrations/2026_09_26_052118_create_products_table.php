@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Catalog\Brand;
+use App\Models\Catalog\Discount;
+use App\Models\Catalog\Promotion;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,15 +17,17 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Brand::class)->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(Promotion::class)->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(Discount::class)->nullable()->constrained()->nullOnDelete();
             $table->string('sku', 64)->unique();
             $table->json('name');
             $table->json('short_description')->nullable();
             $table->json('description')->nullable();
-            $table->unsignedInteger('price');                        // cents
-            $table->unsignedInteger('sale_price')->nullable();       // cents
-            $table->timestamp('sale_starts_at')->nullable();
-            $table->timestamp('sale_ends_at')->nullable();
-            $table->string('condition', 20)->default('new');         // ProductCondition
+            $table->unsignedInteger('price');
+            $table->string('condition')->nullable();
+            $table->boolean('is_discounted')->default(false);
+            $table->unsignedInteger('discount_price')->nullable();
+
             $table->unsignedInteger('stock_qty')->default(0);
             $table->boolean('in_stock')->default(false);
             $table->boolean('is_active')->default(true);
@@ -32,7 +36,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->index('price');
-            $table->index('sale_price');
+            $table->index('discount_price');
             $table->index('condition');
         });
     }

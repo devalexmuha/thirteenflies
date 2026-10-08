@@ -32,3 +32,5 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 
 // implement stripe checkout https://www.youtube.com/watch?v=J13Xe939Bh8
 // php artisan make:middleware AttachRedirectOn404
+// delete media files on model deletion
+// implement json ld as separate feature

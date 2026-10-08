@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Catalog\Collection;
+use App\Models\Catalog\Discount;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Collection>
+ * @extends Factory<Discount>
  */
-class CollectionFactory extends Factory
+class DiscountFactory extends Factory
 {
     /**
      * Define the model's default state.

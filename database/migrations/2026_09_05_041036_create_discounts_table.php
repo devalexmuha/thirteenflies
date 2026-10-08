@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Catalog\Collection;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropConstrainedForeignIdFor(Collection::class);
+        Schema::create('discounts', function (Blueprint $table) {
+            $table->id();
+            $table->json('name');
+            $table->string('type', 30)->unique();
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
         });
     }
 
@@ -22,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->foreignIdFor(Collection::class)->nullable()->after('brand_id')->constrained()->nullOnDelete();
-        });
+        Schema::dropIfExists('collections');
     }
 };

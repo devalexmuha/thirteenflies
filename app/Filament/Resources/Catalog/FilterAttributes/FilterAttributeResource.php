@@ -25,7 +25,7 @@ class FilterAttributeResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Catalog';
     protected static ?string $navigationParentItem = 'Products';
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {

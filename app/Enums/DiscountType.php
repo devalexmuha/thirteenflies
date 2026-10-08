@@ -2,9 +2,9 @@
 
 namespace App\Enums;
 
-enum CollectionType: string
+enum DiscountType: string
 {
-    case OnSale = 'on_sale';
     case BStock = 'b_stock';
     case OpenBox = 'open_box';
+    case Used = 'used';
 }

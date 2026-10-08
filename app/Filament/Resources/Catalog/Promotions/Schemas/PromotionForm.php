@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Filament\Resources\Catalog\Collections\Schemas;
+namespace App\Filament\Resources\Catalog\Promotions\Schemas;
 
 use Filament\Schemas\Schema;
 
-class CollectionForm
+class PromotionForm
 {
     public static function configure(Schema $schema): Schema
     {

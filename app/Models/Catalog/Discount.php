@@ -15,14 +15,14 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\Translatable\HasTranslations;
 
-class Collection extends Model
+class Discount extends Model
 {
-    /** @use HasFactory<\Database\Factories\CollectionFactory> */
+    /** @use HasFactory<\Database\Factories\DiscountFactory> */
     use HasFactory, HasTranslations, HasSeoMeta, HasSlug, HasMedia;
 
-    public function products(): BelongsToMany
+    public function products(): HasMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->hasMany(Product::class);
     }
 
     public function activeProducts(): HasMany
