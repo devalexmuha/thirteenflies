@@ -1,8 +1,10 @@
 @import url('https://fonts.bunny.net/css?family=literata:400,500,600,700&display=swap');
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../../vendor/awcodes/filament-curator/resources/css/plugin.css';
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
+@source '../../../../vendor/awcodes/filament-curator/resources/**/*';
 
 @theme {
     --text-xs: 0.9375rem;
@@ -70,4 +72,15 @@ body,
 
 .fi-toggle[aria-checked="true"]:hover {
     background-color: #004A2C;
+}
+
+
+/* Curator */
+.fi-ta-content-grid .fi-ta-record-content {
+    height: auto;
+}
+
+.fi-ta-content-grid .fi-grid-col:has(> .curator-grid-column) {
+    position: relative;
+    aspect-ratio: 1 / 1;
 }

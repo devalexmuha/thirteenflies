@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Enums\Locale;
+use Awcodes\Curator\CuratorPlugin;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -73,12 +74,19 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make('Content'),
                 NavigationGroup::make('SEO')
                                ->collapsed(),
+                NavigationGroup::make('Settings')
+                               ->collapsed(),
             ])->plugins(
                 [
                     SpatieTranslatablePlugin::make()
                                             ->defaultLocales(array_column(Locale::cases(), 'value'))
                                             ->persist()
                                             ->getLocaleLabelUsing(fn(string $locale) => Locale::from($locale)->label()),
+                    CuratorPlugin::make()
+                                 ->label('Media')
+                                 ->pluralLabel('Media Library')
+                                 ->navigationGroup('Settings')
+                                 ->navigationIcon('heroicon-o-photo'),
                 ]
             );
     }

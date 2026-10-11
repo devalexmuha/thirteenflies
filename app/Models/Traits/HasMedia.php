@@ -2,18 +2,15 @@
 
 namespace App\Models\Traits;
 
-use App\Models\Assets\Media;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Awcodes\Curator\Models\Media;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait HasMedia
 {
-    public function media(): MorphMany
+    public function media(): MorphToMany
     {
-        return $this->morphMany(Media::class, 'mediable');
-    }
-
-    public static function bootHasMedia(): void
-    {
-        static::deleting(fn ($model) => $model->media()->get()->each->delete());
+        return $this->morphToMany(Media::class, 'mediable')
+                    ->withPivot('order')
+                    ->orderByPivot('order');
     }
 }
