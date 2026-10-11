@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1b9374725cc1c5633d16265ee2bdbb9",
+    "content-hash": "13de36ef6fb5d9c280d146241bd543a5",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4571,6 +4571,85 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.9.0"
             },
             "time": "2026-09-13T18:51:52+00:00"
+        },
+        {
+            "name": "njxqlus/filament-relation-manager-component",
+            "version": "2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/njxqlus/filament-relation-manager-component.git",
+                "reference": "d6385781d977428e09e404333468cd90816c3ab9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/njxqlus/filament-relation-manager-component/zipball/d6385781d977428e09e404333468cd90816c3ab9",
+                "reference": "d6385781d977428e09e404333468cd90816c3ab9",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^4.0|^5.0",
+                "php": "^8.3",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "larastan/larastan": "^3.7.2",
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^8.8.2",
+                "orchestra/testbench": "^10.0|^11.0",
+                "pestphp/pest": "^4.0",
+                "pestphp/pest-plugin-arch": "^4.0",
+                "pestphp/pest-plugin-laravel": "^4.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^2.1.28",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "FilamentRelationManagerComponent": "Njxqlus\\Filament\\Components\\Facades\\FilamentRelationManagerComponent"
+                    },
+                    "providers": [
+                        "Njxqlus\\Filament\\Components\\FilamentRelationManagerComponentServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Njxqlus\\Filament\\Components\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mikael Ahabalyants",
+                    "email": "njxqlus@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Use Filament Relation Manager Everywhere!",
+            "homepage": "https://github.com/njxqlus/filament-relation-manager-component",
+            "keywords": [
+                "filament",
+                "filament-relation-manager-component",
+                "laravel",
+                "njxqlus"
+            ],
+            "support": {
+                "issues": "https://github.com/njxqlus/filament-relation-manager-component/issues",
+                "source": "https://github.com/njxqlus/filament-relation-manager-component"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/njxqlus",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-03-31T11:18:47+00:00"
         },
         {
             "name": "nunomaduro/termwind",

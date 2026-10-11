@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources\Catalog\Categories\Schemas;
 
+use App\Filament\RelationManagers\FilterAttributesRelationManager;
 use App\Models\Catalog\Category;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Fieldset;
@@ -13,6 +15,7 @@ use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
+use Njxqlus\Filament\Components\Forms\RelationManager;
 
 class CategoryForm
 {
@@ -91,13 +94,37 @@ class CategoryForm
                        ]),
                     Tab::make('Filtering')
                        ->schema([
-                           Select::make('attributes')
-                                 ->relationship('attributes', 'name')
-                                 ->searchable(),
-                       ]),
+                           RelationManager::make()
+                                          ->manager(FilterAttributesRelationManager::class)
+                                          ->lazy(false),
+                       ])->hiddenOn('create'),
                     Tab::make('SEO')
                        ->schema([
-
+                           Group::make()
+                                ->relationship('seoMeta')
+                                ->schema([
+                                    TextInput::make('title')
+                                             ->required(),
+                                    TextInput::make('slug')
+                                             ->required(),
+                                    Textarea::make('description'),
+                                    Select::make('robots')
+                                          ->options([
+                                              'index, follow'     => 'index, follow',
+                                              'noindex, follow'   => 'noindex, follow',
+                                              'noindex, nofollow' => 'noindex, nofollow',
+                                          ])
+                                          ->default('index, follow')
+                                          ->required(),
+                                ]),
+                           Fieldset::make('Product Meta Template')
+                                   ->relationship('productMetaTemplate')
+                                   ->schema([
+                                       TextInput::make('title')
+                                                ->columnSpanFull(),
+                                       Textarea::make('description')
+                                               ->columnSpanFull(),
+                                   ]),
                        ]),
                     Tab::make('Status')
                        ->schema([

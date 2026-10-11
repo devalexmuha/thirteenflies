@@ -2,9 +2,9 @@
 
 namespace App\Models\Catalog;
 
-use App\Models\Filters\Attribute;
 use App\Models\Filters\FilterPage;
 use App\Models\Seo\ProductMetaTemplate;
+use App\Models\Traits\HasAttributes;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
@@ -13,14 +13,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Kalnoy\Nestedset\NodeTrait;
 use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
-    use HasFactory, NodeTrait, HasTranslations, HasSeoMeta, HasSlug, HasMedia;
+    use HasFactory, NodeTrait, HasTranslations, HasSeoMeta, HasAttributes, HasSlug, HasMedia;
 
     protected $guarded = [];
 
@@ -33,17 +32,12 @@ class Category extends Model
 
     protected static function booted(): void
     {
-        static::deleting(fn ($model) => $model->filterPages()->each->delete());
+        static::deleting(fn($model) => $model->filterPages()->each->delete());
     }
 
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);
-    }
-
-    public function attributes(): morphToMany
-    {
-        return $this->morphToMany(Attribute::class, 'attributable');
     }
 
     public function filterPages(): MorphMany

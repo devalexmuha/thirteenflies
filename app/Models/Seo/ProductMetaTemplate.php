@@ -15,7 +15,7 @@ class ProductMetaTemplate extends Model
 
     protected $guarded = [];
 
-    protected $table = 'seo_poduct_meta_templates';
+    protected $table = 'seo_product_meta_templates';
 
     public array $translatable = ['meta_title', 'meta_description'];
 

@@ -4,6 +4,7 @@ namespace App\Models\Catalog;
 
 use App\Models\Filters\Attribute;
 use App\Models\Filters\FilterPage;
+use App\Models\Traits\HasAttributes;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
@@ -17,7 +18,7 @@ use Spatie\Translatable\HasTranslations;
 class Brand extends Model
 {
     /** @use HasFactory<\Database\Factories\BrandFactory> */
-    use HasFactory, HasTranslations, HasSeoMeta, HasSlug, HasMedia;
+    use HasFactory, HasTranslations, HasSeoMeta, HasAttributes, HasSlug, HasMedia;
 
     protected $guarded = [];
 
@@ -41,11 +42,6 @@ class Brand extends Model
     public function filterPages(): MorphMany
     {
         return $this->morphMany(FilterPage::class, 'filterable');
-    }
-
-    public function attributes(): morphToMany
-    {
-        return $this->morphToMany(Attribute::class, 'attributable');
     }
 
 }
