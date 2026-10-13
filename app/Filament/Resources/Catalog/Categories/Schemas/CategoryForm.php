@@ -144,3 +144,5 @@ class CategoryForm
 
     }
 }
+
+// check how media module works in mine app, make media translatable (path, alt... as well)

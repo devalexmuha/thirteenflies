@@ -18,4 +18,14 @@ enum Locale: string
             self::Ru => 'Russian',
         };
     }
+
+    public function flag(): string
+    {
+        return asset('flags/'.match ($this) {
+                self::En => 'gb',
+                self::Es => 'es',
+                self::Uk => 'ua',
+                self::Ru => 'ru',
+            }.'.svg');
+    }
 }

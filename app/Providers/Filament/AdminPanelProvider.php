@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Enums\Locale;
+use App\Http\Middleware\SetAdminLocale;
 use Awcodes\Curator\CuratorPlugin;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
@@ -14,14 +15,15 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Route;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -63,12 +65,22 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                SetAdminLocale::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->resourceCreatePageRedirect('index')
-            ->resourceEditPageRedirect('index')
+            ->authenticatedRoutes(function () {
+                Route::get('/locale/{locale}', function (string $locale) {
+
+                    abort_unless((bool) Locale::tryFrom($locale), 404);
+                    session(['admin_locale' => $locale]);
+
+                    return back();
+
+                })->name('locale');
+            })
+            ->renderHook(PanelsRenderHook::USER_MENU_BEFORE, fn() => view('filament.locale-switcher'))
             ->navigationGroups([
                 NavigationGroup::make('Catalog'),
                 NavigationGroup::make('Content'),
@@ -78,10 +90,6 @@ class AdminPanelProvider extends PanelProvider
                                ->collapsed(),
             ])->plugins(
                 [
-                    SpatieTranslatablePlugin::make()
-                                            ->defaultLocales(array_column(Locale::cases(), 'value'))
-                                            ->persist()
-                                            ->getLocaleLabelUsing(fn(string $locale) => Locale::from($locale)->label()),
                     CuratorPlugin::make()
                                  ->label('Media')
                                  ->pluralLabel('Media Library')

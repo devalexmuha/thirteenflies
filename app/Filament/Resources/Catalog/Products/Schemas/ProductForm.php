@@ -15,8 +15,7 @@ class ProductForm
         return $schema
             ->components([
                 TextInput::make('name')
-                         ->required()
-                         ->formatStateUsing(fn($record) => $record?->getTranslation('name', app()->getLocale())),
+                         ->required(),
 
                 TextInput::make('sku')
                          ->required()

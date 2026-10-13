@@ -8,6 +8,7 @@ use App\Models\Traits\HasAttributes;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
+use App\Models\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -19,7 +20,7 @@ use Spatie\Translatable\HasTranslations;
 class Category extends Model
 {
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
-    use HasFactory, NodeTrait, HasTranslations, HasSeoMeta, HasAttributes, HasSlug, HasMedia;
+    use HasFactory, NodeTrait, Translatable, HasSeoMeta, HasAttributes, HasSlug, HasMedia;
 
     protected $guarded = [];
 

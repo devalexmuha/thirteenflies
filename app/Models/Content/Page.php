@@ -5,6 +5,7 @@ namespace App\Models\Content;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
+use App\Models\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
@@ -12,7 +13,7 @@ use Spatie\Translatable\HasTranslations;
 class Page extends Model
 {
     /** @use HasFactory<\Database\Factories\PageFactory> */
-    use HasFactory, HasTranslations, HasSeoMeta, HasSlug, HasMedia;
+    use HasFactory, Translatable, HasSeoMeta, HasSlug, HasMedia;
 
     public array $translatable = ['title', 'blocks'];
 

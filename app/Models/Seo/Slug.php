@@ -2,6 +2,7 @@
 
 namespace App\Models\Seo;
 
+use App\Models\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -10,7 +11,7 @@ use Spatie\Translatable\HasTranslations;
 class Slug extends Model
 {
     /** @use HasFactory<\Database\Factories\SlugFactory> */
-    use HasFactory, HasTranslations;
+    use HasFactory, Translatable;
 
     public $timestamps = false;
 

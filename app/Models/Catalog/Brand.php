@@ -8,6 +8,7 @@ use App\Models\Traits\HasAttributes;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
+use App\Models\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,7 +19,7 @@ use Spatie\Translatable\HasTranslations;
 class Brand extends Model
 {
     /** @use HasFactory<\Database\Factories\BrandFactory> */
-    use HasFactory, HasTranslations, HasSeoMeta, HasAttributes, HasSlug, HasMedia;
+    use HasFactory, Translatable, HasSeoMeta, HasAttributes, HasSlug, HasMedia;
 
     protected $guarded = [];
 

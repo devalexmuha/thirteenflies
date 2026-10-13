@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Jobs\CompressMedia;
 use Awcodes\Curator\Models\Media;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Events\LocaleUpdated;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,9 +25,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Factory::guessFactoryNamesUsing(
-            fn (string $model) => 'Database\\Factories\\' . class_basename($model) . 'Factory'
+            fn(string $model) => 'Database\\Factories\\'.class_basename($model).'Factory'
         );
 
-        Media::created(fn (Media $media) => CompressMedia::dispatch($media));
+        Media::created(fn(Media $media) => CompressMedia::dispatch($media));
+
+        Event::listen(LocaleUpdated::class, function (): void {
+            if ( ! request()->is('api/*')) {
+                app('translator')->setLocale('en');
+            }
+        });
     }
 }

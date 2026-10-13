@@ -7,6 +7,7 @@ use App\Models\Filters\FilterPage;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
+use App\Models\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -18,7 +19,7 @@ use Spatie\Translatable\HasTranslations;
 class Discount extends Model
 {
     /** @use HasFactory<\Database\Factories\DiscountFactory> */
-    use HasFactory, HasTranslations, HasSeoMeta, HasSlug, HasMedia;
+    use HasFactory, Translatable, HasSeoMeta, HasSlug, HasMedia;
 
     public function products(): HasMany
     {
