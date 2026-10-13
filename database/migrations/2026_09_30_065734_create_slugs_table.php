@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('slugs', function (Blueprint $table) {
             $table->id();
             $table->morphs('sluggable');
-            $table->string('locale', 5);
-            $table->string('slug');
+            $table->json('slug');
 
-            $table->unique(['sluggable_type', 'sluggable_id', 'locale'], 'unique_parent_per_locale');
-            $table->unique(['sluggable_type', 'locale', 'slug'], 'unique_slug_per_parent_type_locale');
+            $table->unique(['sluggable_type', 'sluggable_id'], 'unique_slug');
         });
     }
 

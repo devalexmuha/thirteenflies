@@ -103,11 +103,19 @@ class CategoryForm
                            Group::make()
                                 ->relationship('seoMeta')
                                 ->schema([
-                                    TextInput::make('title')
-                                             ->required(),
+                                    TextInput::make('meta_title')
+                                             ->required()
+                                ]),
+                           Group::make()
+                                ->relationship('slug')
+                                ->schema([
                                     TextInput::make('slug')
                                              ->required(),
-                                    Textarea::make('description'),
+                                ]),
+                           Group::make()
+                                ->relationship('seoMeta')
+                                ->schema([
+                                    Textarea::make('meta_description'),
                                     Select::make('robots')
                                           ->options([
                                               'index, follow'     => 'index, follow',
@@ -120,9 +128,9 @@ class CategoryForm
                            Fieldset::make('Product Meta Template')
                                    ->relationship('productMetaTemplate')
                                    ->schema([
-                                       TextInput::make('title')
+                                       TextInput::make('meta_title')
                                                 ->columnSpanFull(),
-                                       Textarea::make('description')
+                                       Textarea::make('meta_description')
                                                ->columnSpanFull(),
                                    ]),
                        ]),
@@ -131,7 +139,8 @@ class CategoryForm
                            Toggle::make('is_active')
                                  ->default(true),
                        ]),
-                ])
+                ]),
             ])->columns(1);
+
     }
 }

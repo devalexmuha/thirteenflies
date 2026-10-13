@@ -4,12 +4,13 @@ namespace App\Models\Traits;
 
 use App\Models\Seo\Slug;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasSlug
 {
-    public function slugs(): MorphMany
+    public function slug(): MorphOne
     {
-        return $this->morphMany(Slug::class, 'sluggable');
+        return $this->morphOne(Slug::class, 'sluggable');
     }
 
     public static function bootHasSlug(): void
