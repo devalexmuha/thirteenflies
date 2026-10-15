@@ -21,6 +21,10 @@ class Discount extends Model
     /** @use HasFactory<\Database\Factories\DiscountFactory> */
     use HasFactory, Translatable, HasSeoMeta, HasSlug, HasMedia;
 
+    protected $guarded = [];
+
+    public array $translatable = ['name'];
+
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);

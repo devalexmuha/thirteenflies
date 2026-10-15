@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\Catalog\Categories\Tables;
 
+use App\Filament\Tables\Columns\CatalogColumns;
 use App\Models\Catalog\Category;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -15,23 +15,13 @@ class CategoriesTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('name')
-                          ->sortable()
-                          ->searchable(),
-                IconColumn::make('is_active')
-                          ->boolean()
-                          ->sortable(),
+            ->columns(CatalogColumns::get([
                 TextColumn::make('ancestors')
                           ->label('Parents')
-                          ->state(fn (Category $record) => $record->ancestors->sortBy('_lft')->pluck('name')->all())
+                          ->state(fn(Category $record) => $record->ancestors->sortBy('_lft')->pluck('name')->all())
                           ->badge()
-                          ->placeholder('—'),
-                TextColumn::make('products_count')
-                          ->label('Products')
-                          ->counts('products')
-                          ->sortable(),
-            ])
+                          ->placeholder('—')
+            ]))
             ->filters([
                 //
             ])

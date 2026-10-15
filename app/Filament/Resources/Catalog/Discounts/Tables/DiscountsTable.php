@@ -15,18 +15,13 @@ class DiscountsTable
     {
         return $table
             ->columns([
-                TextColumn::make('type')
-                    ->searchable(),
-                IconColumn::make('is_active')
-                    ->boolean(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('products_count')
+                          ->label('Products')
+                          ->counts('products')
+                          ->sortable(),
             ])
             ->filters([
                 //

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Catalog\Brands\Tables;
 
+use App\Filament\Tables\Columns\CatalogColumns;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -14,18 +15,7 @@ class BrandsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('name')
-                          ->sortable()
-                          ->searchable(),
-                IconColumn::make('is_active')
-                          ->boolean()
-                          ->sortable(),
-                TextColumn::make('products_count')
-                          ->label('Products')
-                          ->counts('products')
-                          ->sortable(),
-            ])
+            ->columns(CatalogColumns::get())
             ->filters([
                 //
             ])

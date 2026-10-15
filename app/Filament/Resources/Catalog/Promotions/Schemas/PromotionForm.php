@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\Catalog\Promotions\Schemas;
 
+use App\Filament\Resources\Catalog\Promotions\RelationManagers\ProductsRelationManager;
 use App\Filament\Schemas\SharedFields;
-use App\Filament\Tables\CategoriesTable;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\ModalTableSelect;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
@@ -41,11 +41,14 @@ class PromotionForm
                                             ->minValue(0)
                                             ->maxValue(100)
                                             ->suffix('%'),
+                                   Toggle::make('is_active')
+                                         ->inline(false)
+                                         ->default(true),
                                ]),
-                           ModalTableSelect::make('category_id')
-                                ->relationship('products', 'name')
-                                ->multiple()
-                                ->tableConfiguration(CategoriesTable::class),
+                           RelationManager::make()
+                                          ->manager(ProductsRelationManager::class)
+                                          ->lazy(false)
+                                          ->hiddenOn('create'),
                        ]),
                     SharedFields::seoTab(),
                 ]),

@@ -2,12 +2,17 @@
 
 namespace App\Filament\Resources\Catalog\Products\Tables;
 
+use App\Enums\DiscountType;
+use App\Filament\Filters\ProductFilters;
+use App\Filament\Tables\Columns\ProductColumns;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 
 class ProductsTable
@@ -15,24 +20,11 @@ class ProductsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('name')
-                          ->sortable()
-                          ->searchable(),
-                TextColumn::make('sku'),
-                TextColumn::make('price')
-                          ->sortable()
-                          ->money('USD'),
-                IconColumn::make('is_active')
-                          ->boolean()
-                          ->sortable()
-                          ->toggleable(),
-                TextColumn::make('categories.name')
-                          ->badge(),
-            ])
-            ->filters([
-                //
-            ])
+            ->columns(ProductColumns::get())
+            ->filters(ProductFilters::get([
+                TernaryFilter::make('is_discounted')->label('Discounted'),
+            ]), layout: FiltersLayout::AboveContent)
+            ->filtersFormColumns(5)
             ->recordActions([
                 EditAction::make()
                           ->color('primary'),

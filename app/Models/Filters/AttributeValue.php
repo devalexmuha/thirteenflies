@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Str;
 
 class AttributeValue extends Model
 {
@@ -18,6 +18,16 @@ class AttributeValue extends Model
     public array $translatable = ['value'];
 
     protected $guarded = [];
+
+    protected static function booted(): void
+    {
+        static::saving(function (AttributeValue $attributeValue): void {
+            $names  = array_filter($attributeValue->getTranslations('value'));
+            $locale = isset($names['en']) ? 'en' : array_key_first($names);
+
+            $attributeValue->slug = Str::slug($names[$locale] ?? '', '-', $locale ?? 'en');
+        });
+    }
 
     public function attribute(): BelongsTo
     {

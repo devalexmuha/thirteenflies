@@ -3,7 +3,6 @@
 namespace App\Filament\RelationManagers;
 
 use App\Models\Filters\Attribute;
-use App\Support\ContentLocale;
 use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
@@ -19,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
 class FilterAttributesRelationManager extends RelationManager
 {
     protected static string $relationship = 'filterAttributes';
+
+    protected static ?string $title = 'Attributes';
 
     public function form(Schema $schema): Schema
     {
@@ -37,30 +38,30 @@ class FilterAttributesRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->columns([
                 TextColumn::make('name')
-                          ->searchable(query: fn(Builder $query, string $search) => $query->whereRaw(
-                              'LOWER(JSON_UNQUOTE(JSON_EXTRACT(name, ?))) LIKE ?',
-                              ['$."'.ContentLocale::get().'"', '%'.mb_strtolower($search).'%'],
-                          )),
+                          ->searchable(query: fn(
+                              Builder $query,
+                              string $search
+                          ) => $query->whereRaw('LOWER(CAST(name AS CHAR)) LIKE ?', ['%'.mb_strtolower($search).'%'])),
             ])
             ->headerActions([
-                CreateAction::make(),
-            ])
-            ->recordActions([
-                EditAction::make()
-                          ->fillForm(fn(Attribute $record): array => $record->attributesToArray())
-                          ->using(fn(Attribute $record, array $data) => $record->update($data)),
-                Action::make('attach')
-                      ->icon('heroicon-m-link')
-                      ->color('success')
-                      ->hidden(fn(Attribute $record): bool => $this->isAttached($record))
-                      ->action(fn(Attribute $record) => $this->getOwnerRecord()->filterAttributes()->attach($record)),
-                Action::make('detach')
-                      ->icon('heroicon-m-link-slash')
-                      ->color('danger')
-                      ->visible(fn(Attribute $record): bool => $this->isAttached($record))
-                      ->action(fn(Attribute $record) => $this->getOwnerRecord()->filterAttributes()->detach($record)),
-                DeleteAction::make(),
-            ]);
+        CreateAction::make(),
+    ])
+        ->recordActions([
+            EditAction::make()
+                      ->fillForm(fn(Attribute $record): array => $record->attributesToArray())
+                      ->using(fn(Attribute $record, array $data) => $record->update($data)),
+            Action::make('attach')
+                  ->icon('heroicon-m-link')
+                  ->color('success')
+                  ->hidden(fn(Attribute $record): bool => $this->isAttached($record))
+                  ->action(fn(Attribute $record) => $this->getOwnerRecord()->filterAttributes()->attach($record)),
+            Action::make('detach')
+                  ->icon('heroicon-m-link-slash')
+                  ->color('danger')
+                  ->visible(fn(Attribute $record): bool => $this->isAttached($record))
+                  ->action(fn(Attribute $record) => $this->getOwnerRecord()->filterAttributes()->detach($record)),
+            DeleteAction::make(),
+        ]);
     }
 
     protected function resolveTableRecord(?string $key): ?Model

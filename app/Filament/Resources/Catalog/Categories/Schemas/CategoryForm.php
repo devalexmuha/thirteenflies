@@ -41,7 +41,7 @@ class CategoryForm
                                  ->searchable()
                                  ->preload(),
                        ]),
-                    SharedFields::filteringTab(),
+                    SharedFields::attributesTab(),
                     SharedFields::seoTab([
                         Fieldset::make('Product Meta Template')
                                 ->relationship('productMetaTemplate')

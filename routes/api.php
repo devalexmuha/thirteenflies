@@ -35,3 +35,5 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 // delete media files on model deletion
 // implement json ld as separate feature
 // show available variables on categories for prod meta templates
+
+// who is added global search?

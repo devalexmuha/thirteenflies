@@ -16,7 +16,7 @@ class BrandForm
             ->components([
                 Tabs::make()->tabs([
                     SharedFields::contentTab('Brands'),
-                    SharedFields::filteringTab(),
+                    SharedFields::attributesTab(),
                     SharedFields::seoTab(),
                     SharedFields::statusTab(),
                 ]),

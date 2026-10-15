@@ -54,9 +54,25 @@ class SharedFields
                        ]);
     }
 
-    public static function filteringTab(): Tab
+    public static function photos(string $directory): Fieldset
     {
-        return Tab::make('Filtering')
+        return Fieldset::make('Photos')
+                       ->schema([
+                           CuratorPicker::make('media')
+                                        ->relationship('media', 'id')
+                                        ->multiple()
+                                        ->maxItems(10)
+                                        ->directory($directory)
+                                        ->columnSpan(2)
+                                        ->hiddenLabel()
+                                        ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/avif'])
+                                        ->maxSize(5120),
+                       ]);
+    }
+
+    public static function attributesTab(): Tab
+    {
+        return Tab::make('Attributes')
                   ->schema([
                       RelationManager::make()
                                      ->manager(FilterAttributesRelationManager::class)
