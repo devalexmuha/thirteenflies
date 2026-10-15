@@ -15,6 +15,6 @@ trait HasSlug
 
     public static function bootHasSlug(): void
     {
-        static::deleting(fn ($model) => $model->slugs()->delete());
+        static::deleting(fn ($model) => $model->slug()->delete());
     }
 }

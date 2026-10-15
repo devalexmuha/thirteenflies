@@ -1,4 +1,4 @@
-@php($current = \App\Enums\Locale::from(app()->getLocale()))
+@php($current = \App\Enums\Locale::from(App\Support\ContentLocale::get()))
 
 <div x-data="{ open: false }" @click.outside="open = false" @keydown.escape.window="open = false">
     <x-filament::dropdown placement="bottom-end">

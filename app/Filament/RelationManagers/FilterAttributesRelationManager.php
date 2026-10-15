@@ -2,19 +2,19 @@
 
 namespace App\Filament\RelationManagers;
 
-use Filament\Actions\AttachAction;
-use Filament\Actions\BulkActionGroup;
+use App\Models\Filters\Attribute;
+use App\Support\ContentLocale;
+use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\DetachAction;
-use Filament\Actions\DetachBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class FilterAttributesRelationManager extends RelationManager
 {
@@ -33,29 +33,43 @@ class FilterAttributesRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
+            ->query(fn(): Builder => Attribute::query())
             ->recordTitleAttribute('name')
             ->columns([
                 TextColumn::make('name')
-                          ->searchable(),
-            ])
-            ->filters([
-                //
+                          ->searchable(query: fn(Builder $query, string $search) => $query->whereRaw(
+                              'LOWER(JSON_UNQUOTE(JSON_EXTRACT(name, ?))) LIKE ?',
+                              ['$."'.ContentLocale::get().'"', '%'.mb_strtolower($search).'%'],
+                          )),
             ])
             ->headerActions([
                 CreateAction::make(),
-                AttachAction::make()
-                            ->preloadRecordSelect(),
             ])
             ->recordActions([
-                EditAction::make(),
-                DetachAction::make(),
+                EditAction::make()
+                          ->fillForm(fn(Attribute $record): array => $record->attributesToArray())
+                          ->using(fn(Attribute $record, array $data) => $record->update($data)),
+                Action::make('attach')
+                      ->icon('heroicon-m-link')
+                      ->color('success')
+                      ->hidden(fn(Attribute $record): bool => $this->isAttached($record))
+                      ->action(fn(Attribute $record) => $this->getOwnerRecord()->filterAttributes()->attach($record)),
+                Action::make('detach')
+                      ->icon('heroicon-m-link-slash')
+                      ->color('danger')
+                      ->visible(fn(Attribute $record): bool => $this->isAttached($record))
+                      ->action(fn(Attribute $record) => $this->getOwnerRecord()->filterAttributes()->detach($record)),
                 DeleteAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DetachBulkAction::make(),
-                    DeleteBulkAction::make(),
-                ]),
             ]);
+    }
+
+    protected function resolveTableRecord(?string $key): ?Model
+    {
+        return Attribute::find($key);
+    }
+
+    protected function isAttached(Attribute $record): bool
+    {
+        return $this->getOwnerRecord()->filterAttributes()->whereKey($record->getKey())->exists();
     }
 }

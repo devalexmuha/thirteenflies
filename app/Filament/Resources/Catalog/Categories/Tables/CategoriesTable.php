@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Catalog\Categories\Tables;
 
+use App\Models\Catalog\Category;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -21,6 +22,11 @@ class CategoriesTable
                 IconColumn::make('is_active')
                           ->boolean()
                           ->sortable(),
+                TextColumn::make('ancestors')
+                          ->label('Parents')
+                          ->state(fn (Category $record) => $record->ancestors->sortBy('_lft')->pluck('name')->all())
+                          ->badge()
+                          ->placeholder('—'),
                 TextColumn::make('products_count')
                           ->label('Products')
                           ->counts('products')

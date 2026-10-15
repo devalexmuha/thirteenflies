@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menus', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('location', 30)->unique();
-            $table->timestamps();
+        Schema::table('mediables', function (Blueprint $table) {
+            $table->string('locale', 5)->default('en')->index();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menus');
+        Schema::table('mediables', function (Blueprint $table) {
+            //
+        });
     }
 };

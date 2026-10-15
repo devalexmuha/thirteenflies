@@ -6,6 +6,7 @@ use App\Models\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Str;
 use Spatie\Translatable\HasTranslations;
 
 class Slug extends Model
@@ -19,10 +20,17 @@ class Slug extends Model
 
     protected $guarded = [];
 
+    protected static function booted(): void
+    {
+        static::saving(function (Slug $slug): void {
+            foreach ($slug->getTranslations('slug') as $locale => $value) {
+                $slug->setTranslation('slug', $locale, Str::slug($value, '-', $locale));
+            }
+        });
+    }
+
     public function sluggable(): MorphTo
     {
         return $this->morphTo();
     }
 }
-
-// how to write translations of the slug?

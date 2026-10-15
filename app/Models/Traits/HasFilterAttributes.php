@@ -5,7 +5,7 @@ namespace App\Models\Traits;
 use App\Models\Filters\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-trait HasAttributes
+trait HasFilterAttributes
 {
     public function filterAttributes(): morphToMany
     {

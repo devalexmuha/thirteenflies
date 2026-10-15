@@ -23,8 +23,11 @@ class Attribute extends Model
 
     protected static function booted(): void
     {
-        static::creating(function (Attribute $attribute): void {
-                $attribute->slug = Str::slug($attribute->getTranslation('name', 'en', false));
+        static::saving(function (Attribute $attribute): void {
+            $names = array_filter($attribute->getTranslations('name'));
+            $locale = isset($names['en']) ? 'en' : array_key_first($names);
+
+            $attribute->slug = Str::slug($names[$locale] ?? '', '-', $locale ?? 'en');
         });
     }
 

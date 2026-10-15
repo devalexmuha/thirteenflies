@@ -5,9 +5,8 @@ namespace App\Providers;
 use App\Jobs\CompressMedia;
 use Awcodes\Curator\Models\Media;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Foundation\Events\LocaleUpdated;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Translatable\Facades\Translatable;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,10 +29,9 @@ class AppServiceProvider extends ServiceProvider
 
         Media::created(fn(Media $media) => CompressMedia::dispatch($media));
 
-        Event::listen(LocaleUpdated::class, function (): void {
-            if ( ! request()->is('api/*')) {
-                app('translator')->setLocale('en');
-            }
-        });
+        Translatable::fallback(
+            fallbackLocale: 'en',
+            fallbackAny: true,
+        );
     }
 }
