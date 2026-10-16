@@ -12,20 +12,16 @@ use Spatie\Translatable\HasTranslations;
 class Slug extends Model
 {
     /** @use HasFactory<\Database\Factories\SlugFactory> */
-    use HasFactory, Translatable;
+    use HasFactory;
 
     public $timestamps = false;
-
-    public array $translatable = ['slug'];
 
     protected $guarded = [];
 
     protected static function booted(): void
     {
         static::saving(function (Slug $slug): void {
-            foreach ($slug->getTranslations('slug') as $locale => $value) {
-                $slug->setTranslation('slug', $locale, Str::slug($value, '-', $locale));
-            }
+            $slug->slug = Str::slug($slug->slug, '-', $slug->locale);
         });
     }
 

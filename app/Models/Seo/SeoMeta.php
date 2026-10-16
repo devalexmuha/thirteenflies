@@ -30,6 +30,8 @@ class SeoMeta extends Model
                     }
                 }
             }
+
+            $seoMeta->robots ??= 'index, follow';
         });
     }
 

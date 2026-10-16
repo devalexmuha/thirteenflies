@@ -69,40 +69,46 @@ class ProductForm
                        ->schema(fn(Get $get): array => self::attributeFields($get('category_id') ?? [],
                            $get('brand_id')))->hiddenOn('create'),
                     Tab::make('Discounts')
-                        ->schema([
-                            Toggle::make('is_discounted')
-                                  ->label('Discounted')
-                                  ->default(false)
-                                  ->live()
-                                  ->afterStateUpdated(function (bool $state, Set $set, $livewire, string $operation) {
-                                      if ($state && $operation === 'edit') {
-                                          $set('is_discounted', false);
-                                          $livewire->mountAction('enableDiscount');
-                                      }
-                                  }),
-                            Group::make()
-                                 ->visible(fn (Get $get): bool => (bool) $get('is_discounted'))
-                                 ->schema([
-                                     Select::make('discount_type')
-                                           ->options(collect(DiscountType::cases())
-                                               ->mapWithKeys(fn (DiscountType $type) => [$type->value => Str::headline($type->name)])
-                                               ->all())
-                                           ->required(),
-                                     TextInput::make('discount_price')
-                                              ->numeric()
-                                              ->prefix('$')
-                                              ->required(),
-                                 ]),
-                        ]),
+                       ->schema([
+                           Toggle::make('is_discounted')
+                                 ->label('Discounted')
+                                 ->default(false)
+                                 ->live()
+                                 ->afterStateUpdated(function (bool $state, Set $set, $livewire, string $operation) {
+                                     if ($state && $operation === 'edit') {
+                                         $set('is_discounted', false);
+                                         $livewire->mountAction('enableDiscount');
+                                     }
+                                 }),
+                           Group::make()
+                                ->visible(fn(Get $get): bool => (bool) $get('is_discounted'))
+                                ->schema([
+                                    Select::make('discount_type')
+                                          ->options(collect(DiscountType::cases())
+                                              ->mapWithKeys(fn(DiscountType $type
+                                              ) => [$type->value => Str::headline($type->name)])
+                                              ->all())
+                                          ->required(),
+                                    TextInput::make('discount_price')
+                                             ->numeric()
+                                             ->prefix('$')
+                                             ->required(),
+                                ]),
+                       ]),
                     Tab::make('Promotions')
-                       ->visible(fn (Get $get, ?Product $record): bool => ! $get('is_discounted') && $record?->promotions()->exists())
+                       ->visible(fn(
+                           Get $get,
+                           ?Product $record
+                       ): bool => ! $get('is_discounted') && $record?->promotions()->exists())
                        ->schema([
                            RelationManager::make()
                                           ->manager(PromotionsRelationManager::class)
                                           ->lazy(false),
                        ]),
                     SharedFields::seoTab(),
-                    SharedFields::statusTab(),
+                    SharedFields::statusTab([
+                        Toggle::make('is_featured')->default(false),
+                    ]),
                 ])
             ])
             ->columns(1);
