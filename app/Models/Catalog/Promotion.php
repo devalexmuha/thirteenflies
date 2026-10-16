@@ -21,6 +21,13 @@ class Promotion extends Model
     public $timestamps = false;
     public array $translatable = ['name'];
 
+    protected static function booted()
+    {
+        static::saving(function ( Promotion $promotion ) {
+            $promotion->sale_starts_at ??= now();
+        });
+    }
+
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);

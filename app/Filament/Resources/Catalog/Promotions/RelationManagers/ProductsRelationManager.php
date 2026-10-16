@@ -7,6 +7,7 @@ use App\Filament\Tables\Columns\ProductColumns;
 use App\Models\Catalog\Product;
 use Filament\Actions\Action;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -29,7 +30,13 @@ class ProductsRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->filters(ProductFilters::get(), layout: FiltersLayout::AboveContent)
             ->filtersFormColumns(4)
-            ->columns(ProductColumns::get())
+            ->columns(ProductColumns::get(
+                [
+                    TextColumn::make('promotions.name')
+                              ->limitList(2)
+                              ->badge(),
+                ]
+            ))
             ->recordActions([
                 Action::make('attach')
                       ->icon('heroicon-m-link')

@@ -21,6 +21,11 @@ class EditProduct extends EditRecord
         ];
     }
 
+    public function getTitle(): string
+    {
+        return "Edit '{$this->getRecord()->name}' " . ucfirst(static::getResource()::getModelLabel());
+    }
+
     public function enableDiscountAction(): Action
     {
         return Action::make('enableDiscount')

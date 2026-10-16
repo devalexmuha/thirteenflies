@@ -16,4 +16,9 @@ class EditPromotion extends EditRecord
             DeleteAction::make(),
         ];
     }
+
+    public function getTitle(): string
+    {
+        return "Edit '{$this->getRecord()->name}' " . ucfirst(static::getResource()::getModelLabel());
+    }
 }

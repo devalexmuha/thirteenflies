@@ -14,6 +14,8 @@ trait HasSeoMeta
 
     public static function bootHasSeoMeta(): void
     {
-        static::deleting(fn ($model) => $model->seoMeta()->delete());
+        static::deleting(function ($model): void {
+            $model->seoMeta()->delete();
+        });
     }
 }

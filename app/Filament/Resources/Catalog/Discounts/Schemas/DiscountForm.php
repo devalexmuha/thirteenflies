@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources\Catalog\Discounts\Schemas;
 
+use App\Filament\Schemas\SharedFields;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 
 class DiscountForm
@@ -12,12 +14,18 @@ class DiscountForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required(),
-                TextInput::make('type')
-                    ->required(),
-                Toggle::make('is_active')
-                    ->required(),
+                Tabs::make()
+                    ->tabs([
+                        Tab::make('Content')
+                           ->schema([
+                               TextInput::make('name')->required(),
+                               TextInput::make('type')->disabled(),
+                               SharedFields::seoContent(),
+                               SharedFields::mainBanner('Discounts'),
+                           ]),
+                        SharedFields::seoTab(),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 }

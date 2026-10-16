@@ -21,6 +21,10 @@ class FilterAttributeResource extends Resource
 
     protected static ?string $navigationLabel = 'Filter Attributes';
 
+    protected static ?string $modelLabel = 'filter attribute';
+
+    protected static ?string $pluralModelLabel = 'Filter Attributes';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAdjustmentsHorizontal;
 
     protected static string|UnitEnum|null $navigationGroup = 'Catalog';

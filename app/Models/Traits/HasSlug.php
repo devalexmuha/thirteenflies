@@ -3,7 +3,6 @@
 namespace App\Models\Traits;
 
 use App\Models\Seo\Slug;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasSlug
@@ -15,6 +14,8 @@ trait HasSlug
 
     public static function bootHasSlug(): void
     {
-        static::deleting(fn ($model) => $model->slug()->delete());
+        static::deleting(function ($model): void {
+            $model->slug()->delete();
+        });
     }
 }

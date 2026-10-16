@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Kalnoy\Nestedset\NodeTrait;
-use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
@@ -33,7 +32,9 @@ class Category extends Model
 
     protected static function booted(): void
     {
-        static::deleting(fn($model) => $model->filterPages()->each->delete());
+        static::deleting(function ($model): void {
+            $model->filterPages()->each->delete();
+        });
     }
 
     public function products(): BelongsToMany

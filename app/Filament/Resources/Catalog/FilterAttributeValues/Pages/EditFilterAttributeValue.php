@@ -16,4 +16,9 @@ class EditFilterAttributeValue extends EditRecord
             DeleteAction::make(),
         ];
     }
+
+    public function getTitle(): string
+    {
+        return "Edit '{$this->getRecord()->value}' Value";
+    }
 }

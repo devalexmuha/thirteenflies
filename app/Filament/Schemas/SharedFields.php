@@ -16,11 +16,11 @@ use Njxqlus\Filament\Components\Forms\RelationManager;
 
 class SharedFields
 {
-    public static function contentTab(string $bannerDirectory, array $extra = []): Tab
+    public static function contentTab(string $bannerDirectory, array $extra = [], bool $nameIsDisabled = false): Tab
     {
         return Tab::make('Content')
                   ->schema([
-                      TextInput::make('name')->required(),
+                      TextInput::make('name')->required()->disabled($nameIsDisabled),
                       self::seoContent(),
                       self::mainBanner($bannerDirectory),
                       ...$extra,
@@ -81,19 +81,19 @@ class SharedFields
                   ->hiddenOn('create');
     }
 
-    public static function seoTab(array $extra = []): Tab
+    public static function seoTab(array $extra = [], bool $isRequired = false): Tab
     {
         return Tab::make('SEO')
                   ->schema([
                       Group::make()
                            ->relationship('seoMeta')
                            ->schema([
-                               TextInput::make('meta_title')->required(),
+                               TextInput::make('meta_title')->required($isRequired),
                            ]),
                       Group::make()
                            ->relationship('slug')
                            ->schema([
-                               TextInput::make('slug')->required(),
+                               TextInput::make('slug')->required($isRequired),
                            ]),
                       Group::make()
                            ->relationship('seoMeta')
@@ -106,7 +106,7 @@ class SharedFields
                                          'noindex, nofollow' => 'noindex, nofollow',
                                      ])
                                      ->default('index, follow')
-                                     ->required(),
+                                     ->required($isRequired),
                            ]),
                       ...$extra,
                   ]);

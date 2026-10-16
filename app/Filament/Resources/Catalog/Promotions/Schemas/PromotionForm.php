@@ -27,11 +27,12 @@ class PromotionForm
                                ->schema([
                                    DateTimePicker::make('sale_starts_at')
                                                  ->label('Date started')
-                                                 ->required()
+                                                 ->seconds(false)
                                                  ->native(false),
                                    DateTimePicker::make('sale_ends_at')
                                                  ->label('Date end')
                                                  ->required()
+                                                 ->seconds(false)
                                                  ->native(false)
                                                  ->after('sale_starts_at'),
                                    TextInput::make('discount_rate')

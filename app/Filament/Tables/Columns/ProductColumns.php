@@ -26,7 +26,8 @@ class ProductColumns
                       ->sortable()
                       ->toggleable(),
             TextColumn::make('categories.name')
-                      ->badge(),
+                      ->badge()
+                      ->sortable(),
             ...$extra,
         ];
     }

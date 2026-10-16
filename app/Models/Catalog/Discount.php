@@ -10,11 +10,9 @@ use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Spatie\Translatable\HasTranslations;
 
 class Discount extends Model
 {
@@ -24,6 +22,16 @@ class Discount extends Model
     protected $guarded = [];
 
     public array $translatable = ['name'];
+
+    protected static function booted(): void
+    {
+        static::deleting(function (Discount $discount): void {
+            $discount->products()->update([
+                'is_discounted'  => false,
+                'discount_price' => null,
+            ]);
+        });
+    }
 
     public function products(): HasMany
     {
