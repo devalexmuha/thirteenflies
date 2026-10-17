@@ -2,7 +2,7 @@
 
 namespace App\Filament\Schemas;
 
-use App\Filament\Components\SeoEditor;
+use App\Filament\Forms\Components\SeoEditor;
 use App\Filament\RelationManagers\FilterAttributesRelationManager;
 use App\Models\Seo\Slug;
 use App\Support\ContentLocale;
@@ -28,6 +28,7 @@ class SharedFields
                       TextInput::make('name')->required()->disabled($nameIsDisabled),
                       self::seoContent(),
                       self::mainBanner($bannerDirectory),
+                      self::featuredImage($bannerDirectory),
                       ...$extra,
                   ]);
     }
@@ -47,8 +48,26 @@ class SharedFields
     {
         return Fieldset::make('Main Banner')
                        ->schema([
-                           CuratorPicker::make('media')
-                                        ->relationship('media', 'id')
+                           CuratorPicker::make('main_banner')
+                                        ->relationship('mainBanner', 'id')
+                                        ->multiple()
+                                        ->maxItems(1)
+                                        ->directory($directory)
+                                        ->columnSpan(2)
+                                        ->hiddenLabel()
+                                        ->acceptedFileTypes([
+                                            'image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/avif'
+                                        ])
+                                        ->maxSize(5120),
+                       ]);
+    }
+
+    public static function featuredImage(string $directory): Fieldset
+    {
+        return Fieldset::make('Featured Image')
+                       ->schema([
+                           CuratorPicker::make('featured_image')
+                                        ->relationship('featuredImage', 'id')
                                         ->multiple()
                                         ->maxItems(1)
                                         ->directory($directory)

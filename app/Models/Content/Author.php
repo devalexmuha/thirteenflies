@@ -16,14 +16,13 @@ class Author extends Model
     /** @use HasFactory<\Database\Factories\AuthorFactory> */
     use HasFactory, Translatable, HasSeoMeta, HasSlug, HasMedia;
 
-    public array $translatable = ['position', 'bio'];
+    public array $translatable = ['position', 'bio', 'short_bio'];
 
     protected $guarded = [];
 
     protected function casts(): array
     {
         return [
-            'socials' => 'array',
             'is_active' => 'boolean',
         ];
     }

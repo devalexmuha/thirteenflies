@@ -16,7 +16,7 @@ class Service extends Model
     /** @use HasFactory<\Database\Factories\ServiceFactory> */
     use HasFactory, Translatable, HasSeoMeta, HasSlug, HasMedia;
 
-    public array $translatable = ['title', 'excerpt', 'blocks'];
+    public array $translatable = ['name', 'excerpt', 'content'];
 
     protected $guarded = [];
 
@@ -24,7 +24,7 @@ class Service extends Model
     {
         return [
             'price_from' => 'integer',
-            'is_active'  => 'boolean',
+            'is_active' => 'boolean',
         ];
     }
 

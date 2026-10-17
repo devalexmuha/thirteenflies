@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Filters;
+namespace App\Filament\Tables\Filters;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Grid;

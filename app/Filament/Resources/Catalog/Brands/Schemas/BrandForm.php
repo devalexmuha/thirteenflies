@@ -3,9 +3,7 @@
 namespace App\Filament\Resources\Catalog\Brands\Schemas;
 
 use App\Filament\Schemas\SharedFields;
-use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Tabs;
-use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 
 class BrandForm

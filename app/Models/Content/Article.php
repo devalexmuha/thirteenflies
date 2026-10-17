@@ -2,6 +2,7 @@
 
 namespace App\Models\Content;
 
+use App\Enums\ContentStatus;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
@@ -16,14 +17,16 @@ class Article extends Model
     /** @use HasFactory<\Database\Factories\ArticleFactory> */
     use HasFactory, Translatable, HasSeoMeta, HasSlug, HasMedia;
 
-    public array $translatable = ['title', 'excerpt', 'content'];
-
-    protected $guarded = [];
+    public array $translatable = ['name', 'excerpt', 'content'];
 
     protected function casts(): array
     {
-        return ['is_active' => 'boolean'];
+        return [
+            'is_active' => 'boolean',
+        ];
     }
+
+    protected $guarded = [];
 
     public function author(): BelongsTo
     {

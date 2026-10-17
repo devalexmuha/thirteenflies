@@ -16,9 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->json('position')->nullable();
             $table->json('bio')->nullable();
+            $table->json('short_bio')->nullable();
             $table->json('socials')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
+
+            $table->index(['is_active', 'published_at']);
+            $table->index(['name']);
         });
     }
 

@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->json('title');
-            $table->json('blocks')->nullable();
+            $table->json('name');
+            $table->json('content')->nullable();
+            $table->string('template', 30)->default('single');
             $table->boolean('is_active')->default(true);
-            $table->boolean('show_in_header')->default(false);
-            $table->boolean('show_in_footer')->default(false);
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
+
+            $table->index(['is_active', 'published_at']);
+            $table->index('template');
         });
     }
 

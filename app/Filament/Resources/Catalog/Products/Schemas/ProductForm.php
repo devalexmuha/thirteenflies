@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Catalog\Products\Schemas;
 
 use App\Enums\DiscountType;
-use App\Filament\Components\SeoEditor;
+use App\Filament\Forms\Components\SeoEditor;
 use App\Filament\Resources\Catalog\Products\RelationManagers\PromotionsRelationManager;
 use App\Filament\Schemas\SharedFields;
 use App\Models\Catalog\Product;

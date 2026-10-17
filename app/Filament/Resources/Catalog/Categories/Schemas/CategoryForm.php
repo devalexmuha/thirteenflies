@@ -2,21 +2,15 @@
 
 namespace App\Filament\Resources\Catalog\Categories\Schemas;
 
-use App\Filament\RelationManagers\FilterAttributesRelationManager;
 use App\Filament\Schemas\SharedFields;
 use App\Models\Catalog\Category;
-use Awcodes\Curator\Components\Forms\CuratorPicker;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Fieldset;
-use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
-use Njxqlus\Filament\Components\Forms\RelationManager;
 
 class CategoryForm
 {

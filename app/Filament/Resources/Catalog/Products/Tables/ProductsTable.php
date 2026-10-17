@@ -2,16 +2,13 @@
 
 namespace App\Filament\Resources\Catalog\Products\Tables;
 
-use App\Enums\DiscountType;
-use App\Filament\Filters\ProductFilters;
 use App\Filament\Tables\Columns\ProductColumns;
+use App\Filament\Tables\Filters\ProductFilters;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 

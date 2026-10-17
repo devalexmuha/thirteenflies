@@ -2,6 +2,7 @@
 
 namespace App\Models\Content;
 
+use App\Enums\PageTemplate;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
@@ -15,16 +16,16 @@ class Page extends Model
     /** @use HasFactory<\Database\Factories\PageFactory> */
     use HasFactory, Translatable, HasSeoMeta, HasSlug, HasMedia;
 
-    public array $translatable = ['title', 'blocks'];
+    public array $translatable = ['name', 'content'];
 
     protected $guarded = [];
+
 
     protected function casts(): array
     {
         return [
+            'template' => PageTemplate::class,
             'is_active' => 'boolean',
-            'show_in_header' => 'boolean',
-            'show_in_footer' => 'boolean',
         ];
     }
 }

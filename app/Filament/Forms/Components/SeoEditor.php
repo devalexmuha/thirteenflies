@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Components;
+namespace App\Filament\Forms\Components;
 
 use Filament\Forms\Components\RichEditor;
 
@@ -13,12 +13,16 @@ class SeoEditor extends RichEditor
         $this->toolbarButtons([
             ['source-code'],
             ['bold', 'italic', 'underline', 'strike'],
-            ['link'],
+            ['link', 'attachFiles'],
             ['h2', 'h3'],
             ['alignStart', 'alignCenter', 'alignEnd'],
             ['bulletList', 'orderedList'],
             ['table'],
             ['undo', 'redo'],
-        ])->columnSpan(2);
+        ])
+             ->fileAttachmentsDisk('public')
+             ->fileAttachmentsDirectory('editor-content')
+             ->fileAttachmentsVisibility('public')
+             ->columnSpan(2);
     }
 }

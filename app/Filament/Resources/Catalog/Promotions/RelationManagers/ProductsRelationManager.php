@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Catalog\Promotions\RelationManagers;
 
-use App\Filament\Filters\ProductFilters;
 use App\Filament\Tables\Columns\ProductColumns;
+use App\Filament\Tables\Filters\ProductFilters;
 use App\Models\Catalog\Product;
 use Filament\Actions\Action;
 use Filament\Resources\RelationManagers\RelationManager;

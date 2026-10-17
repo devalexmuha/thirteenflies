@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum PageType: string
+enum JsonLDPageType: string
 {
     case Page = 'page';
     case Category = 'category';
