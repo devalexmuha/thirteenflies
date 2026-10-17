@@ -47,7 +47,7 @@ class Category extends Model
         return $this->morphMany(FilterPage::class, 'filterable');
     }
 
-    public function productMetaTemplate(): HasOne
+    public function productMetaTemplates(): HasOne
     {
         return $this->hasOne(ProductMetaTemplate::class);
     }

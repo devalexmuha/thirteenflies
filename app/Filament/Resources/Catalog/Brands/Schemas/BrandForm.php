@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Catalog\Brands\Schemas;
 
-use App\Filament\Schemas\SharedFields;
+use App\Filament\Schemas\Panels\FormTabs;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Schema;
 
@@ -13,10 +13,10 @@ class BrandForm
         return $schema
             ->components([
                 Tabs::make()->tabs([
-                    SharedFields::contentTab('Brands'),
-                    SharedFields::attributesTab(),
-                    SharedFields::seoTab(),
-                    SharedFields::statusTab(),
+                    FormTabs::contentTab('Brands', ['name', 'seoContent', 'mainBanner', 'featuredImage']),
+                    FormTabs::attributesTab(),
+                    FormTabs::seoTab(),
+                    FormTabs::statusTab(),
                 ]),
             ])
             ->columns(1);

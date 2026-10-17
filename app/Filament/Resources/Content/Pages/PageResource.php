@@ -20,7 +20,7 @@ class PageResource extends Resource
     protected static ?string $model = Page::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
-    protected static string|UnitEnum|null $navigationGroup = 'Content';
+    protected static string|UnitEnum|null $navigationGroup = 'ContentLayouts';
     protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema

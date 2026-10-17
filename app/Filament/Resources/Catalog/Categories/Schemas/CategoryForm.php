@@ -2,12 +2,9 @@
 
 namespace App\Filament\Resources\Catalog\Categories\Schemas;
 
-use App\Filament\Schemas\SharedFields;
+use App\Filament\Schemas\Panels\FormTabs;
 use App\Models\Catalog\Category;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
-use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
@@ -19,15 +16,16 @@ class CategoryForm
         return $schema
             ->components([
                 Tabs::make()->tabs([
-                    SharedFields::contentTab('Categories'),
+                    FormTabs::contentTab('Categories', ['name', 'seoContent', 'mainBanner', 'featuredImage']),
                     Tab::make('Relationships')
                        ->schema([
                            Select::make('parent_id')
-                                 ->relationship('parent', 'name', fn ($query, ?Category $record) => $query
-                                     ->when($record, fn ($q) => $q->whereKeyNot($record->id)->whereNotDescendantOf($record))
+                                 ->relationship('parent', 'name', fn($query, ?Category $record) => $query
+                                     ->when($record,
+                                         fn($q) => $q->whereKeyNot($record->id)->whereNotDescendantOf($record))
                                      ->with('ancestors')
                                      ->defaultOrder())
-                                 ->getOptionLabelFromRecordUsing(fn (Category $category) => $category->ancestors
+                                 ->getOptionLabelFromRecordUsing(fn(Category $category) => $category->ancestors
                                      ->pluck('name')
                                      ->push($category->name)
                                      ->implode(' > '))
@@ -35,16 +33,9 @@ class CategoryForm
                                  ->searchable()
                                  ->preload(),
                        ]),
-                    SharedFields::attributesTab(),
-                    SharedFields::seoTab([
-                        Fieldset::make('Product Meta Template')
-                                ->relationship('productMetaTemplate')
-                                ->schema([
-                                    TextInput::make('meta_title')->columnSpanFull(),
-                                    Textarea::make('meta_description')->columnSpanFull(),
-                                ]),
-                    ]),
-                    SharedFields::statusTab(),
+                    FormTabs::attributesTab(),
+                    FormTabs::seoTab(['metaTags', 'productMetaTemplates']),
+                    FormTabs::statusTab(),
                 ]),
             ])
             ->columns(1);

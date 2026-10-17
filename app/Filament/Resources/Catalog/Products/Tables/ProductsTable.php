@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Catalog\Products\Tables;
 
-use App\Filament\Tables\Columns\ProductColumns;
 use App\Filament\Tables\Filters\ProductFilters;
+use App\Filament\Tables\Presets\ProductColumnSet;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -17,7 +17,7 @@ class ProductsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->columns(ProductColumns::get())
+            ->columns(ProductColumnSet::make())
             ->filters(ProductFilters::get([
                 TernaryFilter::make('is_discounted')->label('Discounted'),
             ]), layout: FiltersLayout::AboveContent)

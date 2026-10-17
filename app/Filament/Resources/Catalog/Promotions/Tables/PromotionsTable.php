@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Catalog\Promotions\Tables;
 
-use App\Filament\Tables\Columns\CatalogColumns;
+use App\Filament\Tables\Presets\CatalogColumnSet;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -14,7 +14,7 @@ class PromotionsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->columns(CatalogColumns::get())
+            ->columns(CatalogColumnSet::get())
             ->filters([
                 //
             ])

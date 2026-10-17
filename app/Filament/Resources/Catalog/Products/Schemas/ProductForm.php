@@ -5,6 +5,8 @@ namespace App\Filament\Resources\Catalog\Products\Schemas;
 use App\Enums\DiscountType;
 use App\Filament\Forms\Components\SeoEditor;
 use App\Filament\Resources\Catalog\Products\RelationManagers\PromotionsRelationManager;
+use App\Filament\Schemas\Fields\StatusFields;
+use App\Filament\Schemas\Panels\FormTabs;
 use App\Filament\Schemas\SharedFields;
 use App\Models\Catalog\Product;
 use App\Models\Filters\Attribute;
@@ -31,22 +33,7 @@ class ProductForm
         return $schema
             ->components([
                 Tabs::make()->tabs([
-                    Tab::make('Content')
-                       ->schema([
-                           Grid::make(2)->schema([
-                               TextInput::make('name')->required()->columnSpanFull(),
-                               TextInput::make('sku')
-                                        ->required()
-                                        ->unique(ignoreRecord: true),
-                               TextInput::make('price')
-                                        ->numeric()
-                                        ->prefix('$')
-                                        ->required(),
-                           ]),
-                           SeoEditor::make('short_description')->label('Short Description'),
-                           SeoEditor::make('description')->label('Description'),
-                           SharedFields::photos('Products'),
-                       ]),
+                    FormTabs::contentTab('Products', ['productBasics', 'shortDescription', 'description', 'gallery']),
                     Tab::make('Relationships')
                        ->schema([
                            // categories
@@ -105,10 +92,8 @@ class ProductForm
                                           ->manager(PromotionsRelationManager::class)
                                           ->lazy(false),
                        ]),
-                    SharedFields::seoTab(),
-                    SharedFields::statusTab([
-                        Toggle::make('is_featured')->default(false),
-                    ]),
+                    FormTabs::seoTab(),
+                    FormTabs::productStatusTab(),
                 ])
             ])
             ->columns(1);

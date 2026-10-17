@@ -48,7 +48,7 @@ class PageForm
 
     private static function contentSection(): Section
     {
-        return Section::make('Content')
+        return Section::make('ContentLayouts')
                       ->schema([
                           TextInput::make('name')
                                    ->required(),

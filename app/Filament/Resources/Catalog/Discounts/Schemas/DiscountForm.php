@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Catalog\Discounts\Schemas;
 
+use App\Filament\Schemas\Panels\FormTabs;
 use App\Filament\Schemas\SharedFields;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Tabs;
@@ -16,16 +17,10 @@ class DiscountForm
             ->components([
                 Tabs::make()
                     ->tabs([
-                        Tab::make('Content')
-                           ->schema([
-                               TextInput::make('name')->required(),
-                               TextInput::make('type')->disabled(),
-                               SharedFields::seoContent(),
-                               SharedFields::mainBanner('Discounts'),
-                           ]),
-                        SharedFields::seoTab(),
+                        FormTabs::contentTab('Discounts', ['name', 'discountType', 'seoContent', 'mainBanner', 'featuredImage']),
+                        FormTabs::seoTab(),
                     ])
-                    ->columnSpanFull(),
-            ]);
+            ])
+            ->columns(1);
     }
 }

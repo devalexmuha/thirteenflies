@@ -19,7 +19,6 @@ class FilterAttributeForm
                                     ->required()
                                     ->helperText('Slug stays same for all languages, used in filter URLs.'),
                        ])
-                       ->columns(2)
                        ->columnSpanFull(),
             ]);
     }

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Catalog\Promotions\Schemas;
 
 use App\Filament\Resources\Catalog\Promotions\RelationManagers\ProductsRelationManager;
+use App\Filament\Schemas\Panels\FormTabs;
 use App\Filament\Schemas\SharedFields;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
@@ -20,7 +21,7 @@ class PromotionForm
         return $schema
             ->components([
                 Tabs::make()->tabs([
-                    SharedFields::contentTab('Promotions'),
+                    FormTabs::contentTab('Promotions', ['name', 'seoContent', 'mainBanner', 'featuredImage']),
                     Tab::make('Settings')
                        ->schema([
                            Grid::make(2)
@@ -51,7 +52,7 @@ class PromotionForm
                                           ->lazy(false)
                                           ->hiddenOn('create'),
                        ]),
-                    SharedFields::seoTab(),
+                    FormTabs::seoTab(),
                 ]),
             ])
             ->columns(1);

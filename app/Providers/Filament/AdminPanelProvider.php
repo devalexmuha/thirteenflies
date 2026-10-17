@@ -82,7 +82,7 @@ class AdminPanelProvider extends PanelProvider
             ->renderHook(PanelsRenderHook::USER_MENU_BEFORE, fn() => view('filament.locale-switcher'))
             ->navigationGroups([
                 NavigationGroup::make('Catalog'),
-                NavigationGroup::make('Content'),
+                NavigationGroup::make('ContentLayouts'),
                 NavigationGroup::make('SEO')
                                ->collapsed(),
                 NavigationGroup::make('Settings')

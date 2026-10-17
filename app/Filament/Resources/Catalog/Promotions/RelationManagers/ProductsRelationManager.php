@@ -2,8 +2,9 @@
 
 namespace App\Filament\Resources\Catalog\Promotions\RelationManagers;
 
-use App\Filament\Tables\Columns\ProductColumns;
+use App\Filament\Tables\Columns\CommonColumns;
 use App\Filament\Tables\Filters\ProductFilters;
+use App\Filament\Tables\Presets\ProductColumnSet;
 use App\Models\Catalog\Product;
 use Filament\Actions\Action;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -30,11 +31,9 @@ class ProductsRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->filters(ProductFilters::get(), layout: FiltersLayout::AboveContent)
             ->filtersFormColumns(4)
-            ->columns(ProductColumns::get(
+            ->columns(ProductColumnSet::make(
                 [
-                    TextColumn::make('promotions.name')
-                              ->limitList(2)
-                              ->badge(),
+                    CommonColumns::relationship('promotions.name')
                 ]
             ))
             ->recordActions([
