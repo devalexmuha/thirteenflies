@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Content\Pages\Tables;
 
+use App\Filament\Tables\Columns\NameColumn;
+use App\Filament\Tables\Columns\UpdatedAtColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -13,7 +15,8 @@ class PagesTable
     {
         return $table
             ->columns([
-                //
+                NameColumn::make(),
+                UpdatedAtColumn::make(),
             ])
             ->filters([
                 //

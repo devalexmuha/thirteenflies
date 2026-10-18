@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Catalog\Categories\Tables;
 
+use App\Filament\Tables\Columns\RelationColumn;
 use App\Filament\Tables\Presets\CatalogColumnSet;
 use App\Models\Catalog\Category;
 use Filament\Actions\BulkActionGroup;
@@ -17,11 +18,9 @@ class CategoriesTable
     {
         return $table
             ->columns(CatalogColumnSet::get([
-                TextColumn::make('ancestors')
+                RelationColumn::make('ancestors')
                           ->label('Parents')
                           ->state(fn(Category $record) => $record->ancestors->sortBy('_lft')->pluck('name')->all())
-                          ->badge()
-                          ->placeholder('—')
             ]))
             ->filters([
                 //

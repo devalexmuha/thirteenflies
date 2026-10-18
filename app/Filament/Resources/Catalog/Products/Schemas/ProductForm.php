@@ -3,11 +3,18 @@
 namespace App\Filament\Resources\Catalog\Products\Schemas;
 
 use App\Enums\DiscountType;
-use App\Filament\Forms\Components\SeoEditor;
+use App\Filament\Forms\Blocks\SeoContentBlock;
+use App\Filament\Forms\FieldGroups\ImageFieldset;
+use App\Filament\Forms\Fields\EditorFields\SeoEditor;
+use App\Filament\Forms\Fields\ImageFields\FeaturedImagePicker;
+use App\Filament\Forms\Fields\ImageFields\GalleryPicker;
+use App\Filament\Forms\Fields\ImageFields\MainBannerPicker;
+use App\Filament\Forms\Fields\TextFields\NameInput;
+use App\Filament\Forms\Fields\ToggleFields\FeaturedToggle;
+use App\Filament\Forms\Layouts\Tabs\SeoTab;
+use App\Filament\Forms\Layouts\Tabs\StatusTab;
 use App\Filament\Resources\Catalog\Products\RelationManagers\PromotionsRelationManager;
-use App\Filament\Schemas\Fields\StatusFields;
 use App\Filament\Schemas\Panels\FormTabs;
-use App\Filament\Schemas\SharedFields;
 use App\Models\Catalog\Product;
 use App\Models\Filters\Attribute;
 use App\Support\ContentLocale;
@@ -33,7 +40,16 @@ class ProductForm
         return $schema
             ->components([
                 Tabs::make()->tabs([
-                    FormTabs::contentTab('Products', ['productBasics', 'shortDescription', 'description', 'gallery']),
+                    Tab::make('Content')->schema([
+                        Grid::make()->schema([
+                            NameInput::make()->columnSpanFull(),
+                            TextInput::make('sku')->required()->unique(ignoreRecord: true),
+                            TextInput::make('price')->numeric()->prefix('$')->required(),
+                        ]),
+                        SeoEditor::make('short_description')->label('Short description'),
+                        SeoEditor::make('description')->label('Description'),
+                        ImageFieldset::wrap(GalleryPicker::make()->directory('Products')),
+                    ]),
                     Tab::make('Relationships')
                        ->schema([
                            // categories
@@ -92,8 +108,8 @@ class ProductForm
                                           ->manager(PromotionsRelationManager::class)
                                           ->lazy(false),
                        ]),
-                    FormTabs::seoTab(),
-                    FormTabs::productStatusTab(),
+                    SeoTab::make(),
+                    StatusTab::make()->append([FeaturedToggle::make()]),
                 ])
             ])
             ->columns(1);

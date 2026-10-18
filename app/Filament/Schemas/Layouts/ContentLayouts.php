@@ -2,7 +2,8 @@
 
 namespace App\Filament\Schemas\Layouts;
 
-use App\Filament\Forms\Components\SeoEditor;
+
+use App\Filament\Forms\Fields\EditorFields\SeoEditor;
 use App\Filament\Schemas\Components\RelationGroups;
 use App\Filament\Schemas\Fields\ImagePicker;
 use App\Filament\Schemas\Fields\SeoFields;

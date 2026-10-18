@@ -2,6 +2,15 @@
 
 namespace App\Filament\Resources\Catalog\Categories\Schemas;
 
+use App\Filament\Forms\Blocks\ProductMetaBlock;
+use App\Filament\Forms\Blocks\SeoContentBlock;
+use App\Filament\Forms\FieldGroups\ImageFieldset;
+use App\Filament\Forms\Fields\ImageFields\FeaturedImagePicker;
+use App\Filament\Forms\Fields\ImageFields\MainBannerPicker;
+use App\Filament\Forms\Fields\TextFields\NameInput;
+use App\Filament\Forms\Layouts\Tabs\AttributesTab;
+use App\Filament\Forms\Layouts\Tabs\SeoTab;
+use App\Filament\Forms\Layouts\Tabs\StatusTab;
 use App\Filament\Schemas\Panels\FormTabs;
 use App\Models\Catalog\Category;
 use Filament\Forms\Components\Select;
@@ -16,7 +25,12 @@ class CategoryForm
         return $schema
             ->components([
                 Tabs::make()->tabs([
-                    FormTabs::contentTab('Categories', ['name', 'seoContent', 'mainBanner', 'featuredImage']),
+                    Tab::make('Content')->schema([
+                        NameInput::make(),
+                        SeoContentBlock::make(),
+                        ImageFieldset::wrap(MainBannerPicker::make()->directory('categories')),
+                        ImageFieldset::wrap(FeaturedImagePicker::make()->directory('categories')),
+                    ]),
                     Tab::make('Relationships')
                        ->schema([
                            Select::make('parent_id')
@@ -33,9 +47,9 @@ class CategoryForm
                                  ->searchable()
                                  ->preload(),
                        ]),
-                    FormTabs::attributesTab(),
-                    FormTabs::seoTab(['metaTags', 'productMetaTemplates']),
-                    FormTabs::statusTab(),
+                    AttributesTab::make(),
+                    SeoTab::make()->append([ProductMetaBlock::make()]),
+                    StatusTab::make(),
                 ]),
             ])
             ->columns(1);

@@ -3,6 +3,7 @@
 namespace App\Models\Seo;
 
 use App\Models\Traits\Translatable;
+use App\Support\ContentLocale;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -21,17 +22,19 @@ class SeoMeta extends Model
     protected static function booted(): void
     {
         static::saving(function (SeoMeta $seoMeta): void {
-            $names = $seoMeta->seoable->getTranslations('name');
+            $seoMeta->robots ??= 'index, follow';
+
+            $owner = $seoMeta->seoable;
+
+            $names = $owner->isTranslatableAttribute('name')
+                ? $owner->getTranslations('name')
+                : [ContentLocale::get() => $owner->name];
 
             foreach ($names as $locale => $name) {
-                foreach (['h1', 'meta_title'] as $field) {
-                    if (blank($seoMeta->getTranslation($field, $locale, false))) {
-                        $seoMeta->setTranslation($field, $locale, $name);
-                    }
+                if (blank($seoMeta->getTranslation('meta_title', $locale, false))) {
+                    $seoMeta->setTranslation('meta_title', $locale, $name);
                 }
             }
-
-            $seoMeta->robots ??= 'index, follow';
         });
     }
 

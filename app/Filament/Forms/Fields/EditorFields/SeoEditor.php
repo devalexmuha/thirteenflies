@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Forms\Components;
+namespace App\Filament\Forms\Fields\EditorFields;
 
 use Filament\Forms\Components\RichEditor;
 

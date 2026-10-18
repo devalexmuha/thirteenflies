@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\Catalog\Discounts\Tables;
 
 use App\Filament\Tables\Columns\CommonColumns;
+use App\Filament\Tables\Columns\CountColumn;
+use App\Filament\Tables\Columns\NameColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -17,8 +19,8 @@ class DiscountsTable
     {
         return $table
             ->columns([
-                CommonColumns::name(),
-                CommonColumns::count('products'),
+                NameColumn::make(),
+                CountColumn::make('products_count'),
             ])
             ->filters([
                 //

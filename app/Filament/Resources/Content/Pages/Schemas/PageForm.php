@@ -3,7 +3,12 @@
 namespace App\Filament\Resources\Content\Pages\Schemas;
 
 use App\Enums\PageTemplate;
-use App\Filament\Forms\Components\SeoEditor;
+use App\Filament\Forms\FieldGroups\SeoMetaGroup;
+use App\Filament\Forms\Fields\EditorFields\ContentEditor;
+use App\Filament\Forms\Fields\EditorFields\SeoEditor;
+use App\Filament\Forms\Fields\ImageFields\MainBannerPicker;
+use App\Filament\Forms\Fields\TextFields\H1Input;
+use App\Filament\Forms\Fields\TextFields\NameInput;
 use App\Models\Seo\Slug;
 use App\Support\ContentLocale;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
@@ -48,27 +53,12 @@ class PageForm
 
     private static function contentSection(): Section
     {
-        return Section::make('ContentLayouts')
+        return Section::make('Content')
                       ->schema([
-                          TextInput::make('name')
-                                   ->required(),
-
-                          Group::make()
-                               ->relationship('seoMeta')
-                               ->schema([
-                                   TextInput::make('h1')->label('H1'),
-                               ]),
-
-                          SeoEditor::make('content'),
-
-                          CuratorPicker::make('main_banner')
-                                       ->label('Main banner')
-                                       ->relationship('mainBanner', 'id')
-                                       ->multiple()
-                                       ->maxItems(1)
-                                       ->directory('pages')
-                                       ->acceptedFileTypes(self::IMAGE_TYPES)
-                                       ->maxSize(5120),
+                          NameInput::make(),
+                          SeoMetaGroup::make()->schema([H1Input::make()]),
+                          ContentEditor::make(),
+                          MainBannerPicker::make(),
                       ]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Catalog\FilterAttributes\Schemas;
 
+use App\Filament\Forms\Fields\TextFields\NameInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -14,7 +15,7 @@ class FilterAttributeForm
             ->components([
                 Section::make('Filter attribute')
                        ->schema([
-                           TextInput::make('name')->required(),
+                           NameInput::make(),
                            TextInput::make('slug')
                                     ->required()
                                     ->helperText('Slug stays same for all languages, used in filter URLs.'),

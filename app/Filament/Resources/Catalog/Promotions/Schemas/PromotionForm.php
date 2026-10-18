@@ -2,12 +2,18 @@
 
 namespace App\Filament\Resources\Catalog\Promotions\Schemas;
 
+use App\Filament\Forms\Blocks\SeoContentBlock;
+use App\Filament\Forms\FieldGroups\ImageFieldset;
+use App\Filament\Forms\Fields\DateFields\PromotionEndTimePicker;
+use App\Filament\Forms\Fields\DateFields\PromotionStartTimePicker;
+use App\Filament\Forms\Fields\ImageFields\FeaturedImagePicker;
+use App\Filament\Forms\Fields\ImageFields\MainBannerPicker;
+use App\Filament\Forms\Fields\TextFields\NameInput;
+use App\Filament\Forms\Fields\ToggleFields\ActiveToggle;
+use App\Filament\Forms\Layouts\Tabs\SeoTab;
 use App\Filament\Resources\Catalog\Promotions\RelationManagers\ProductsRelationManager;
-use App\Filament\Schemas\Panels\FormTabs;
 use App\Filament\Schemas\SharedFields;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
@@ -21,21 +27,19 @@ class PromotionForm
         return $schema
             ->components([
                 Tabs::make()->tabs([
-                    FormTabs::contentTab('Promotions', ['name', 'seoContent', 'mainBanner', 'featuredImage']),
+                    Tab::make('Content')->schema([
+                        NameInput::make(),
+                        SeoContentBlock::make(),
+                        ImageFieldset::wrap(MainBannerPicker::make()->directory('Promotions')),
+                        ImageFieldset::wrap(FeaturedImagePicker::make()->directory('Promotions')),
+                    ]),
                     Tab::make('Settings')
                        ->schema([
                            Grid::make(2)
                                ->schema([
-                                   DateTimePicker::make('sale_starts_at')
-                                                 ->label('Date started')
-                                                 ->seconds(false)
-                                                 ->native(false),
-                                   DateTimePicker::make('sale_ends_at')
-                                                 ->label('Date end')
-                                                 ->required()
-                                                 ->seconds(false)
-                                                 ->native(false)
-                                                 ->after('sale_starts_at'),
+                                   PromotionStartTimePicker::make(),
+                                   PromotionEndTimePicker::make()
+                                                         ->after('sale_starts_at'),
                                    TextInput::make('discount_rate')
                                             ->label('Discount rate')
                                             ->required()
@@ -43,16 +47,15 @@ class PromotionForm
                                             ->minValue(0)
                                             ->maxValue(100)
                                             ->suffix('%'),
-                                   Toggle::make('is_active')
-                                         ->inline(false)
-                                         ->default(true),
+                                   ActiveToggle::make()
+                                               ->inline(false),
                                ]),
                            RelationManager::make()
                                           ->manager(ProductsRelationManager::class)
                                           ->lazy(false)
                                           ->hiddenOn('create'),
                        ]),
-                    FormTabs::seoTab(),
+                    SeoTab::make(),
                 ]),
             ])
             ->columns(1);

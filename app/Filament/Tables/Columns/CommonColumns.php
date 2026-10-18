@@ -25,8 +25,8 @@ class CommonColumns
     public static function count(string $relationship): TextColumn
     {
         return TextColumn::make("{$relationship}_count")
-                         ->label(Str::headline($relationship))
                          ->counts($relationship)
+                         ->label(Str::headline($relationship))
                          ->sortable();
     }
 

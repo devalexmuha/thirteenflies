@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Catalog\FilterAttributes\Tables;
 
 use App\Filament\Tables\Columns\CommonColumns;
+use App\Filament\Tables\Columns\NameColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -16,7 +17,7 @@ class FilterAttributesTable
     {
         return $table
             ->columns([
-                CommonColumns::name(),
+                NameColumn::make(),
             ])
             ->filters([
                 //
