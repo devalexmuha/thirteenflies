@@ -23,6 +23,6 @@ class SeoEditor extends RichEditor
              ->fileAttachmentsDisk('public')
              ->fileAttachmentsDirectory('editor-content')
              ->fileAttachmentsVisibility('public')
-             ->columnSpan(2);
+             ->columnSpanFull();
     }
 }

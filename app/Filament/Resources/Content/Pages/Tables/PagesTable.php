@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Content\Pages\Tables;
 use App\Filament\Tables\Columns\NameColumn;
 use App\Filament\Tables\Columns\UpdatedAtColumn;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Table;
@@ -23,6 +24,7 @@ class PagesTable
             ])
             ->recordActions([
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Catalog\Promotions\RelationManagers;
 
 use App\Filament\Tables\Columns\CommonColumns;
+use App\Filament\Tables\Columns\RelationColumn;
 use App\Filament\Tables\Filters\ProductFilters;
 use App\Filament\Tables\Presets\ProductColumnSet;
 use App\Models\Catalog\Product;
@@ -33,7 +34,7 @@ class ProductsRelationManager extends RelationManager
             ->filtersFormColumns(4)
             ->columns(ProductColumnSet::make(
                 [
-                    CommonColumns::relationship('promotions.name')
+                    RelationColumn::make('products.name')
                 ]
             ))
             ->recordActions([

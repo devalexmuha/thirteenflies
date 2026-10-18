@@ -18,6 +18,7 @@ class H1Input extends TextInput
     {
         parent::setUp();
 
-        $this->label('H1');
+        $this->label('H1')
+             ->columnSpanFull();
     }
 }
