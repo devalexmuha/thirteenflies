@@ -8,6 +8,7 @@ use App\Filament\Resources\Seo\SeoTemplates\Pages\ListSeoTemplates;
 use App\Filament\Resources\Seo\SeoTemplates\Schemas\SeoTemplateForm;
 use App\Filament\Resources\Seo\SeoTemplates\Tables\SeoTemplatesTable;
 use App\Models\Seo\SeoTemplate;
+use Illuminate\Database\Eloquent\Model;
 use UnitEnum;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -39,6 +40,21 @@ class SeoTemplateResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return false;
     }
 
     public static function getPages(): array

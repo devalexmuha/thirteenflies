@@ -23,18 +23,6 @@ class SeoMeta extends Model
     {
         static::saving(function (SeoMeta $seoMeta): void {
             $seoMeta->robots ??= 'index, follow';
-
-            $owner = $seoMeta->seoable;
-
-            $names = $owner->isTranslatableAttribute('name')
-                ? $owner->getTranslations('name')
-                : [ContentLocale::get() => $owner->name];
-
-            foreach ($names as $locale => $name) {
-                if (blank($seoMeta->getTranslation('meta_title', $locale, false))) {
-                    $seoMeta->setTranslation('meta_title', $locale, $name);
-                }
-            }
         });
     }
 
