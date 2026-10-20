@@ -19,8 +19,8 @@ class BrandsTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
                 DeleteAction::make(),
+                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

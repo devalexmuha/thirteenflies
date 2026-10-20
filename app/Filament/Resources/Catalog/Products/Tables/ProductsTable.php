@@ -23,10 +23,8 @@ class ProductsTable
             ]), layout: FiltersLayout::AboveContent)
             ->filtersFormColumns(5)
             ->recordActions([
-                EditAction::make()
-                          ->color('primary'),
-                DeleteAction::make()
-                            ->color('danger'),
+                DeleteAction::make(),
+                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

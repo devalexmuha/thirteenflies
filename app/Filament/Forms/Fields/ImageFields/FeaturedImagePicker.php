@@ -15,6 +15,7 @@ class FeaturedImagePicker extends ImagePicker
 
         $this->label('Featured Image')
              ->relationship('featuredImage', 'id')
-             ->maxItems(1);
+             ->maxItems(1)
+             ->extraAttributes(['class' => 'single-image-picker']);
     }
 }

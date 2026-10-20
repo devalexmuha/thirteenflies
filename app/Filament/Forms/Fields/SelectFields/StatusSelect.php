@@ -19,7 +19,6 @@ class StatusSelect extends Select
         parent::setUp();
 
         $this->label('Status')
-               ->boolean(trueLabel: 'Published', falseLabel: 'Draft')
                ->default(true)
                ->selectablePlaceholder(false);
     }

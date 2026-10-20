@@ -84,3 +84,12 @@ body,
     position: relative;
     aspect-ratio: 1 / 1;
 }
+
+.curator-media-picker ul:has(> .single-image-picker) {
+    grid-template-columns: 1fr;
+}
+
+.single-image-picker img {
+    width: 100%;
+    height: 100%;
+}

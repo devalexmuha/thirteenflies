@@ -23,8 +23,8 @@ class PagesTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
                 DeleteAction::make(),
+                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

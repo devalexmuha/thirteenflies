@@ -2,13 +2,11 @@
 
 namespace App\Filament\Resources\Catalog\FilterAttributes\Tables;
 
-use App\Filament\Tables\Columns\CommonColumns;
 use App\Filament\Tables\Columns\NameColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class FilterAttributesTable
@@ -23,10 +21,8 @@ class FilterAttributesTable
                 //
             ])
             ->recordActions([
-                EditAction::make()
-                          ->color('primary'),
-                DeleteAction::make()
-                            ->color('danger'),
+                DeleteAction::make(),
+                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -10,6 +10,7 @@ use App\Filament\Forms\Fields\ImageFields\FeaturedImagePicker;
 use App\Filament\Forms\Fields\ImageFields\GalleryPicker;
 use App\Filament\Forms\Fields\ImageFields\MainBannerPicker;
 use App\Filament\Forms\Fields\TextFields\NameInput;
+use App\Filament\Forms\Fields\TextFields\PriceInput;
 use App\Filament\Forms\Fields\ToggleFields\FeaturedToggle;
 use App\Filament\Forms\Layouts\Tabs\SeoTab;
 use App\Filament\Forms\Layouts\Tabs\StatusTab;
@@ -44,7 +45,7 @@ class ProductForm
                         Grid::make()->schema([
                             NameInput::make()->columnSpanFull(),
                             TextInput::make('sku')->required()->unique(ignoreRecord: true),
-                            TextInput::make('price')->numeric()->prefix('$')->required(),
+                            PriceInput::make(),
                         ]),
                         SeoEditor::make('short_description')->label('Short description'),
                         SeoEditor::make('description')->label('Description'),

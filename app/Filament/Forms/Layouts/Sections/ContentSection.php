@@ -17,7 +17,7 @@ class ContentSection extends FormSection
     protected function defaultSchema(): array
     {
         return [
-            SeoMetaGroup::make()->schema([H1Input::make()]),
+            SeoMetaGroup::make()->schema([H1Input::make()->required()]),
             ContentEditor::make(),
         ];
     }

@@ -23,7 +23,9 @@ class Author extends Model
     protected function casts(): array
     {
         return [
+            'socials' => 'array',
             'is_active' => 'boolean',
+            'published_at' => 'datetime',
         ];
     }
 

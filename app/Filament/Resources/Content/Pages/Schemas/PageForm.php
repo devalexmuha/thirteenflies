@@ -3,8 +3,10 @@
 namespace App\Filament\Resources\Content\Pages\Schemas;
 
 use App\Enums\PageTemplate;
+use App\Filament\Actions\SaveAction;
 use App\Filament\Forms\FieldGroups\SeoMetaGroup;
 use App\Filament\Forms\FieldGroups\SlugGroup;
+use App\Filament\Forms\Fields\ImageFields\FeaturedImagePicker;
 use App\Filament\Forms\Fields\ImageFields\MainBannerPicker;
 use App\Filament\Forms\Fields\SelectFields\PageTemplateSelect;
 use App\Filament\Forms\Fields\SelectFields\RobotsSelect;
@@ -13,6 +15,7 @@ use App\Filament\Forms\Fields\TextFields\MetaTitleInput;
 use App\Filament\Forms\Fields\TextFields\SlugInput;
 use App\Filament\Forms\Layouts\Sections\ContentSection;
 use App\Filament\Forms\Layouts\Sections\PublishSection;
+use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
@@ -29,12 +32,14 @@ class PageForm
                     ->schema([
                         Group::make([
                             ContentSection::make()
-                                          ->append([MainBannerPicker::make()]),
+                                          ->append([MainBannerPicker::make()->directory('Pages')]),
                             self::seoSection(),
                         ])->columnSpan(['lg' => 2]),
 
                         PublishSection::make()
                                       ->prepend([PageTemplateSelect::make()])
+                                      ->append([FeaturedImagePicker::make()->directory('Pages'),
+                                          Actions::make([SaveAction::make()])->fullWidth(),])
                                       ->columnSpan(['lg' => 1]),
                     ])
                     ->columnSpanFull(),
@@ -44,7 +49,7 @@ class PageForm
     private static function seoSection(): Section
     {
         return Section::make('SEO')
-                      ->collapsible()
+                      ->collapsed()
                       ->schema([
                           SeoMetaGroup::make([MetaTitleInput::make()]),
                           SlugGroup::make([

@@ -4,9 +4,6 @@ namespace App\Filament\Forms\Fields\TextFields;
 
 use Filament\Forms\Components\TextInput;
 
-/**
- * NameInput::make()
- */
 class NameInput extends TextInput
 {
     public static function getDefaultName(): ?string

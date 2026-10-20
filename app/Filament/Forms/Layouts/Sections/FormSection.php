@@ -25,13 +25,25 @@ abstract class FormSection extends Section
         $this->schema($this->defaultSchema());
     }
 
-    public function append(array $components): static
-    {
-        return $this->schema([...$this->defaultSchema(), ...$components]);
-    }
+    protected array $prepended = [];
+    protected array $appended = [];
 
     public function prepend(array $components): static
     {
-        return $this->schema([...$components, ...$this->defaultSchema()]);
+        $this->prepended = [...$this->prepended, ...$components];
+
+        return $this->rebuildSchema();
+    }
+
+    public function append(array $components): static
+    {
+        $this->appended = [...$this->appended, ...$components];
+
+        return $this->rebuildSchema();
+    }
+
+    private function rebuildSchema(): static
+    {
+        return $this->schema([...$this->prepended, ...$this->defaultSchema(), ...$this->appended]);
     }
 }

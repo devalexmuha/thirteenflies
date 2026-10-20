@@ -15,6 +15,7 @@ class MainBannerPicker extends ImagePicker
 
         $this->label('Main Banner')
              ->relationship('mainBanner', 'id')
-             ->maxItems(1);
+             ->maxItems(1)
+             ->extraAttributes(['class' => 'single-image-picker']);
     }
 }

@@ -19,10 +19,8 @@ class PublishSection extends FormSection
     protected function defaultSchema(): array
     {
         return [
-            StatusSelect::make(),
+            StatusSelect::make()->boolean(trueLabel: 'Published', falseLabel: 'Draft'),
             PublishedAtTimePicker::make(),
-            FeaturedImagePicker::make()->directory('Pages'),
-            Actions::make([SaveAction::make()])->fullWidth(),
         ];
     }
 }
