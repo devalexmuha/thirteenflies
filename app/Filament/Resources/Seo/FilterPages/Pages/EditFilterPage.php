@@ -16,4 +16,12 @@ class EditFilterPage extends EditRecord
             DeleteAction::make(),
         ];
     }
+
+    public function getTitle(): string
+    {
+        $record = $this->getRecord();
+        $title = $record->seoMeta?->h1;
+
+        return "Edit '{$title}' " . ucfirst(static::getResource()::getModelLabel());
+    }
 }

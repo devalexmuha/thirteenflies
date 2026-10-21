@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model
 {
+
+    protected $guarded = [];
+
     /** @use HasFactory<\Database\Factories\RoleFactory> */
     use HasFactory;
 

@@ -13,7 +13,12 @@ class EditSeoTemplate extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            //
         ];
+    }
+
+    public function getTitle(): string
+    {
+        return "Edit '" . $this->getRecord()->page_type->getLabel() . "' " . ucfirst(static::getResource()::getModelLabel());
     }
 }
