@@ -29,7 +29,7 @@ class ServiceForm
                                           ->append([
                                               ExcerptEditor::make(),
                                               PriceInput::make('price_from')->label('Price From'),
-                                              MainBannerPicker::make()->directory('Services')
+                                              MainBannerPicker::make()->directory('services')
                                           ]),
                             AuthorsSection::make()->collapsed(false),
                             SeoSection::make()->collapsed(),
@@ -37,7 +37,7 @@ class ServiceForm
 
                         PublishSection::make()
                                       ->append([
-                                          FeaturedImagePicker::make()->directory('Services'),
+                                          FeaturedImagePicker::make()->directory('services'),
                                           Actions::make([SaveAction::make()])->fullWidth()
                                       ])
                                       ->columnSpan(['lg' => 1]),

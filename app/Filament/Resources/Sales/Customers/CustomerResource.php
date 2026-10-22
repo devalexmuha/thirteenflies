@@ -22,11 +22,12 @@ class CustomerResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
     protected static string|UnitEnum|null $navigationGroup = 'Sales';
+
     protected static ?int $navigationSort = 1;
 
     protected static ?string $modelLabel = 'customer';
+
     protected static ?string $pluralModelLabel = 'customers';
-    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema
     {

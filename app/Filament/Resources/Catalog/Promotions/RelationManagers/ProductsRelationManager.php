@@ -2,14 +2,14 @@
 
 namespace App\Filament\Resources\Catalog\Promotions\RelationManagers;
 
-use App\Filament\Tables\Columns\CommonColumns;
+use App\Filament\Resources\Catalog\Products\ProductResource;
 use App\Filament\Tables\Columns\RelationColumn;
+use App\Filament\Tables\Columns\RelationNameColumn;
 use App\Filament\Tables\Filters\ProductFilters;
 use App\Filament\Tables\Presets\ProductColumnSet;
 use App\Models\Catalog\Product;
 use Filament\Actions\Action;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,32 +22,33 @@ class ProductsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->query(fn(): Builder => Product::query()
-                                            ->where('products.is_discounted', '=', false)
-                                            ->withExists([
-                                                'promotions as attached' => fn(Builder $q
-                                                ) => $q->whereKey($this->getOwnerRecord()->getKey())
-                                            ])
-                                            ->orderByDesc('attached'))
+            ->query(fn (): Builder => Product::query()
+                ->where('products.is_discounted', '=', false)
+                ->withExists([
+                    'promotions as attached' => fn (Builder $q
+                    ) => $q->whereKey($this->getOwnerRecord()->getKey()),
+                ])
+                ->orderByDesc('attached'))
             ->recordTitleAttribute('name')
             ->filters(ProductFilters::get(), layout: FiltersLayout::AboveContent)
             ->filtersFormColumns(4)
             ->columns(ProductColumnSet::make(
                 [
-                    RelationColumn::make('products.name')
-                ]
+                    RelationColumn::make('products.name'),
+                ],
+                RelationNameColumn::make()->linkToResource(ProductResource::class),
             ))
             ->recordActions([
                 Action::make('attach')
-                      ->icon('heroicon-m-link')
-                      ->color('success')
-                      ->hidden(fn(Product $record): bool => $this->isAttached($record))
-                      ->action(fn(Product $record) => $this->getOwnerRecord()->products()->attach($record)),
+                    ->icon('heroicon-m-link')
+                    ->color('success')
+                    ->hidden(fn (Product $record): bool => $this->isAttached($record))
+                    ->action(fn (Product $record) => $this->getOwnerRecord()->products()->attach($record)),
                 Action::make('detach')
-                      ->icon('heroicon-m-link-slash')
-                      ->color('danger')
-                      ->visible(fn(Product $record): bool => $this->isAttached($record))
-                      ->action(fn(Product $record) => $this->getOwnerRecord()->products()->detach($record)),
+                    ->icon('heroicon-m-link-slash')
+                    ->color('danger')
+                    ->visible(fn (Product $record): bool => $this->isAttached($record))
+                    ->action(fn (Product $record) => $this->getOwnerRecord()->products()->detach($record)),
             ]);
     }
 

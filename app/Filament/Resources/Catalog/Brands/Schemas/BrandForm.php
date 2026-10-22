@@ -26,8 +26,8 @@ class BrandForm
                     Tab::make('Content')->schema([
                         NameInput::make(),
                         SeoContentBlock::make(),
-                        ImageFieldset::wrap(MainBannerPicker::make()->directory('Brands')),
-                        ImageFieldset::wrap(FeaturedImagePicker::make()->directory('Brands')),
+                        ImageFieldset::wrap(MainBannerPicker::make()->directory('brands')),
+                        ImageFieldset::wrap(FeaturedImagePicker::make()->directory('brands')),
                     ]),
                     AttributesTab::make(),
                     SeoTab::make(),

@@ -9,11 +9,11 @@ use App\Filament\Resources\Catalog\Discounts\Schemas\DiscountForm;
 use App\Filament\Resources\Catalog\Discounts\Tables\DiscountsTable;
 use App\Models\Catalog\Discount;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class DiscountResource extends Resource
 {
@@ -22,8 +22,14 @@ class DiscountResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static string|UnitEnum|null $navigationGroup = 'Catalog';
+
     protected static ?string $navigationParentItem = 'Products';
+
     protected static ?int $navigationSort = 1;
+
+    protected static ?string $recordTitleAttribute = 'name';
+
+    protected static int $globalSearchResultsLimit = 3;
 
     public static function form(Schema $schema): Schema
     {

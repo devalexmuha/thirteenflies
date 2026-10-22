@@ -30,8 +30,8 @@ class PromotionForm
                     Tab::make('Content')->schema([
                         NameInput::make(),
                         SeoContentBlock::make(),
-                        ImageFieldset::wrap(MainBannerPicker::make()->directory('Promotions')),
-                        ImageFieldset::wrap(FeaturedImagePicker::make()->directory('Promotions')),
+                        ImageFieldset::wrap(MainBannerPicker::make()->directory('promotions')),
+                        ImageFieldset::wrap(FeaturedImagePicker::make()->directory('promotions')),
                     ]),
                     Tab::make('Settings')
                        ->schema([

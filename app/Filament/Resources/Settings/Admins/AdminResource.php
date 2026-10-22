@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Settings\Users;
+namespace App\Filament\Resources\Settings\Admins;
 
-use App\Filament\Resources\Settings\Users\Pages\CreateUser;
-use App\Filament\Resources\Settings\Users\Pages\EditUser;
-use App\Filament\Resources\Settings\Users\Pages\ListUsers;
-use App\Filament\Resources\Settings\Users\Schemas\UserForm;
-use App\Filament\Resources\Settings\Users\Tables\UsersTable;
+use App\Filament\Resources\Settings\Admins\Pages\CreateAdmin;
+use App\Filament\Resources\Settings\Admins\Pages\EditAdmin;
+use App\Filament\Resources\Settings\Admins\Pages\ListAdmins;
+use App\Filament\Resources\Settings\Admins\Schemas\AdminForm;
+use App\Filament\Resources\Settings\Admins\Tables\AdminTable;
 use App\Models\Account\User;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -16,7 +16,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 
-class UserResource extends Resource
+class AdminResource extends Resource
 {
     protected static ?string $model = User::class;
 
@@ -26,7 +26,7 @@ class UserResource extends Resource
 
     protected static ?string $modelLabel = 'admin';
     protected static ?string $pluralModelLabel = 'admins';
-    protected static ?string $recordTitleAttribute = 'name';
+
 
 //    /** Only admins in this list. */
 //    public static function getEloquentQuery(): Builder
@@ -36,12 +36,12 @@ class UserResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return UserForm::configure($schema);
+        return AdminForm::configure($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return UsersTable::configure($table);
+        return AdminTable::configure($table);
     }
 
     public static function getRelations(): array
@@ -54,9 +54,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListUsers::route('/'),
-            'create' => CreateUser::route('/create'),
-            'edit' => EditUser::route('/{record}/edit'),
+            'index' => ListAdmins::route('/'),
+            'create' => CreateAdmin::route('/create'),
+            'edit' => EditAdmin::route('/{record}/edit'),
         ];
     }
 }

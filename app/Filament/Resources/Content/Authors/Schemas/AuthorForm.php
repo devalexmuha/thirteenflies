@@ -24,7 +24,7 @@ class AuthorForm
                     ->schema([
                         Group::make([
                             AuthorSection::make()
-                                         ->append([ProfileImagePicker::make()->directory('Authors')]),
+                                         ->append([ProfileImagePicker::make()->directory('authors')]),
                             SocialsSection::make()->collapsed(),
                             SeoSection::make()->collapsed(),
                         ])->columnSpan(['lg' => 2]),

@@ -32,13 +32,13 @@ class PageForm
                     ->schema([
                         Group::make([
                             ContentSection::make()
-                                          ->append([MainBannerPicker::make()->directory('Pages')]),
+                                          ->append([MainBannerPicker::make()->directory('pages')]),
                             self::seoSection(),
                         ])->columnSpan(['lg' => 2]),
 
                         PublishSection::make()
                                       ->prepend([PageTemplateSelect::make()])
-                                      ->append([FeaturedImagePicker::make()->directory('Pages'),
+                                      ->append([FeaturedImagePicker::make()->directory('pages'),
                                           Actions::make([SaveAction::make()])->fullWidth(),])
                                       ->columnSpan(['lg' => 1]),
                     ])

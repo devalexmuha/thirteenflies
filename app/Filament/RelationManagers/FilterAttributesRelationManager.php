@@ -2,7 +2,7 @@
 
 namespace App\Filament\RelationManagers;
 
-use App\Filament\Tables\Columns\NameColumn;
+use App\Filament\Tables\Columns\RelationNameColumn;
 use App\Models\Filters\Attribute;
 use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
@@ -26,36 +26,36 @@ class FilterAttributesRelationManager extends RelationManager
         return $schema
             ->components([
                 TextInput::make('name')
-                         ->required()
-                         ->maxLength(255),
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
     public function table(Table $table): Table
     {
         return $table
-            ->query(fn(): Builder => Attribute::query())
+            ->query(fn (): Builder => Attribute::query())
             ->recordTitleAttribute('name')
             ->columns([
-                NameColumn::make(),
+                RelationNameColumn::make(),
             ])
             ->headerActions([
                 CreateAction::make(),
             ])
             ->recordActions([
                 EditAction::make()
-                          ->fillForm(fn(Attribute $record): array => $record->attributesToArray())
-                          ->using(fn(Attribute $record, array $data) => $record->update($data)),
+                    ->fillForm(fn (Attribute $record): array => $record->attributesToArray())
+                    ->using(fn (Attribute $record, array $data) => $record->update($data)),
                 Action::make('attach')
-                      ->icon('heroicon-m-link')
-                      ->color('success')
-                      ->hidden(fn(Attribute $record): bool => $this->isAttached($record))
-                      ->action(fn(Attribute $record) => $this->getOwnerRecord()->filterAttributes()->attach($record)),
+                    ->icon('heroicon-m-link')
+                    ->color('success')
+                    ->hidden(fn (Attribute $record): bool => $this->isAttached($record))
+                    ->action(fn (Attribute $record) => $this->getOwnerRecord()->filterAttributes()->attach($record)),
                 Action::make('detach')
-                      ->icon('heroicon-m-link-slash')
-                      ->color('danger')
-                      ->visible(fn(Attribute $record): bool => $this->isAttached($record))
-                      ->action(fn(Attribute $record) => $this->getOwnerRecord()->filterAttributes()->detach($record)),
+                    ->icon('heroicon-m-link-slash')
+                    ->color('danger')
+                    ->visible(fn (Attribute $record): bool => $this->isAttached($record))
+                    ->action(fn (Attribute $record) => $this->getOwnerRecord()->filterAttributes()->detach($record)),
                 DeleteAction::make(),
             ]);
     }

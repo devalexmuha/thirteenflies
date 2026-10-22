@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\Settings\Users\Tables;
+namespace App\Filament\Resources\Settings\Admins\Tables;
 
-use App\Filament\Tables\Columns\ActiveColumn;
 use App\Filament\Tables\Columns\NameColumn;
 use App\Filament\Tables\Columns\RelationColumn;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class UsersTable
+class AdminTable
 {
     public static function configure(Table $table): Table
     {
@@ -19,8 +16,8 @@ class UsersTable
             ->columns([
                 NameColumn::make('userProfile.first_name')->label('Name'),
                 TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
+                          ->label('Email address')
+                          ->searchable(),
                 RelationColumn::make('roles.name')->label('Role'),
             ])
             ->filters([
@@ -30,9 +27,7 @@ class UsersTable
                 EditAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 }

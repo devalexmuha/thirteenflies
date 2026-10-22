@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Settings\Users\Schemas;
+namespace App\Filament\Resources\Settings\Admins\Schemas;
 
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -8,7 +8,7 @@ use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
-class UserForm
+class AdminForm
 {
     public static function configure(Schema $schema): Schema
     {

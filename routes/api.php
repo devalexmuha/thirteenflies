@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\ProductController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/categories', [CategoriesController::class, 'index']);
@@ -12,16 +11,9 @@ Route::patch('/categories/{category}', [CategoriesController::class, 'update']);
 Route::put('/categories/{category}', [CategoriesController::class, 'update']);
 Route::delete('/categories/{category}', [CategoriesController::class, 'destroy']);
 
-
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{product}', [ProductController::class, 'show']);
+Route::get('/products/{product}', [ProductController::class, 'show']); // hi can you se the code?
 
-// BUILDING ADMIN PANEL
-// on categories create attributes
-// on products create values
-// fill in catalog functionality from the admin prospective + filter pages
-
-// how seo json ld templates will work?
 // before next seeding refactor factories by mirroring models namespaces
 
 // review on product can add only user bought this product (in user -> orders -> complete -> exist this product)
@@ -36,4 +28,14 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 // implement json ld as separate feature
 // show available variables on categories for prod meta templates
 
-// who is added global search?
+// BUILDING ADMIN PANEL
+// move product Properties tab to repeater
+// add custom actions in table, modify data straight from the table
+// add urls in forms
+// *******
+// build customers and orders resource
+// getNavigationBadge() to show amt of new non resolved orders
+// add diff colors on order status
+// add nested resource for Customers resource to show orders of each user
+// build dashboard
+// implement user roles permissions with https://filamentphp.com/plugins/bezhansalleh-shield#1-install-package

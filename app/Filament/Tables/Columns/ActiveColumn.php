@@ -3,6 +3,7 @@
 namespace App\Filament\Tables\Columns;
 
 use Filament\Tables\Columns\IconColumn;
+use Illuminate\Database\Eloquent\Model;
 
 class ActiveColumn extends IconColumn
 {
@@ -16,7 +17,8 @@ class ActiveColumn extends IconColumn
         parent::setUp();
 
         $this->sortable()
-             ->boolean()
-             ->label('Active');
+            ->boolean()
+            ->label('Active')
+            ->action(fn (Model $record) => $record->update([$this->getName() => ! $record->{$this->getName()}]));
     }
 }

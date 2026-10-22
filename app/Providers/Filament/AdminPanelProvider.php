@@ -43,10 +43,10 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => '#006039',
                 'success' => '#006039',
-                'info'    => '#006039',
-                'danger'  => '#B40610',
+                'info' => '#006039',
+                'danger' => '#B40610',
                 'warning' => '#B40610',
-                'gray'    => Color::Neutral,
+                'gray' => Color::Neutral,
             ])
             ->font('Crimson Pro', provider: GoogleFontProvider::class)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
@@ -82,34 +82,34 @@ class AdminPanelProvider extends PanelProvider
 
                 })->name('locale');
             })
-            ->renderHook(PanelsRenderHook::USER_MENU_BEFORE, fn() => view('filament.locale-switcher'))
+            ->renderHook(PanelsRenderHook::USER_MENU_BEFORE, fn () => view('filament.locale-switcher'))
             ->userMenuItems([
                 Action::make('clearCache')
-                      ->label('Clear cache')
-                      ->icon(Heroicon::OutlinedArrowPath)
-                      ->requiresConfirmation()
-                      ->action(function (): void {
-                          Artisan::call('cache:clear');
+                    ->label('Clear cache')
+                    ->icon(Heroicon::OutlinedArrowPath)
+                    ->requiresConfirmation()
+                    ->action(function (): void {
+                        Artisan::call('cache:clear');
 
-                          Notification::make()->title('Cache cleared')->success()->send();
-                      }),
+                        Notification::make()->title('Cache cleared')->success()->send();
+                    }),
             ])
             ->navigationGroups([
                 NavigationGroup::make('Catalog'),
                 NavigationGroup::make('ContentLayouts'),
                 NavigationGroup::make('SEO')
-                               ->collapsed(),
+                    ->collapsed(),
                 NavigationGroup::make('Sales')
-                               ->collapsed(),
+                    ->collapsed(),
                 NavigationGroup::make('Settings')
-                               ->collapsed(),
+                    ->collapsed(),
             ])->plugins(
                 [
                     CuratorPlugin::make()
-                                 ->label('Media')
-                                 ->navigationGroup('Settings')
-                                 ->navigationSort(6)
-                                 ->navigationIcon(Heroicon::OutlinedPhoto),
+                        ->label('Media')
+                        ->navigationGroup('Settings')
+                        ->navigationSort(4)
+                        ->navigationIcon(Heroicon::OutlinedPhoto),
                 ]
             );
     }

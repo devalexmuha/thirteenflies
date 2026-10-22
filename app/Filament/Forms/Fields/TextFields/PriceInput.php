@@ -15,7 +15,8 @@ class PriceInput extends TextInput
     {
         parent::setUp();
 
-        $this->numeric()
+        $this->integer()
+             ->minValue(0)
              ->prefix('$')
              ->required();
     }

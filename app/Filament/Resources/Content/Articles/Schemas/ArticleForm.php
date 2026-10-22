@@ -28,14 +28,14 @@ class ArticleForm
                             ContentSection::make()
                                           ->append([
                                               ExcerptEditor::make(),
-                                              MainBannerPicker::make()->directory('Articles')]),
+                                              MainBannerPicker::make()->directory('articles')]),
                             AuthorsSection::make()->collapsed(false),
                             SeoSection::make()->collapsed(),
                         ])->columnSpan(['lg' => 2]),
 
                         PublishSection::make()
                                       ->append([
-                                          FeaturedImagePicker::make()->directory('Articles'),
+                                          FeaturedImagePicker::make()->directory('articles'),
                                           Actions::make([SaveAction::make()])->fullWidth()
                                       ])
                                       ->columnSpan(['lg' => 1]),

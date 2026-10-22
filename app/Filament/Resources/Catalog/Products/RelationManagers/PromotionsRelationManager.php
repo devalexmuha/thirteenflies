@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\Catalog\Products\RelationManagers;
 
+use App\Filament\Resources\Catalog\Promotions\PromotionResource;
+use App\Filament\Tables\Columns\ActiveColumn;
+use App\Filament\Tables\Columns\RelationNameColumn;
 use Filament\Actions\DetachAction;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -17,17 +19,15 @@ class PromotionsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                TextColumn::make('name'),
+                RelationNameColumn::make()
+                    ->linkToResource(PromotionResource::class),
                 TextColumn::make('discount_rate')
-                          ->suffix('%')
-                          ->sortable(),
-                IconColumn::make('is_active')
-                          ->boolean()
-                          ->sortable(),
+                    ->suffix('%')
+                    ->sortable(),
+                ActiveColumn::make(),
             ])
             ->recordActions([
                 DetachAction::make(),
             ]);
     }
 }
-

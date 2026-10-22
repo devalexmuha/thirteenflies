@@ -15,6 +15,6 @@ class IconPicker extends ImagePicker
 
         $this->label('Icon')
              ->maxItems(1)
-             ->directory('Icons');
+             ->directory('icons');
     }
 }

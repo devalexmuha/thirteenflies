@@ -9,11 +9,11 @@ use App\Filament\Resources\Catalog\Promotions\Schemas\PromotionForm;
 use App\Filament\Resources\Catalog\Promotions\Tables\PromotionsTable;
 use App\Models\Catalog\Promotion;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class PromotionResource extends Resource
 {
@@ -22,9 +22,12 @@ class PromotionResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPercentBadge;
 
     protected static string|UnitEnum|null $navigationGroup = 'Catalog';
+
     protected static ?int $navigationSort = 3;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    protected static int $globalSearchResultsLimit = 3;
 
     public static function form(Schema $schema): Schema
     {

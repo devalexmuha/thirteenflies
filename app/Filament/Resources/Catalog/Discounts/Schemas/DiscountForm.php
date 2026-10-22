@@ -25,8 +25,8 @@ class DiscountForm
                             NameInput::make(),
                             TextInput::make('type')->disabled(),
                             SeoContentBlock::make(),
-                            ImageFieldset::wrap(MainBannerPicker::make()->directory('Discounts')),
-                            ImageFieldset::wrap(FeaturedImagePicker::make()->directory('Discounts')),
+                            ImageFieldset::wrap(MainBannerPicker::make()->directory('discounts')),
+                            ImageFieldset::wrap(FeaturedImagePicker::make()->directory('discounts')),
                         ]),
                         SeoTab::make(),
                     ])

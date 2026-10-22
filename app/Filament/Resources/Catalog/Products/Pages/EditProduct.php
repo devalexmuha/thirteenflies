@@ -23,19 +23,19 @@ class EditProduct extends EditRecord
 
     public function getTitle(): string
     {
-        return "Edit '{$this->getRecord()->name}' " . ucfirst(static::getResource()::getModelLabel());
+        return "Edit '{$this->getRecord()->name}' ".ucfirst(static::getResource()::getModelLabel());
     }
 
     public function enableDiscountAction(): Action
     {
         return Action::make('enableDiscount')
-                     ->requiresConfirmation()
-                     ->modalHeading('Are you sure?')
-                     ->modalDescription('All discounted products automatically get removed from all their promotions.')
-                     ->action(function (): void {
-                         $this->record->promotions()->detach();
-                         $this->data['is_discounted'] = true;
-                     });
+            ->requiresConfirmation()
+            ->modalHeading('Are you sure?')
+            ->modalDescription('All discounted products automatically get removed from all their promotions.')
+            ->action(function (): void {
+                $this->record->promotions()->detach();
+                $this->data['is_discounted'] = true;
+            });
     }
 
     protected function mutateFormDataBeforeFill(array $data): array
@@ -45,8 +45,12 @@ class EditProduct extends EditRecord
         $data['filter_values'] = [];
 
         foreach ($this->record->attributeValues as $value) {
-            $data['filter_values'][$value->attribute_id] = $value->id;
+            $data['filter_values'][] = [
+                'attribute_id' => $value->attribute_id,
+                'value_id' => $value->id,
+            ];
         }
+
         return $data;
     }
 
@@ -73,15 +77,11 @@ class EditProduct extends EditRecord
 
     protected function afterSave(): void
     {
-        $ids = [];
-
-        foreach ($this->data['filter_values'] ?? [] as $valueId) {
-            if (filled($valueId)) {
-                $ids[] = $valueId;
-            }
-        }
+        $ids = collect($this->data['filter_values'] ?? [])
+            ->pluck('value_id')
+            ->filter()
+            ->all();
 
         $this->record->attributeValues()->sync($ids);
     }
-
 }
