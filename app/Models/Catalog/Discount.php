@@ -8,6 +8,7 @@ use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
+use Database\Factories\Catalog\DiscountFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,8 +17,8 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Discount extends Model
 {
-    /** @use HasFactory<\Database\Factories\DiscountFactory> */
-    use HasFactory, Translatable, HasSeoMeta, HasSlug, HasMedia;
+    /** @use HasFactory<DiscountFactory> */
+    use HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
 
     protected $guarded = [];
 
@@ -27,7 +28,7 @@ class Discount extends Model
     {
         static::deleting(function (Discount $discount): void {
             $discount->products()->update([
-                'is_discounted'  => false,
+                'is_discounted' => false,
                 'discount_price' => null,
             ]);
         });
@@ -43,7 +44,7 @@ class Discount extends Model
         return $this->products()->active();
     }
 
-    public function attributes(): morphToMany
+    public function attributes(): MorphToMany
     {
         return $this->morphToMany(Attribute::class, 'attributable');
     }

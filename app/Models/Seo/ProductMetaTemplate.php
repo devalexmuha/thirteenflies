@@ -4,14 +4,14 @@ namespace App\Models\Seo;
 
 use App\Models\Catalog\Category;
 use App\Models\Traits\Translatable;
+use Database\Factories\Seo\ProductMetaTemplateFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\Translatable\HasTranslations;
 
 class ProductMetaTemplate extends Model
 {
-    /** @use HasFactory<\Database\Factories\PoductMetaTemplateFactory> */
+    /** @use HasFactory<ProductMetaTemplateFactory> */
     use HasFactory, Translatable;
 
     protected $guarded = [];

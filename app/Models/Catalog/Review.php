@@ -3,13 +3,14 @@
 namespace App\Models\Catalog;
 
 use App\Models\Account\User;
+use Database\Factories\Catalog\ReviewFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Review extends Model
 {
-    /** @use HasFactory<\Database\Factories\ReviewFactory> */
+    /** @use HasFactory<ReviewFactory> */
     use HasFactory;
 
     protected $guarded = [];
@@ -40,7 +41,4 @@ class Review extends Model
         static::saved(fn (Review $review) => $review->product->refreshRating());
         static::deleted(fn (Review $review) => $review->product->refreshRating());
     }
-
-
-
 }

@@ -3,16 +3,16 @@
 namespace App\Models\Access;
 
 use App\Models\Account\User;
+use Database\Factories\Access\RoleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model
 {
-
     protected $guarded = [];
 
-    /** @use HasFactory<\Database\Factories\RoleFactory> */
+    /** @use HasFactory<RoleFactory> */
     use HasFactory;
 
     public function permissions(): BelongsToMany

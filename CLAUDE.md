@@ -28,7 +28,7 @@ php artisan migrate:fresh --seed              # DB seeder only seeds SeoTemplate
 ## Architecture
 
 ### Domain layout
-Models, Filament resources, and factories are grouped by domain namespace: `Catalog`, `Content`, `Sales`, `Seo`, `Filters`, `Account`, `Access` (e.g. `App\Models\Catalog\Product`, `App\Filament\Resources\Catalog\Products\…`). `AppServiceProvider` overrides factory guessing to `Database\Factories\{ClassBasename}Factory`, so factories are flat even though models are namespaced.
+Models, Filament resources, and factories are grouped by domain namespace: `Catalog`, `Content`, `Sales`, `Seo`, `Filters`, `Account`, `Access` (e.g. `App\Models\Catalog\Product`, `App\Filament\Resources\Catalog\Products\…`). Factories in `database/factories` mirror the model domain folders (e.g. `Database\Factories\Catalog\ProductFactory`), so Laravel's default factory guessing resolves them. `MediaFactory`, `MenuFactory` and `MenuItemFactory` are leftover stubs at the root with no matching model.
 
 ### Shared model traits (`app/Models/Traits`)
 Most content/catalog models compose the same polymorphic features:

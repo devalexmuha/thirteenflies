@@ -24,6 +24,10 @@ class DatabaseSeeder extends Seeder
                 ],
             );
         }
+
+        $this->call([
+            CategorySeeder::class,
+        ]);
     }
 
     /** Same text for every locale, e.g. ['en' => '{name}', 'es' => '{name}', ...]. */

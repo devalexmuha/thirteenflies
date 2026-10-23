@@ -8,7 +8,7 @@ use App\Models\Catalog\Product;
 use App\Models\Catalog\Review;
 use App\Models\Sales\Cart;
 use App\Models\Sales\Order;
-use Database\Factories\UserFactory;
+use Database\Factories\Account\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
@@ -28,7 +28,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable implements FilamentUser, HasName
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $guarded = [];
 
@@ -55,11 +55,13 @@ class User extends Authenticatable implements FilamentUser, HasName
         return $this->email === 'admin@thirteenflies.com';
     }
 
-    public function userProfile(): HasOne {
+    public function userProfile(): HasOne
+    {
         return $this->hasOne(UserProfile::class);
     }
 
-    public function addresses(): HasMany {
+    public function addresses(): HasMany
+    {
         return $this->hasMany(Address::class);
     }
 
@@ -81,8 +83,8 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function hasPermission(string $name): bool
     {
         return $this->roles()
-                    ->whereHas('permissions', fn ($q) => $q->where('name', $name))
-                    ->exists();
+            ->whereHas('permissions', fn ($q) => $q->where('name', $name))
+            ->exists();
     }
 
     public function reviews(): HasMany
@@ -104,5 +106,4 @@ class User extends Authenticatable implements FilamentUser, HasName
     {
         return $this->hasMany(Order::class);
     }
-
 }

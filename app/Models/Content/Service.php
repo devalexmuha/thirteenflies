@@ -6,15 +6,15 @@ use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
+use Database\Factories\Content\ServiceFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\Translatable\HasTranslations;
 
 class Service extends Model
 {
-    /** @use HasFactory<\Database\Factories\ServiceFactory> */
-    use HasFactory, Translatable, HasSeoMeta, HasSlug, HasMedia;
+    /** @use HasFactory<ServiceFactory> */
+    use HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
 
     public array $translatable = ['name', 'excerpt', 'content'];
 

@@ -10,6 +10,7 @@ use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
+use Database\Factories\Catalog\ProductFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,12 +19,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
-    /** @use HasFactory<\Database\Factories\ProductFactory> */
-    use HasFactory, Translatable, HasSeoMeta, HasSlug, HasMedia;
+    /** @use HasFactory<ProductFactory> */
+    use HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
 
     protected $guarded = [];
 
@@ -77,10 +77,10 @@ class Product extends Model
         return $this->hasMany(Video::class);
     }
 
-//    public function attributes(): morphToMany
-//    {
-//        return $this->morphToMany(Attribute::class, 'attributable');
-//    }
+    //    public function attributes(): morphToMany
+    //    {
+    //        return $this->morphToMany(Attribute::class, 'attributable');
+    //    }
 
     public function attributeValues(): MorphToMany
     {
@@ -110,8 +110,8 @@ class Product extends Model
     public function scopeOnSale(Builder $query): void
     {
         $query->whereNotNull('sale_price')
-              ->where(fn ($q) => $q->whereNull('sale_starts_at')->orWhere('sale_starts_at', '<=', now()))
-              ->where(fn ($q) => $q->whereNull('sale_ends_at')->orWhere('sale_ends_at', '>=', now()));
+            ->where(fn ($q) => $q->whereNull('sale_starts_at')->orWhere('sale_starts_at', '<=', now()))
+            ->where(fn ($q) => $q->whereNull('sale_ends_at')->orWhere('sale_ends_at', '>=', now()));
     }
 
     public function scopeInCategoryTree(Builder $query, Category $category): void
@@ -124,8 +124,8 @@ class Product extends Model
     public function refreshRating(): void
     {
         $stats = $this->reviews()
-                      ->selectRaw('COUNT(*) as total, AVG(rating) as average')
-                      ->first();
+            ->selectRaw('COUNT(*) as total, AVG(rating) as average')
+            ->first();
 
         $this->updateQuietly([
             'reviews_count' => $stats->total,

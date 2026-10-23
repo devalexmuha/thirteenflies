@@ -5,16 +5,16 @@ namespace App\Models\Filters;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
+use Database\Factories\Filters\FilterPageFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Spatie\Translatable\HasTranslations;
 
 class FilterPage extends Model
 {
-    /** @use HasFactory<\Database\Factories\FilterPageFactory> */
-    use HasFactory, Translatable, HasSlug, HasSeoMeta;
+    /** @use HasFactory<FilterPageFactory> */
+    use HasFactory, HasSeoMeta, HasSlug, Translatable;
 
     public array $translatable = ['name'];
 
@@ -30,10 +30,10 @@ class FilterPage extends Model
         return $this->morphTo();
     }
 
-//    public function attributes(): morphToMany
-//    {
-//        return $this->morphToMany(Attribute::class, 'attributable');
-//    }
+    //    public function attributes(): morphToMany
+    //    {
+    //        return $this->morphToMany(Attribute::class, 'attributable');
+    //    }
 
     public function attributeValues(): MorphToMany
     {

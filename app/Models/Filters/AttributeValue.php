@@ -4,6 +4,7 @@ namespace App\Models\Filters;
 
 use App\Models\Catalog\Product;
 use App\Models\Traits\Translatable;
+use Database\Factories\Filters\AttributeValueFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,7 +13,7 @@ use Illuminate\Support\Str;
 
 class AttributeValue extends Model
 {
-    /** @use HasFactory<\Database\Factories\AttributeValueFactory> */
+    /** @use HasFactory<AttributeValueFactory> */
     use HasFactory, Translatable;
 
     public array $translatable = ['value'];
@@ -22,7 +23,7 @@ class AttributeValue extends Model
     protected static function booted(): void
     {
         static::saving(function (AttributeValue $attributeValue): void {
-            $names  = array_filter($attributeValue->getTranslations('value'));
+            $names = array_filter($attributeValue->getTranslations('value'));
             $locale = isset($names['en']) ? 'en' : array_key_first($names);
 
             $attributeValue->slug = Str::slug($names[$locale] ?? '', '-', $locale ?? 'en');

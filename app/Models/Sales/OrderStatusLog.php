@@ -4,13 +4,14 @@ namespace App\Models\Sales;
 
 use App\Enums\OrderStatus;
 use App\Models\Account\User;
+use Database\Factories\Sales\OrderStatusLogFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OrderStatusLog extends Model
 {
-    /** @use HasFactory<\Database\Factories\OrderStatusLogFactory> */
+    /** @use HasFactory<OrderStatusLogFactory> */
     use HasFactory;
 
     protected $guarded = [];

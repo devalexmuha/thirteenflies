@@ -7,19 +7,18 @@ use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
+use Database\Factories\Content\PageFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
 class Page extends Model
 {
-    /** @use HasFactory<\Database\Factories\PageFactory> */
-    use HasFactory, Translatable, HasSeoMeta, HasSlug, HasMedia;
+    /** @use HasFactory<PageFactory> */
+    use HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
 
     public array $translatable = ['name', 'content'];
 
     protected $guarded = [];
-
 
     protected function casts(): array
     {

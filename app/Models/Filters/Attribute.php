@@ -5,16 +5,16 @@ namespace App\Models\Filters;
 use App\Models\Catalog\Brand;
 use App\Models\Catalog\Category;
 use App\Models\Traits\Translatable;
+use Database\Factories\Filters\AttributeFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Str;
-use Spatie\Translatable\HasTranslations;
 
 class Attribute extends Model
 {
-    /** @use HasFactory<\Database\Factories\AttributeFactory> */
+    /** @use HasFactory<AttributeFactory> */
     use HasFactory, Translatable;
 
     public array $translatable = ['name'];
