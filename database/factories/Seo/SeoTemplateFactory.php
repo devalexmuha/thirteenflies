@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Seo;
 
+use App\Enums\SeoTemplateType;
 use App\Models\Seo\SeoTemplate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

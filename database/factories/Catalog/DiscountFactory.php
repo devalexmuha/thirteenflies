@@ -2,8 +2,8 @@
 
 namespace Database\Factories\Catalog;
 
+use App\Enums\DiscountType;
 use App\Models\Catalog\Discount;
-use Database\Factories\Traits\Seo\FillsDiscountSeoMeta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,8 +11,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class DiscountFactory extends Factory
 {
-    use FillsDiscountSeoMeta;
-
     /**
      * Define the model's default state.
      *
@@ -21,7 +19,8 @@ class DiscountFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'type' => fake()->randomElement(DiscountType::cases())->value,
+            'is_active' => true,
         ];
     }
 }

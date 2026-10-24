@@ -14,7 +14,10 @@ Route::delete('/categories/{category}', [CategoriesController::class, 'destroy']
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']); // hi can you se the code?
 
-// before next seeding refactor factories by mirroring models namespaces
+// SEEDING DATABASE
+
+// MAKING API ENDPOINTS
+// USER RELATED API ENDPOINTS
 
 // review on product can add only user bought this product (in user -> orders -> complete -> exist this product)
 // do not forget to add sorting functionality additionally to filtering
@@ -29,10 +32,6 @@ Route::get('/products/{product}', [ProductController::class, 'show']); // hi can
 // show available variables on categories for prod meta templates
 
 // BUILDING ADMIN PANEL
-// move product Properties tab to repeater
-// add custom actions in table, modify data straight from the table
-// add urls in forms
-// *******
 // build customers and orders resource
 // getNavigationBadge() to show amt of new non resolved orders
 // add diff colors on order status

@@ -3,7 +3,6 @@
 namespace Database\Factories\Content;
 
 use App\Models\Content\Article;
-use Database\Factories\Traits\Seo\FillsArticleSeoMeta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,8 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ArticleFactory extends Factory
 {
-    use FillsArticleSeoMeta;
-
     /**
      * Define the model's default state.
      *
@@ -21,7 +18,9 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => ['en' => ucfirst(fake()->words(4, true))],
+            'is_active' => true,
+            'published_at' => now(),
         ];
     }
 }

@@ -3,7 +3,6 @@
 namespace Database\Factories\Catalog;
 
 use App\Models\Catalog\Product;
-use Database\Factories\Traits\Seo\FillsProductSeoMeta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,8 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProductFactory extends Factory
 {
-    use FillsProductSeoMeta;
-
     /**
      * Define the model's default state.
      *
@@ -25,12 +22,12 @@ class ProductFactory extends Factory
         $stock = fake()->numberBetween(0, 10);
 
         return [
-            'sku'         => fake()->unique()->bothify('TF-#####'),
-            'name'        => ['en' => 'Guitar ' . ucfirst(fake()->word())],
+            'sku' => fake()->unique()->bothify('TF-#####'),
+            'name' => ['en' => 'Guitar '.ucfirst(fake()->word())],
             'description' => ['en' => fake()->paragraph()],
-            'price'       => fake()->numberBetween(10_000, 200_000),
-            'stock_qty'   => $stock,
-            'in_stock'    => $stock > 0,
+            'price' => fake()->numberBetween(10_000, 200_000),
+            'stock_qty' => $stock,
+            'in_stock' => $stock > 0,
         ];
     }
 }

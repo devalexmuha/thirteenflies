@@ -26,7 +26,7 @@ class AttributeValue extends Model
             $names = array_filter($attributeValue->getTranslations('value'));
             $locale = isset($names['en']) ? 'en' : array_key_first($names);
 
-            $attributeValue->slug = Str::slug($names[$locale] ?? '', '-', $locale ?? 'en');
+            $attributeValue->slug = Str::slug($names[$locale], '-', $locale);
         });
     }
 

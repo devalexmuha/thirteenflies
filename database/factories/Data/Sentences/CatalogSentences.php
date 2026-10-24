@@ -6,7 +6,7 @@ namespace Database\Factories\Data\Sentences;
  * Music-store sentences per locale for the top/bottom SEO texts of catalog pages
  * (the ones whose forms use SeoContentBlock). {name} is replaced with the model name.
  */
-class CatalogTexts
+class CatalogSentences
 {
     public static function get(): array
     {

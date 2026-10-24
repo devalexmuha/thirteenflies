@@ -1,14 +1,14 @@
 <?php
 
-namespace Database\Factories\Traits\Sentences;
+namespace Database\Factories\Data\Sentences;
 
 /**
  * Editorial sentences per locale for the top/bottom SEO texts of content pages
  * (about us, guides, author profiles, terms). {name} is replaced with the model name.
  */
-trait ContentSentences
+class ContentSentences
 {
-    protected function seoTextSentences(): array
+    public static function get(): array
     {
         return [
             'en' => [

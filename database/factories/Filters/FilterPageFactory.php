@@ -3,7 +3,8 @@
 namespace Database\Factories\Filters;
 
 use App\Models\Filters\FilterPage;
-use Database\Factories\Traits\Seo\FillsFilterPageSeoMeta;
+use Database\Factories\Data\Sentences\CatalogSentences;
+use Database\Factories\Traits\Seo\FillsSeoMeta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class FilterPageFactory extends Factory
 {
-    use FillsFilterPageSeoMeta;
+    use FillsSeoMeta;
 
     /**
      * Define the model's default state.
@@ -23,5 +24,10 @@ class FilterPageFactory extends Factory
         return [
             //
         ];
+    }
+
+    public function seoTextSentences(): array
+    {
+        return CatalogSentences::get();
     }
 }

@@ -3,7 +3,6 @@
 namespace Database\Factories\Catalog;
 
 use App\Models\Catalog\Brand;
-use Database\Factories\Traits\Seo\FillsBrandSeoMeta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,8 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class BrandFactory extends Factory
 {
-    use FillsBrandSeoMeta;
-
     /**
      * Define the model's default state.
      *
@@ -21,7 +18,7 @@ class BrandFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'is_active' => true,
         ];
     }
 }
