@@ -2,8 +2,8 @@
 
 namespace Database\Factories\Content;
 
+use App\Enums\PageTemplate;
 use App\Models\Content\Page;
-use Database\Factories\Traits\Seo\FillsPageSeoMeta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,8 +11,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PageFactory extends Factory
 {
-    use FillsPageSeoMeta;
-
     /**
      * Define the model's default state.
      *
@@ -21,7 +19,9 @@ class PageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'template' => PageTemplate::Single,
+            'is_active' => true,
+            'published_at' => now(),
         ];
     }
 }

@@ -3,7 +3,6 @@
 namespace Database\Factories\Content;
 
 use App\Models\Content\Service;
-use Database\Factories\Traits\Seo\FillsServiceSeoMeta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,8 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ServiceFactory extends Factory
 {
-    use FillsServiceSeoMeta;
-
     /**
      * Define the model's default state.
      *
@@ -21,7 +18,9 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'price_from' => fake()->numberBetween(30, 400),
+            'is_active' => true,
+            'published_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }

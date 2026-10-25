@@ -19,15 +19,14 @@ class ProductFactory extends Factory
 
     public function definition(): array
     {
-        $stock = fake()->numberBetween(0, 10);
+        $stock = fake()->numberBetween(0, 119);
 
         return [
             'sku' => fake()->unique()->bothify('TF-#####'),
-            'name' => ['en' => 'Guitar '.ucfirst(fake()->word())],
-            'description' => ['en' => fake()->paragraph()],
-            'price' => fake()->numberBetween(10_000, 200_000),
+            'price' => fake()->numberBetween(1_000, 500_000),
             'stock_qty' => $stock,
             'in_stock' => $stock > 0,
+            'is_featured' => fake()->boolean(10),
         ];
     }
 }

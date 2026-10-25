@@ -34,11 +34,26 @@ class Product extends Model
         return ['is_active' => 'boolean'];
     }
 
+    protected static function booted(): void
+    {
+        static::saving(function (Product $product): void {
+            $product->in_stock = $product->stock_qty > 0;
+        });
+    }
+
     public function price(): Attribute
     {
         return Attribute::make(
             get: fn (string $value) => $value / 100,
             set: fn (string $value) => $value * 100,
+        );
+    }
+
+    public function discountPrice(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value) => $value === null ? null : $value / 100,
+            set: fn (?string $value) => $value === null ? null : $value * 100,
         );
     }
 

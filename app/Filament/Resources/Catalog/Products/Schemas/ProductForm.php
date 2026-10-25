@@ -40,10 +40,17 @@ class ProductForm
             ->components([
                 Tabs::make()->tabs([
                     Tab::make('Content')->schema([
-                        Grid::make()->schema([
+                        Grid::make(3)->schema([
                             NameInput::make()->columnSpanFull(),
                             TextInput::make('sku')->required()->unique(ignoreRecord: true),
                             PriceInput::make(),
+                            TextInput::make('stock_qty')
+                                ->label('Stock quantity')
+                                ->numeric()
+                                ->integer()
+                                ->minValue(0)
+                                ->default(0)
+                                ->required(),
                         ]),
                         SeoEditor::make('short_description')->label('Short description'),
                         SeoEditor::make('description')->label('Description'),
@@ -172,7 +179,6 @@ class ProductForm
                         ->getKey()),
             ]);
     }
-
     /**
      * @param  array<int, int|string>  $categoryIds
      * @return array<int, string>

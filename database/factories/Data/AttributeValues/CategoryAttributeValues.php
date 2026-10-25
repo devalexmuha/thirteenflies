@@ -39,7 +39,7 @@ class CategoryAttributeValues
             ],
             'Electric Guitars' => [
                 'Body Type' => ['Solid Body', 'Semi-Hollow', 'Hollow Body'],
-                'Pickup Configuration' => ['SSS', 'HSS', 'HH', 'HSH', 'P-90'],
+                'Pickup Configuration' => ['SSS', 'HSS', 'SS', 'HH', 'HSH', 'P-90'],
                 'Number of Strings' => ['6', '7', '8'],
                 'Bridge Type' => ['Fixed', 'Tremolo', 'Floyd Rose'],
                 'Color' => self::color(),

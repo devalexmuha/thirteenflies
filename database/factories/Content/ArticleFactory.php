@@ -18,9 +18,8 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => ['en' => ucfirst(fake()->words(4, true))],
             'is_active' => true,
-            'published_at' => now(),
+            'published_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }

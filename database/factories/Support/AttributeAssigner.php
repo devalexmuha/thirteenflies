@@ -53,7 +53,7 @@ class AttributeAssigner
         $result = [];
 
         foreach (Locale::cases() as $locale) {
-            $result[$locale->value] = $locale->value === 'en' ? $text : $translations[$locale->value];
+            $result[$locale->value] = $locale->value === 'en' ? $text : $translations[$locale->value] ?? $text;
         }
 
         return $result;

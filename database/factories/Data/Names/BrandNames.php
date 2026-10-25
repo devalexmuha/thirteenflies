@@ -24,6 +24,8 @@ class BrandNames
             'Audio-Technica',  // microphones
             'Focusrite',       // audio interfaces
             "D'Addario",       // strings and cables
+            'Zildjian',        // cymbals
+            'Sabian',          // cymbals
         ];
     }
 }

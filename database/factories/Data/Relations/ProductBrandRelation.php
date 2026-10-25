@@ -1,0 +1,348 @@
+<?php
+
+namespace Database\Factories\Data\Relations;
+
+/**
+ * The brand of each product, by product name (see ProductNames) and brand name (see BrandNames).
+ */
+class ProductBrandRelation
+{
+    /**
+     * @return array<string, string> product name => brand name
+     */
+    public static function get(): array
+    {
+        return [
+            // Guitars
+            'Fender CD-60S Acoustic Guitar Pack - Natural' => 'Fender',
+            'Fender FA-115 Dreadnought Acoustic Guitar Pack - Sunburst' => 'Fender',
+            'Squier Affinity Series Stratocaster Pack with Frontman 15G - Black' => 'Fender',
+            'Yamaha Gigmaker Standard Acoustic Guitar Pack - Natural' => 'Yamaha',
+
+            // Acoustic Guitars
+            'Fender Redondo Player Acoustic-Electric Guitar - Natural' => 'Fender',
+            'Fender Malibu Player Acoustic-Electric Guitar - Sunburst' => 'Fender',
+            'Fender CC-60SCE Concert Acoustic-Electric Guitar - Natural' => 'Fender',
+            'Yamaha APX600 Thinline Acoustic-Electric Guitar - Black' => 'Yamaha',
+            'Yamaha FSX800C Concert Cutaway Acoustic-Electric Guitar - Natural' => 'Yamaha',
+            'Yamaha CSF3M Compact Parlor Acoustic-Electric Guitar - Natural' => 'Yamaha',
+
+            // Classical Guitars
+            'Yamaha C40II Classical Guitar - Natural' => 'Yamaha',
+            'Yamaha CGS102AII 1/2-Size Classical Guitar - Natural' => 'Yamaha',
+            'Yamaha CGS103AII 3/4-Size Classical Guitar - Natural' => 'Yamaha',
+            'Yamaha C80 Classical Guitar - Natural' => 'Yamaha',
+            'Yamaha NCX1200R Classical Acoustic-Electric Guitar - Natural' => 'Yamaha',
+            'Yamaha CG-TA TransAcoustic Nylon-String Guitar - Natural' => 'Yamaha',
+            'Fender CN-60S Nylon-String Acoustic Guitar - Natural' => 'Fender',
+            'Fender CN-140SCE Nylon-String Acoustic-Electric Guitar - Natural' => 'Fender',
+
+            // Steel-String Guitars
+            'Yamaha FG800 Dreadnought Acoustic Guitar - Natural' => 'Yamaha',
+            'Yamaha FGX830C Dreadnought Cutaway Acoustic-Electric Guitar - Natural' => 'Yamaha',
+            'Yamaha FG820-12 12-String Dreadnought Acoustic Guitar - Natural' => 'Yamaha',
+            'Yamaha FG-TA TransAcoustic Dreadnought Acoustic-Electric Guitar - Brown Sunburst' => 'Yamaha',
+            'Yamaha LL6 ARE Jumbo Acoustic-Electric Guitar - Natural' => 'Yamaha',
+            'Gibson J-45 Standard Acoustic-Electric Guitar - Vintage Sunburst' => 'Gibson',
+            'Gibson J-45 Studio Walnut Acoustic-Electric Guitar - Satin Natural' => 'Gibson',
+            'Gibson Hummingbird Standard Acoustic-Electric Guitar - Heritage Cherry Sunburst' => 'Gibson',
+            'Gibson J-185 Original Acoustic-Electric Guitar - Antique Natural' => 'Gibson',
+            'Fender CD-60S Dreadnought Acoustic Guitar - Natural' => 'Fender',
+            'Fender CD-140SCE Dreadnought Acoustic-Electric Guitar - Natural' => 'Fender',
+            'Fender Paramount PM-1 Standard Dreadnought Acoustic Guitar - Natural' => 'Fender',
+
+            // Electric Guitars
+            'Fender Player Stratocaster Pau Ferro - Black' => 'Fender',
+            'Fender Player Stratocaster HSS Pau Ferro - 3-Color Sunburst' => 'Fender',
+            'Fender Player Telecaster Maple - Polar White' => 'Fender',
+            'Fender Player Jazzmaster Pau Ferro - Polar White' => 'Fender',
+            'Fender American Professional II Stratocaster Rosewood - Miami Blue' => 'Fender',
+            'Fender American Professional II Telecaster Rosewood - 3-Color Sunburst' => 'Fender',
+            "Squier Classic Vibe '60s Stratocaster Laurel - Candy Apple Red" => 'Fender',
+            'Squier Bullet Stratocaster HT HSS - Arctic White' => 'Fender',
+            "Gibson Les Paul Standard '60s - Bourbon Burst" => 'Gibson',
+            "Gibson Les Paul Standard '50s - Heritage Cherry Sunburst" => 'Gibson',
+            'Gibson Les Paul Studio - Ebony' => 'Gibson',
+            'Gibson Les Paul Junior - Vintage Cherry' => 'Gibson',
+            'Gibson SG Standard - Ebony' => 'Gibson',
+            'Gibson SG Standard - Heritage Cherry' => 'Gibson',
+            'Gibson ES-335 - Sixties Cherry' => 'Gibson',
+            'Gibson ES-335 - Vintage Burst' => 'Gibson',
+            'Yamaha Pacifica 012 - Black' => 'Yamaha',
+            'Yamaha Pacifica 112V - Old Violin Sunburst' => 'Yamaha',
+            'Yamaha Pacifica 212VFM - Translucent Black' => 'Yamaha',
+            'Yamaha Revstar Standard RSS02T - Hot Merlot' => 'Yamaha',
+            'Yamaha Revstar Standard RSS02T - Swift Blue' => 'Yamaha',
+
+            // Bass Guitars
+            'Fender Player Precision Bass Pau Ferro - Black' => 'Fender',
+            'Fender Player Jazz Bass Pau Ferro - 3-Color Sunburst' => 'Fender',
+            'Fender American Professional II Jazz Bass Rosewood - Miami Blue' => 'Fender',
+            'Fender American Professional II Precision Bass Maple - 3-Color Sunburst' => 'Fender',
+            'Fender Player Jazz Bass V Pau Ferro - Black' => 'Fender',
+            'Fender Player Mustang Bass PJ Pau Ferro - Sonic Blue' => 'Fender',
+            'Squier Affinity Series Precision Bass PJ Laurel - Olympic White' => 'Fender',
+            "Squier Classic Vibe '60s Jazz Bass Laurel - 3-Color Sunburst" => 'Fender',
+            'Yamaha TRBX304 Electric Bass - Black' => 'Yamaha',
+            'Yamaha TRBX305 5-String Electric Bass - Black' => 'Yamaha',
+            'Yamaha BB234 Electric Bass - Black' => 'Yamaha',
+
+            // Keyboards
+            'Yamaha PSR-E373 61-Key Portable Keyboard' => 'Yamaha',
+            'Yamaha PSR-E473 61-Key Portable Keyboard' => 'Yamaha',
+            'Yamaha PSR-SX600 61-Key Arranger Workstation' => 'Yamaha',
+            'Yamaha PSR-SX900 61-Key Arranger Workstation' => 'Yamaha',
+            'Yamaha PSS-A50 37-Key Mini Keyboard' => 'Yamaha',
+            'Yamaha Piaggero NP-32 76-Key Portable Keyboard' => 'Yamaha',
+            'Roland GO:KEYS 3 61-Key Music Creation Keyboard' => 'Roland',
+            'Roland GO:KEYS 5 61-Key Music Creation Keyboard' => 'Roland',
+            'Roland E-X10 Arranger Keyboard' => 'Roland',
+            'Roland A-49 49-Key MIDI Keyboard Controller' => 'Roland',
+            'Roland A-88MKII 88-Key MIDI Keyboard Controller' => 'Roland',
+            'Yamaha YC88 88-Key Stage Keyboard' => 'Yamaha',
+
+            // Synthesizers
+            'Roland JUNO-DS61 61-Key Synthesizer' => 'Roland',
+            'Roland JUNO-X 61-Key Synthesizer' => 'Roland',
+            'Roland Jupiter-X 61-Key Synthesizer' => 'Roland',
+            'Roland Jupiter-Xm 37-Key Synthesizer' => 'Roland',
+            'Roland JD-Xi 37-Key Analog/Digital Crossover Synthesizer' => 'Roland',
+            'Roland Fantom-06 61-Key Synthesizer Workstation' => 'Roland',
+            'Roland GAIA 2 49-Key Synthesizer' => 'Roland',
+            'Yamaha MODX6+ 61-Key Synthesizer' => 'Yamaha',
+            'Yamaha Montage M6 61-Key Flagship Synthesizer' => 'Yamaha',
+            'Yamaha reface DX Mobile Mini Keyboard FM Synthesizer' => 'Yamaha',
+
+            // Pianos
+            'Yamaha AvantGrand N1X Hybrid Piano' => 'Yamaha',
+            'Yamaha NU1X Hybrid Upright Piano' => 'Yamaha',
+            'Steinway & Sons Spirio r High-Resolution Player Piano' => 'Steinway & Sons',
+
+            // Grand Pianos
+            'Steinway & Sons Model A-188 Grand Piano - Polished Ebony' => 'Steinway & Sons',
+            'Steinway & Sons Model B-211 Grand Piano - Polished Ebony' => 'Steinway & Sons',
+            'Steinway & Sons Model B-211 Grand Piano - Polished Walnut' => 'Steinway & Sons',
+            'Yamaha C3X Grand Piano - Polished Ebony' => 'Yamaha',
+            'Yamaha C5X Grand Piano - Polished Ebony' => 'Yamaha',
+            'Yamaha C6X Grand Piano - Polished Ebony' => 'Yamaha',
+            'Boston GP-193 Performance Edition Grand Piano - Polished Ebony' => 'Steinway & Sons',
+            'Yamaha Disklavier ENSPIRE PRO DC3X Grand Piano - Polished Ebony' => 'Yamaha',
+
+            // Baby Grand Pianos
+            'Steinway & Sons Model S-155 Baby Grand Piano - Polished Ebony' => 'Steinway & Sons',
+            'Steinway & Sons Model M-170 Baby Grand Piano - Polished Ebony' => 'Steinway & Sons',
+            'Steinway & Sons Model O-180 Baby Grand Piano - Polished Ebony' => 'Steinway & Sons',
+            'Boston GP-156 Performance Edition Baby Grand Piano - Polished Ebony' => 'Steinway & Sons',
+            'Boston GP-178 Performance Edition Baby Grand Piano - Polished Ebony' => 'Steinway & Sons',
+            'Essex EGP-155 Baby Grand Piano - Polished Ebony' => 'Steinway & Sons',
+            'Essex EGP-173 Baby Grand Piano - Polished Ebony' => 'Steinway & Sons',
+            'Yamaha GB1K Baby Grand Piano - Polished Ebony' => 'Yamaha',
+            'Yamaha GC1 Baby Grand Piano - Polished Ebony' => 'Yamaha',
+            'Yamaha GC2 Baby Grand Piano - Polished Ebony' => 'Yamaha',
+
+            // Concert Grand Pianos
+            'Steinway & Sons Model D-274 Concert Grand Piano - Polished Ebony' => 'Steinway & Sons',
+            'Steinway & Sons Model D-274 Concert Grand Piano - Satin Ebony' => 'Steinway & Sons',
+            'Yamaha CFX Concert Grand Piano - Polished Ebony' => 'Yamaha',
+
+            // Upright Pianos
+            'Yamaha U1 Upright Piano - Polished Ebony' => 'Yamaha',
+            'Yamaha U3 Upright Piano - Polished Ebony' => 'Yamaha',
+            'Yamaha U1 SH2 Silent Upright Piano - Polished Ebony' => 'Yamaha',
+            'Yamaha b1 Upright Piano - Polished Ebony' => 'Yamaha',
+            'Yamaha b2 Upright Piano - Polished Ebony' => 'Yamaha',
+            'Yamaha b3 Upright Piano - Polished Ebony' => 'Yamaha',
+            'Steinway & Sons Model K-52 Upright Piano - Polished Ebony' => 'Steinway & Sons',
+            'Boston UP-118S Upright Piano - Polished Ebony' => 'Steinway & Sons',
+            'Essex EUP-116 Upright Piano - Polished Ebony' => 'Steinway & Sons',
+            'Essex EUP-123 Upright Piano - Polished Ebony' => 'Steinway & Sons',
+
+            // Digital Pianos
+            'Yamaha P-45 88-Key Digital Piano' => 'Yamaha',
+            'Yamaha P-125 88-Key Digital Piano' => 'Yamaha',
+            'Yamaha P-515 88-Key Digital Piano' => 'Yamaha',
+            'Yamaha P-525 88-Key Digital Piano' => 'Yamaha',
+            'Yamaha Clavinova CLP-745 Console Digital Piano' => 'Yamaha',
+            'Yamaha Arius YDP-144 Traditional Console Digital Piano' => 'Yamaha',
+            'Yamaha Arius YDP-S35 Slim Console Digital Piano' => 'Yamaha',
+            'Yamaha CP88 88-Key Stage Piano' => 'Yamaha',
+            'Roland FP-10 88-Key Digital Piano' => 'Roland',
+            'Roland FP-30X 88-Key Digital Piano' => 'Roland',
+            'Roland FP-60X 88-Key Digital Piano' => 'Roland',
+            'Roland FP-90X 88-Key Digital Piano' => 'Roland',
+            'Roland RD-88 88-Key Stage Piano' => 'Roland',
+            'Roland RD-2000 88-Key Stage Piano' => 'Roland',
+
+            // Drums
+            'Pearl Export EXX 14x5.5 Snare Drum' => 'Pearl',
+            'Pearl Decade Maple 14x5.5 Snare Drum' => 'Pearl',
+            'Pearl Masters Maple Complete 14x5.5 Snare Drum' => 'Pearl',
+            'Yamaha Stage Custom Birch 14x5.5 Snare Drum' => 'Yamaha',
+            'Yamaha Recording Custom Birch 14x5.5 Snare Drum' => 'Yamaha',
+
+            // Acoustic Drums
+            'Pearl Export EXX 22x18 Bass Drum' => 'Pearl',
+            'Pearl Export EXX 12x9 Rack Tom' => 'Pearl',
+            'Pearl Decade Maple 22x18 Bass Drum' => 'Pearl',
+            'Pearl Decade Maple 16x16 Floor Tom' => 'Pearl',
+            'Pearl Masters Maple Complete 22x18 Bass Drum' => 'Pearl',
+            'Yamaha Stage Custom Birch 22x17 Bass Drum' => 'Yamaha',
+            'Yamaha Stage Custom Birch 16x15 Floor Tom' => 'Yamaha',
+            'Yamaha Recording Custom Birch 22x16 Bass Drum' => 'Yamaha',
+
+            // Drum Kits
+            'Pearl Roadshow 5-Piece Complete Drum Set with Cymbals - Jet Black' => 'Pearl',
+            'Pearl Roadshow 5-Piece Complete Drum Set with Cymbals - Wine Red' => 'Pearl',
+            'Pearl Export EXX 5-Piece Drum Set with Hardware - Jet Black' => 'Pearl',
+            'Pearl Decade Maple 4-Piece Shell Pack - Satin Black Burst' => 'Pearl',
+            'Pearl Masters Maple Complete 4-Piece Shell Pack - Satin Natural' => 'Pearl',
+            'Yamaha Rydeen 5-Piece Drum Set with Hardware - Black Glitter' => 'Yamaha',
+            'Yamaha Stage Custom Birch 5-Piece Shell Pack - Natural Wood' => 'Yamaha',
+            'Yamaha Stage Custom Birch 5-Piece Shell Pack - Raven Black' => 'Yamaha',
+            'Yamaha Recording Custom Birch 4-Piece Shell Pack - Real Wood' => 'Yamaha',
+
+            // Cymbals
+            'Zildjian A Zildjian 14" New Beat HiHats Pair' => 'Zildjian',
+            'Zildjian A Zildjian 16" Thin Crash Cymbal' => 'Zildjian',
+            'Zildjian A Custom 20" Ride Cymbal' => 'Zildjian',
+            'Zildjian K Custom Dark 18" Crash Cymbal' => 'Zildjian',
+            'Zildjian ZBT 14" HiHats Pair' => 'Zildjian',
+            'Zildjian ZBT 16" Crash Cymbal' => 'Zildjian',
+            'Sabian HHX 14" Evolution HiHats Pair' => 'Sabian',
+            'Sabian AAX 18" Studio Crash Cymbal' => 'Sabian',
+            'Sabian AAX 20" Stage Ride Cymbal' => 'Sabian',
+            'Sabian AAX 18" Chinese Cymbal' => 'Sabian',
+            'Sabian B8X 14" HiHats Pair' => 'Sabian',
+            'Sabian B8X 10" Splash Cymbal' => 'Sabian',
+
+            // Electronic Drums
+            'Roland TD-02K V-Drums Electronic Drum Set' => 'Roland',
+            'Roland TD-1DMK V-Drums Electronic Drum Set' => 'Roland',
+            'Roland TD-07KV V-Drums Electronic Drum Set' => 'Roland',
+            'Roland TD-17KV V-Drums Electronic Drum Set' => 'Roland',
+            'Roland TD-17KVX V-Drums Electronic Drum Set' => 'Roland',
+            'Roland TD-27KV V-Drums Electronic Drum Set' => 'Roland',
+            'Roland TD-50X V-Drums Electronic Drum Set' => 'Roland',
+            'Yamaha DTX432K Electronic Drum Set' => 'Yamaha',
+            'Yamaha DTX6K-X Electronic Drum Set' => 'Yamaha',
+            'Yamaha DTX8K-X Electronic Drum Set' => 'Yamaha',
+
+            // Amplifiers
+            'Yamaha THR10II Wireless Desktop Guitar Amplifier' => 'Yamaha',
+            'Yamaha THR30II Wireless Desktop Guitar Amplifier' => 'Yamaha',
+            'Roland KC-80 3-Channel Mixing Keyboard Amplifier' => 'Roland',
+            'Roland AC-33 Acoustic Chorus Guitar Amplifier' => 'Roland',
+            'Roland AC-60 Acoustic Chorus Guitar Amplifier' => 'Roland',
+            'Fender Acoustasonic 40 Acoustic Guitar Amplifier' => 'Fender',
+
+            // Guitar Amplifiers
+            'Fender Champion 20 Guitar Combo Amplifier' => 'Fender',
+            'Fender Champion 100 Guitar Combo Amplifier' => 'Fender',
+            'Fender Blues Junior IV Guitar Combo Amplifier' => 'Fender',
+            'Fender Hot Rod Deluxe IV Guitar Combo Amplifier' => 'Fender',
+            'Fender Hot Rod DeVille 212 IV Guitar Combo Amplifier' => 'Fender',
+            "Fender '65 Deluxe Reverb Guitar Combo Amplifier" => 'Fender',
+            'Fender Bassbreaker 15 Guitar Combo Amplifier' => 'Fender',
+            'Fender Tone Master Deluxe Reverb Guitar Combo Amplifier' => 'Fender',
+            'Fender Tone Master Twin Reverb Guitar Combo Amplifier' => 'Fender',
+            'Marshall DSL40CR 40W 1x12 Tube Guitar Combo Amplifier' => 'Marshall',
+            'Marshall DSL20CR 20W 1x12 Tube Guitar Combo Amplifier' => 'Marshall',
+            'Marshall JCM800 2203 100W Tube Guitar Amplifier Head' => 'Marshall',
+            'Marshall Origin 20C 20W 1x12 Tube Guitar Combo Amplifier' => 'Marshall',
+            'Marshall 1959SLP Super Lead 100W Plexi Tube Guitar Amplifier Head' => 'Marshall',
+            'Marshall 1960A 300W 4x12 Angled Guitar Speaker Cabinet' => 'Marshall',
+            'Roland JC-40 Jazz Chorus 40W 2x10 Guitar Combo Amplifier' => 'Roland',
+            'Roland JC-120 Jazz Chorus 120W 2x12 Guitar Combo Amplifier' => 'Roland',
+            'Roland Cube-40GX 40W Guitar Combo Amplifier' => 'Roland',
+
+            // Bass Amplifiers
+            'Fender Rumble 40 V3 Bass Combo Amplifier' => 'Fender',
+            'Fender Rumble 100 V3 Bass Combo Amplifier' => 'Fender',
+            'Fender Rumble 200 V3 Bass Combo Amplifier' => 'Fender',
+            'Fender Rumble 500 V3 Bass Combo Amplifier' => 'Fender',
+            'Fender Rumble 800 HD Bass Amplifier Head' => 'Fender',
+            'Fender Rumble 210 Bass Speaker Cabinet' => 'Fender',
+            'Fender Rumble 410 Bass Speaker Cabinet' => 'Fender',
+            'Roland Cube-80XB Bass Combo Amplifier' => 'Roland',
+
+            // Studio Gear
+            'Yamaha HS5 5" Powered Studio Monitor' => 'Yamaha',
+            'Yamaha HS7 6.5" Powered Studio Monitor' => 'Yamaha',
+            'Yamaha HS8 8" Powered Studio Monitor' => 'Yamaha',
+            'Yamaha MG10XU 10-Input Stereo Mixer with Effects' => 'Yamaha',
+            'Yamaha HPH-MT7 Studio Monitor Headphones' => 'Yamaha',
+            'Audio-Technica ATH-M50x Professional Studio Monitor Headphones' => 'Audio-Technica',
+            'Audio-Technica ATH-M40x Professional Studio Monitor Headphones' => 'Audio-Technica',
+            'Audio-Technica ATH-R70x Professional Open-Back Reference Headphones' => 'Audio-Technica',
+
+            // Microphones
+            'Audio-Technica AT2020 Cardioid Condenser Microphone' => 'Audio-Technica',
+            'Audio-Technica AT2020USB-X Cardioid Condenser USB Microphone' => 'Audio-Technica',
+            'Audio-Technica AT2035 Cardioid Condenser Microphone' => 'Audio-Technica',
+            'Audio-Technica AT4040 Cardioid Condenser Microphone' => 'Audio-Technica',
+            'Audio-Technica AT5040 Cardioid Condenser Studio Microphone' => 'Audio-Technica',
+            'Audio-Technica AT4081 Bidirectional Active Ribbon Microphone' => 'Audio-Technica',
+            'Audio-Technica AT875R Line + Gradient Condenser Shotgun Microphone' => 'Audio-Technica',
+            'Audio-Technica AT8004 Omnidirectional Dynamic Handheld Microphone' => 'Audio-Technica',
+            'Audio-Technica ATR2100x-USB Cardioid Dynamic USB/XLR Microphone' => 'Audio-Technica',
+            'Focusrite Vocaster DM14v Dynamic Podcast Microphone' => 'Focusrite',
+
+            // Audio Interfaces
+            'Focusrite Scarlett Solo (4th Gen) USB Audio Interface' => 'Focusrite',
+            'Focusrite Scarlett 2i2 (4th Gen) USB Audio Interface' => 'Focusrite',
+            'Focusrite Scarlett 4i4 (4th Gen) USB Audio Interface' => 'Focusrite',
+            'Focusrite Scarlett 16i16 (4th Gen) USB Audio Interface' => 'Focusrite',
+            'Focusrite Clarett+ 2Pre USB Audio Interface' => 'Focusrite',
+            'Focusrite Clarett+ 4Pre USB Audio Interface' => 'Focusrite',
+            'Focusrite Clarett+ 8Pre USB Audio Interface' => 'Focusrite',
+            'Focusrite Vocaster One Podcast Interface' => 'Focusrite',
+            'Roland Rubix22 USB Audio Interface' => 'Roland',
+            'Roland Rubix44 USB Audio Interface' => 'Roland',
+            'Roland Duo-Capture EX USB Audio Interface' => 'Roland',
+
+            // Accessories
+            'Fender 351 Shape Premium Picks 12-Pack - Medium' => 'Fender',
+            'Fender Deluxe Electric Guitar Gig Bag - Black' => 'Fender',
+            'Fender FE620 Electric Guitar Case - Black' => 'Fender',
+            'Fender Poly Guitar Strap 2" - Black' => 'Fender',
+            'Gibson Les Paul Hardshell Case - Black' => 'Gibson',
+            'Pearl H-830 Hi-Hat Stand' => 'Pearl',
+            'Pearl BC-830 Boom Cymbal Stand' => 'Pearl',
+            'Pearl S-930 Snare Stand' => 'Pearl',
+            'Roland KS-10Z Heavy-Duty Keyboard Stand' => 'Roland',
+            'Roland KS-18Z Z-Style Keyboard Stand' => 'Roland',
+            'Yamaha L-2C Keyboard Stand' => 'Yamaha',
+            "D'Addario Planet Waves Classic Celluloid Guitar Picks 10-Pack - Medium" => "D'Addario",
+
+            // Strings
+            "D'Addario EXL110 Nickel Wound Electric Guitar Strings Regular Light 10-46" => "D'Addario",
+            "D'Addario EXL120 Nickel Wound Electric Guitar Strings Super Light 9-42" => "D'Addario",
+            "D'Addario EXL115 Nickel Wound Electric Guitar Strings Medium 11-49" => "D'Addario",
+            "D'Addario EXL170 Nickel Wound Bass Guitar Strings Light 45-100 Long Scale" => "D'Addario",
+            "D'Addario EXL170-5 Nickel Wound 5-String Bass Guitar Strings Light 45-130 Long Scale" => "D'Addario",
+            "D'Addario XTE1046 Coated Nickel Plated Steel Electric Guitar Strings Regular Light 10-46" => "D'Addario",
+            "D'Addario XTAPB1253 Coated Phosphor Bronze Acoustic Guitar Strings Light 12-53" => "D'Addario",
+            "D'Addario EJ16 Phosphor Bronze Acoustic Guitar Strings Light 12-53" => "D'Addario",
+            "D'Addario EJ17 Phosphor Bronze Acoustic Guitar Strings Medium 13-56" => "D'Addario",
+            "D'Addario EJ38 Phosphor Bronze 12-String Acoustic Guitar Strings Light 10-47" => "D'Addario",
+            "D'Addario EJ45 Pro-Arté Nylon Classical Guitar Strings Normal Tension" => "D'Addario",
+            "D'Addario NYXL1046 Nickel Wound Electric Guitar Strings Regular Light 10-46" => "D'Addario",
+            "D'Addario ECG24 Chromes Flat Wound Electric Guitar Strings Jazz Light 11-50" => "D'Addario",
+            'Fender Super 250R Nickel-Plated Steel Electric Guitar Strings Regular 10-46' => 'Fender',
+            'Fender 60L Phosphor Bronze Acoustic Guitar Strings Light 12-52' => 'Fender',
+
+            // Cables
+            'Fender Professional Series Instrument Cable 10 ft Straight/Straight - Black' => 'Fender',
+            'Fender Professional Series Instrument Cable 18.6 ft Straight/Straight - Black' => 'Fender',
+            'Fender Professional Series Instrument Cable 10 ft Straight/Angle - Black' => 'Fender',
+            "D'Addario Planet Waves American Stage Instrument Cable 10 ft Straight/Straight" => "D'Addario",
+            "D'Addario Planet Waves American Stage Instrument Cable 20 ft Straight/Straight" => "D'Addario",
+            "D'Addario Planet Waves Classic Series Instrument Cable 10 ft Straight/Angle" => "D'Addario",
+            "D'Addario Planet Waves Classic Series XLR Microphone Cable 10 ft" => "D'Addario",
+            "D'Addario Planet Waves Classic Series XLR Microphone Cable 20 ft" => "D'Addario",
+            "D'Addario Planet Waves Custom Series 3 ft Patch Cable" => "D'Addario",
+            'Roland Black Series Instrument Cable 10 ft Straight/Angle' => 'Roland',
+            'Roland Black Series MIDI Cable 10 ft' => 'Roland',
+        ];
+    }
+}

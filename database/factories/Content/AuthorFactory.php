@@ -3,7 +3,6 @@
 namespace Database\Factories\Content;
 
 use App\Models\Content\Author;
-use Database\Factories\Traits\Seo\FillsAuthorSeoMeta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,8 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AuthorFactory extends Factory
 {
-    use FillsAuthorSeoMeta;
-
     /**
      * Define the model's default state.
      *
@@ -21,7 +18,9 @@ class AuthorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->firstName().' '.fake()->lastName(),
+            'is_active' => true,
+            'published_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }

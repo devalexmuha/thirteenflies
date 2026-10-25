@@ -232,6 +232,10 @@ class AttributeTranslations
             'Germany' => ['es' => 'Alemania', 'uk' => 'Німеччина', 'ru' => 'Германия'],
             'UK' => ['es' => 'Reino Unido', 'uk' => 'Велика Британія', 'ru' => 'Великобритания'],
             'Indonesia' => ['es' => 'Indonesia', 'uk' => 'Індонезія', 'ru' => 'Индонезия'],
+            'Mexico' => ['es' => 'México', 'uk' => 'Мексика', 'ru' => 'Мексика'],
+            'China' => ['es' => 'China', 'uk' => 'Китай', 'ru' => 'Китай'],
+            'Taiwan' => ['es' => 'Taiwán', 'uk' => 'Тайвань', 'ru' => 'Тайвань'],
+            'Canada' => ['es' => 'Canadá', 'uk' => 'Канада', 'ru' => 'Канада'],
         ];
     }
 

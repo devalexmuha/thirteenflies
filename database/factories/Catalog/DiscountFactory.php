@@ -20,7 +20,6 @@ class DiscountFactory extends Factory
     {
         return [
             'type' => fake()->randomElement(DiscountType::cases())->value,
-            'is_active' => true,
         ];
     }
 }
