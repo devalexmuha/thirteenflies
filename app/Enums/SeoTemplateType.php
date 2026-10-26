@@ -12,6 +12,7 @@ use App\Models\Content\Author;
 use App\Models\Content\Page;
 use App\Models\Content\Service;
 use Filament\Support\Contracts\HasLabel;
+use Illuminate\Database\Eloquent\Model;
 
 enum SeoTemplateType: string implements HasLabel
 {
@@ -56,6 +57,17 @@ enum SeoTemplateType: string implements HasLabel
             self::Service => Service::class,
             self::Author => Author::class,
         };
+    }
+
+    public static function forModel(Model $model): ?self
+    {
+        foreach (self::cases() as $case) {
+            if ($model instanceof ($case->model())) {
+                return $case;
+            }
+        }
+
+        return null;
     }
 
     public function variables(): array

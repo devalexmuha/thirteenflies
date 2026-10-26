@@ -18,7 +18,12 @@ class CategoryResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'is_active' => $this->is_active,
-            'products' => ProductResource::collection($this->whenLoaded('products')),
+            'slug' => SlugResource::make($this->whenLoaded('slug')),
+            'slugs' => SlugResource::collection($this->whenLoaded('slugs')),
+            'breadcrumbs' => CategoryListResource::collection($this->whenLoaded('ancestors')),
+            'media' => MediaResource::collection($this->whenLoaded('media')),
+            'seo' => SeoMetaResource::make($this->whenLoaded('seoMeta')),
+            'children' => CategoryListResource::collection($this->whenLoaded('children')),
         ];
     }
 }

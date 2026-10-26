@@ -10,6 +10,7 @@ use App\Filament\Forms\Fields\ImageFields\FeaturedImagePicker;
 use App\Filament\Forms\Fields\ImageFields\MainBannerPicker;
 use App\Filament\Forms\Fields\SelectFields\PageTemplateSelect;
 use App\Filament\Forms\Fields\SelectFields\RobotsSelect;
+use App\Filament\Forms\Fields\TextFields\CanonicalInput;
 use App\Filament\Forms\Fields\TextFields\MetaDescriptionTextarea;
 use App\Filament\Forms\Fields\TextFields\MetaTitleInput;
 use App\Filament\Forms\Fields\TextFields\SlugInput;
@@ -58,7 +59,7 @@ class PageForm
                                        ): bool => PageTemplate::fromState($get('../template'))->slug() !== null)
                                        ->dehydrated(),
                           ]),
-                          SeoMetaGroup::make([MetaDescriptionTextarea::make(), RobotsSelect::make()])
+                          SeoMetaGroup::make([MetaDescriptionTextarea::make(), RobotsSelect::make(), CanonicalInput::make()])
                       ]);
     }
 }

@@ -24,9 +24,6 @@ class SeoTemplateForm
                         MetaTitleInput::make(),
                         MetaDescriptionTextarea::make(),
                         H1Input::make(),
-                        TextInput::make('alt')
-                            ->label('Image alt text')
-                            ->columnSpanFull(),
                     ])
                     ->columnSpanFull(),
             ]);

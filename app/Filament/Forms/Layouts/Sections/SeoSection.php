@@ -3,6 +3,7 @@
 namespace App\Filament\Forms\Layouts\Sections;
 
 use App\Filament\Actions\SaveAction;
+use App\Filament\Forms\Blocks\MetaTagsBlock;
 use App\Filament\Forms\FieldGroups\SeoMetaGroup;
 use App\Filament\Forms\FieldGroups\SlugGroup;
 use App\Filament\Forms\Fields\DateFields\PublishedAtTimePicker;
@@ -25,9 +26,7 @@ class SeoSection extends FormSection
     protected function defaultSchema(): array
     {
         return [
-            SeoMetaGroup::make([MetaTitleInput::make()]),
-            SlugGroup::make([SlugInput::make()]),
-            SeoMetaGroup::make([MetaDescriptionTextarea::make(), RobotsSelect::make()])
+            MetaTagsBlock::make(),
         ];
     }
 }

@@ -77,6 +77,19 @@ class Product extends Model
         return $this->belongsToMany(Promotion::class);
     }
 
+    /**
+     * The loaded promotion with the highest discount rate, with the discounted "price" added to it.
+     * Load the promotions first, e.g. with(['promotions' => fn ($q) => $q->active()]).
+     */
+    public function bestPromotion(): ?Promotion
+    {
+        $promotion = $this->promotions->sortByDesc('discount_rate')->first();
+
+        $promotion?->setAttribute('promotion_price', round($this->price * (1 - $promotion->discount_rate / 100), 2));
+
+        return $promotion;
+    }
+
     public function relatedProducts(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'product_relations', 'product_id', 'related_product_id');

@@ -34,7 +34,7 @@ class Category extends Model
     protected static function booted(): void
     {
         static::deleting(function ($model): void {
-            $model->filterPages()->each->delete();
+            $model->filterPages->each->delete();
         });
     }
 

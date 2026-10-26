@@ -34,7 +34,7 @@ class ConfigResource extends JsonResource
                 'phone' => $this->contacts->phone,
                 'email' => $this->contacts->email,
                 'addresses' => collect($this->contacts->addresses)->map(fn (array $address): array => [
-                    'address' => $this->localized($address['address'] ?? []),
+                    'address' => $address['address'][app()->getLocale()] ?? [],
                     'working_hours' => $address['working_hours'] ?? null,
                     'map_link' => $address['map_link'] ?? null,
                     'latitude' => $address['latitude'] ?? null,
@@ -45,17 +45,6 @@ class ConfigResource extends JsonResource
                     'icon' => Media::find(Arr::first(Arr::wrap($social['image'] ?? null)))?->url,
                 ])->all(),
             ],
-            'menus' => $this->menus->menus,
         ];
-    }
-
-    /**
-     * @param  array<string, string|null>  $translations
-     */
-    private function localized(array $translations): ?string
-    {
-        return $translations[app()->getLocale()]
-            ?? $translations[Locale::En->value]
-            ?? Arr::first(array_filter($translations));
     }
 }

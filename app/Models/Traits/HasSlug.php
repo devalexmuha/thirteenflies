@@ -4,6 +4,7 @@ namespace App\Models\Traits;
 
 use App\Models\Seo\Slug;
 use App\Support\ContentLocale;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
@@ -18,6 +19,14 @@ trait HasSlug
     public function slugs(): MorphMany
     {
         return $this->morphMany(Slug::class, 'sluggable');
+    }
+
+    public function resolveRouteBinding($value, $field = null): ?Model
+    {
+        return $this->whereHas('slug', fn ($query) => $query // "Give me 'models' that have such a slug for current locale"
+            ->where('slug', $value)
+            ->where('locale', app()->getLocale()))
+                    ->first();
     }
 
     public static function bootHasSlug(): void
