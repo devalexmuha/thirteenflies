@@ -20,8 +20,8 @@ return new class extends Migration
         DB::table('product_promotion')->insertUsing(
             ['product_id', 'promotion_id', 'created_at', 'updated_at'],
             DB::table('products')
-              ->whereNotNull('promotion_id')
-              ->select('id', 'promotion_id', DB::raw('NOW()'), DB::raw('NOW()'))
+                ->whereNotNull('promotion_id')
+                ->select('id', 'promotion_id', DB::raw('CURRENT_TIMESTAMP'), DB::raw('CURRENT_TIMESTAMP'))
         );
 
         Schema::table('products', function (Blueprint $table) {

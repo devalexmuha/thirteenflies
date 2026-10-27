@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ListProductsRequest;
 use App\Http\Resources\CategoryListResource;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductListResource;
 use App\Models\Catalog\Category;
-use App\Models\Catalog\Product;
+use App\Services\ProductListing;
 use App\Services\SeoMetaResolver;
 
 class CategoriesController extends Controller
@@ -49,21 +50,12 @@ class CategoriesController extends Controller
     /**
      * Listing of all products which belong to this category
      */
-    public function products(Category $category)
+    public function products(Category $category, ListProductsRequest $listProductsRequest, ProductListing $productListing)
     {
-        $products = Product::query()
-            ->active()
-            ->inCategoryTree($category)
-            ->with(['slug', 'brand', 'discount', 'media', 'promotions' => fn ($query) => $query->active()])
-            ->paginate(24);
+        $products = $productListing->paginate($category, $listProductsRequest);
 
         return ProductListResource::collection($products);
     }
 }
 
-// check scopeActive on promotion
-// 'type' => $this->pivot?->image_type, hide on products
-// check ProductPromotion resource
 // build query resolver service
-// build product endpoints
-// build brand...

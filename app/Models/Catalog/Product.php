@@ -27,7 +27,7 @@ class Product extends Model
 
     protected $guarded = [];
 
-    public array $translatable = ['slug', 'name', 'short_description', 'description'];
+    public array $translatable = ['name', 'short_description', 'description'];
 
     protected function casts(): array
     {

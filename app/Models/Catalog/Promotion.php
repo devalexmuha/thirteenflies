@@ -37,8 +37,6 @@ class Promotion extends Model
 
     public function scopeActive(Builder $query): void
     {
-        $query->where('is_active', true)
-            ->where(fn ($q) => $q->whereNull('sale_starts_at')->orWhere('sale_starts_at', '<=', now()))
-            ->where(fn ($q) => $q->whereNull('sale_ends_at')->orWhere('sale_ends_at', '>=', now()));
+        $query->where('is_active', true);
     }
 }

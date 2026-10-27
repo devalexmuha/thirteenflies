@@ -19,7 +19,7 @@ class MediaResource extends JsonResource
             'alt' => $this->alt,
             'width' => $this->width,
             'height' => $this->height,
-            'type' => $this->pivot?->image_type,
+            'type' => $this->whenNotNull($this->pivot?->image_type),
         ];
     }
 }

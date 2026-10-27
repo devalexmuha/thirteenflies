@@ -10,6 +10,11 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // SQLite keeps index names after a rename, so the new table would clash with this one
+        Schema::table('slugs', function (Blueprint $table) {
+            $table->dropIndex(['sluggable_type', 'sluggable_id']);
+        });
+
         Schema::rename('slugs', 'slugs_old');
 
         Schema::create('slugs', function (Blueprint $table) {
@@ -36,7 +41,7 @@ return new class extends Migration
                 $key = "{$row->sluggable_type}|{$locale}|{$slug}";
 
                 if (isset($used[$key])) {
-                    $slug .= '-' . $row->sluggable_id;
+                    $slug .= '-'.$row->sluggable_id;
                 }
 
                 $used["{$row->sluggable_type}|{$locale}|{$slug}"] = true;

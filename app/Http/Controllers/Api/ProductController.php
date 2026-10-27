@@ -3,35 +3,22 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ListProductsRequest;
+use App\Http\Resources\ProductListResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Catalog\Product;
-use Illuminate\Http\Request;
+use App\Services\ProductListing;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(ListProductsRequest $listProductsRequest, ProductListing $productListing)
     {
-        $products = Product::with('categories')->paginate(3);
-        return ProductResource::collection($products);
-    }
+        $products = $productListing->paginate(null, $listProductsRequest);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return ProductListResource::collection($products);
     }
 
     /**
@@ -39,31 +26,22 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product->load('categories');
+        $product->load([
+            'slug',
+            'slugs',
+            'seoMeta',
+            'brand.slug',
+            'discount',
+            'media',
+            'categories.slug',
+            'attributeValues.attribute',
+            'videos',
+            'promotions' => fn ($query) => $query->active(),
+            'relatedProducts' => fn ($query) => $query
+                ->active()
+                ->with(['slug', 'brand', 'discount', 'media', 'promotions' => fn ($query) => $query->active()]),
+        ]);
+
         return ProductResource::make($product);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

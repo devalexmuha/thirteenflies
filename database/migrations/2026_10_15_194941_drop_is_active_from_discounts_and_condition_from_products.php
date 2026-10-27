@@ -13,6 +13,7 @@ return new class extends Migration
         });
 
         Schema::table('products', function (Blueprint $table) {
+            $table->dropIndex(['condition']);
             $table->dropColumn('condition');
         });
     }
