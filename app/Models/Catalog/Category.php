@@ -4,6 +4,7 @@ namespace App\Models\Catalog;
 
 use App\Models\Filters\FilterPage;
 use App\Models\Seo\ProductMetaTemplate;
+use App\Models\Traits\HasActiveScope;
 use App\Models\Traits\HasFilterAttributes;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
@@ -20,7 +21,7 @@ use Kalnoy\Nestedset\NodeTrait;
 class Category extends Model
 {
     /** @use HasFactory<CategoryFactory> */
-    use HasFactory, HasFilterAttributes, HasMedia, HasSeoMeta, HasSlug, NodeTrait, Translatable;
+    use HasActiveScope, HasFactory, HasFilterAttributes, HasMedia, HasSeoMeta, HasSlug, NodeTrait, Translatable;
 
     protected $guarded = [];
 

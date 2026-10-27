@@ -3,10 +3,8 @@
 namespace App\Services;
 
 use App\Enums\SeoTemplateType;
-use App\Models\Catalog\Product;
 use App\Models\Seo\SeoMeta;
 use App\Models\Seo\SeoTemplate;
-use Awcodes\Curator\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 
 class SeoMetaResolver
@@ -20,7 +18,7 @@ class SeoMetaResolver
      */
     public function resolve(Model $model): SeoMeta
     {
-        $meta = $model->seoMeta;
+        $meta = $model->seoMeta ?? new SeoMeta;
         $template = $this->templateFor($model);
 
         if ($template === null) {

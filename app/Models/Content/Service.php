@@ -2,6 +2,7 @@
 
 namespace App\Models\Content;
 
+use App\Models\Traits\HasActiveScope;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Service extends Model
 {
     /** @use HasFactory<ServiceFactory> */
-    use HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
+    use HasActiveScope, HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
 
     public array $translatable = ['name', 'excerpt', 'content'];
 

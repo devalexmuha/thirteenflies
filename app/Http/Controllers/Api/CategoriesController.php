@@ -19,7 +19,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::query()
-            ->where('is_active', true)
+            ->active()
             ->with('slug')
             ->defaultOrder()
             ->get()
@@ -38,7 +38,7 @@ class CategoriesController extends Controller
             'slugs',
             'seoMeta',
             'media',
-            'children' => fn ($query) => $query->where('is_active', true)->with('slug')->defaultOrder(),
+            'children' => fn ($query) => $query->active()->with('slug')->defaultOrder(),
             'ancestors' => fn ($query) => $query->with('slug')->defaultOrder(),
         ]);
 

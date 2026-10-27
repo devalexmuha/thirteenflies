@@ -6,6 +6,7 @@ use App\Models\Account\User;
 use App\Models\Filters\AttributeValue;
 use App\Models\Sales\CartItem;
 use App\Models\Sales\OrderItem;
+use App\Models\Traits\HasActiveScope;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class Product extends Model
 {
     /** @use HasFactory<ProductFactory> */
-    use HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
+    use HasActiveScope, HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
 
     protected $guarded = [];
 
@@ -128,11 +129,6 @@ class Product extends Model
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
-    }
-
-    public function scopeActive(Builder $query): void
-    {
-        $query->where('is_active', true);
     }
 
     public function scopeOnSale(Builder $query): void

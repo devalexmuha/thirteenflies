@@ -2,6 +2,7 @@
 
 namespace App\Models\Filters;
 
+use App\Models\Traits\HasActiveScope;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class FilterPage extends Model
 {
     /** @use HasFactory<FilterPageFactory> */
-    use HasFactory, HasSeoMeta, HasSlug, Translatable;
+    use HasActiveScope, HasFactory, HasSeoMeta, HasSlug, Translatable;
 
     public array $translatable = ['name'];
 
@@ -40,9 +41,5 @@ class FilterPage extends Model
         return $this->morphToMany(AttributeValue::class, 'attribute_valuable');
     }
 
-    public function scopeActive($query): void
-    {
-        $query->where('is_active', true);
-    }
     // consider methods normalizeKey, buildKey, syncFilters
 }

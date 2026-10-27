@@ -138,3 +138,13 @@ it('returns the promotion rate and dates', function () {
         ->assertJsonPath('data.rate', 25)
         ->assertJsonStructure(['data' => ['starts_at', 'ends_at']]);
 });
+
+it('shows a brand that has no seo meta row', function () {
+    $brand = Brand::factory()->create(['name' => 'Yamaha']);
+    $brand->slugs()->create(['locale' => 'en', 'slug' => 'yamaha']);
+
+    $this->getJson('/api/brands/yamaha')
+        ->assertOk()
+        ->assertJsonPath('data.name', 'Yamaha')
+        ->assertJsonPath('data.seo.h1', null);
+});

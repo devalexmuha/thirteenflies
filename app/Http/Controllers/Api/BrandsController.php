@@ -19,7 +19,8 @@ class BrandsController extends Controller
     public function index()
     {
         $brands = Brand::query()
-            ->where('is_active', true)->orderBy('name')
+            ->active()
+            ->orderBy('name')
             ->with('slug')
             ->get();
 

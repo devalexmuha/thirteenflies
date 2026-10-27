@@ -3,6 +3,7 @@
 namespace App\Models\Content;
 
 use App\Enums\PageTemplate;
+use App\Models\Traits\HasActiveScope;
 use App\Models\Traits\HasMedia;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 class Page extends Model
 {
     /** @use HasFactory<PageFactory> */
-    use HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
+    use HasActiveScope, HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
 
     public array $translatable = ['name', 'content'];
 
