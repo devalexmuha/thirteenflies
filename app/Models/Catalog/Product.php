@@ -6,8 +6,8 @@ use App\Models\Account\User;
 use App\Models\Filters\AttributeValue;
 use App\Models\Sales\CartItem;
 use App\Models\Sales\OrderItem;
-use App\Models\Traits\HasActiveScope;
 use App\Models\Traits\HasMedia;
+use App\Models\Traits\HasScope;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class Product extends Model
 {
     /** @use HasFactory<ProductFactory> */
-    use HasActiveScope, HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
+    use HasFactory, HasMedia, HasScope, HasSeoMeta, HasSlug, Translatable;
 
     protected $guarded = [];
 

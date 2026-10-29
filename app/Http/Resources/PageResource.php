@@ -17,7 +17,7 @@ class PageResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'template' => $this->template->value,
+            'template' => $this->template,
             'content' => $this->content,
             'slug' => SlugResource::make($this->whenLoaded('slug')),
             'slugs' => SlugResource::collection($this->whenLoaded('slugs')),

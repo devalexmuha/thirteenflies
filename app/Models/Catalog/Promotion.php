@@ -2,8 +2,8 @@
 
 namespace App\Models\Catalog;
 
-use App\Models\Traits\HasActiveScope;
 use App\Models\Traits\HasMedia;
+use App\Models\Traits\HasScope;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Promotion extends Model
 {
     /** @use HasFactory<PromotionFactory> */
-    use HasActiveScope, HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
+    use HasFactory, HasMedia, HasScope, HasSeoMeta, HasSlug, Translatable;
 
     protected $guarded = [];
 

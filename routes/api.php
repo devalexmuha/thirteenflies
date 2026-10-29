@@ -48,18 +48,14 @@ Route::get('/pages', [PagesController::class, 'index'])->name('pages.index');
 Route::get('/pages/{page}', [PagesController::class, 'show'])->name('pages.show');
 
 // MAKING API ENDPOINTS
-// read what we've got new with content part
-// check HasActiveScope
 
-// add product meta tag resolver
-// add to each route: /filter (return seo slug for some filters?)
-// build filter pages with redirects
+// add to each route: /filter (build flt key, look for filter pages with this key, if found return seo slug for this filter)
+// on product paginate add redirect message if flt key has filter page
+// build filter pages
 // setup redirects
 // setup robots.txt
+// setup sitemap.xml
 
 // how client will know what filter attributes and values we have? how seo slug with filter page will work?
 // will we have some list of attributes and values per category? will in this list we show what filter page have seo slug?
 // if hit flt key which has seo slug, how will I respond?
-
-// endpoints for products
-// build product meta tags resolver

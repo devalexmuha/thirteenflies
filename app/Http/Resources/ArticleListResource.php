@@ -19,6 +19,7 @@ class ArticleListResource extends JsonResource
             'name' => $this->name,
             'excerpt' => $this->excerpt,
             'published_at' => $this->published_at,
+            'updated_at' => $this->updated_at,
             'slug' => SlugResource::make($this->whenLoaded('slug')),
             'author' => AuthorListResource::make($this->whenLoaded('author')),
             'media' => MediaResource::collection($this->whenLoaded('media')),

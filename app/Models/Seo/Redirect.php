@@ -2,7 +2,7 @@
 
 namespace App\Models\Seo;
 
-use App\Models\Traits\HasActiveScope;
+use App\Models\Traits\HasScope;
 use Database\Factories\Seo\RedirectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Redirect extends Model
 {
     /** @use HasFactory<RedirectFactory> */
-    use HasActiveScope, HasFactory;
+    use HasFactory, HasScope;
 
     protected $guarded = [];
 

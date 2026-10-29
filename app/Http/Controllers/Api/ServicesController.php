@@ -18,7 +18,7 @@ class ServicesController extends Controller
         $services = Service::query()
             ->active()
             ->with(['slug', 'author.slug', 'media'])
-            ->orderBy('id')
+            ->orderByDesc('updated_at')
             ->get();
 
         return ServiceListResource::collection($services);
@@ -31,7 +31,7 @@ class ServicesController extends Controller
     {
         abort_unless($service->is_active, 404);
 
-        $service->load(['slug', 'slugs', 'seoMeta', 'media', 'author.slug']);
+        $service->load(['slug', 'slugs', 'seoMeta', 'media', 'author.slug', 'author.media']);
 
         $service->setRelation('seoMeta', $seoMetaResolver->resolve($service));
 

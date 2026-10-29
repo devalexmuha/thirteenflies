@@ -17,8 +17,13 @@ class EditAuthor extends EditRecord
         ];
     }
 
+    protected function getFormActions(): array
+    {
+        return [];
+    }
+
     public function getTitle(): string
     {
-        return "Edit '{$this->getRecord()->name}' " . ucfirst(static::getResource()::getModelLabel());
+        return "Edit '{$this->getRecord()->name}' ".ucfirst(static::getResource()::getModelLabel());
     }
 }

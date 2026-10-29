@@ -18,8 +18,7 @@ class ArticlesController extends Controller
         $articles = Article::query()
             ->active()
             ->with(['slug', 'author.slug', 'media'])
-            ->orderByDesc('published_at')
-            ->orderByDesc('id')
+            ->orderByDesc('updated_at')
             ->paginate(12);
 
         return ArticleListResource::collection($articles);
@@ -32,7 +31,7 @@ class ArticlesController extends Controller
     {
         abort_unless($article->is_active, 404);
 
-        $article->load(['slug', 'slugs', 'seoMeta', 'media', 'author.slug']);
+        $article->load(['slug', 'slugs', 'seoMeta', 'media', 'author.slug', 'author.media']);
 
         $article->setRelation('seoMeta', $seoMetaResolver->resolve($article));
 

@@ -50,8 +50,7 @@ class AuthorsController extends Controller
         $articles = $author->articles()
             ->active()
             ->with(['slug', 'author.slug', 'media'])
-            ->orderByDesc('published_at')
-            ->orderByDesc('id')
+            ->orderByDesc('updated_at')
             ->paginate(12);
 
         return ArticleListResource::collection($articles);
@@ -67,8 +66,8 @@ class AuthorsController extends Controller
         $services = $author->services()
             ->active()
             ->with(['slug', 'author.slug', 'media'])
-            ->orderBy('id')
-            ->get();
+            ->orderByDesc('updated_at')
+            ->paginate(12);
 
         return ServiceListResource::collection($services);
     }

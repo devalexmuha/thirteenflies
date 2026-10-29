@@ -22,7 +22,6 @@ class SeoMetaResource extends JsonResource
             'seo_text_bottom' => $this->whenNotNull($this->seo_text_bottom),
             'canonical' => $this->canonical,
             'robots' => $this->robots,
-            'schema' => $this->schema,
         ];
     }
 }

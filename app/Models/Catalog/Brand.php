@@ -3,9 +3,9 @@
 namespace App\Models\Catalog;
 
 use App\Models\Filters\FilterPage;
-use App\Models\Traits\HasActiveScope;
 use App\Models\Traits\HasFilterAttributes;
 use App\Models\Traits\HasMedia;
+use App\Models\Traits\HasScope;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Brand extends Model
 {
     /** @use HasFactory<BrandFactory> */
-    use HasActiveScope, HasFactory, HasFilterAttributes, HasMedia, HasSeoMeta, HasSlug, Translatable;
+    use HasFactory, HasFilterAttributes, HasMedia, HasScope, HasSeoMeta, HasSlug, Translatable;
 
     protected $guarded = [];
 

@@ -8,6 +8,7 @@ use App\Http\Resources\ProductListResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Catalog\Product;
 use App\Services\ProductListing;
+use App\Services\SeoMetaResolver;
 
 class ProductController extends Controller
 {
@@ -24,7 +25,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Product $product, SeoMetaResolver $seoMetaResolver)
     {
         $product->load([
             'slug',
@@ -41,6 +42,8 @@ class ProductController extends Controller
                 ->active()
                 ->with(['slug', 'brand', 'discount', 'media', 'promotions' => fn ($query) => $query->active()]),
         ]);
+
+        $product->setRelation('seoMeta', $seoMetaResolver->resolve($product));
 
         return ProductResource::make($product);
     }

@@ -2,7 +2,7 @@
 
 namespace App\Models\Filters;
 
-use App\Models\Traits\HasActiveScope;
+use App\Models\Traits\HasScope;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class FilterPage extends Model
 {
     /** @use HasFactory<FilterPageFactory> */
-    use HasActiveScope, HasFactory, HasSeoMeta, HasSlug, Translatable;
+    use HasFactory, HasScope, HasSeoMeta, HasSlug, Translatable;
 
     public array $translatable = ['name'];
 

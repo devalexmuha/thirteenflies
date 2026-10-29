@@ -69,7 +69,7 @@ class ProductListing
             'price_asc' => $query->orderByRaw($this->effectivePrice().' asc'),
             'price_desc' => $query->orderByRaw($this->effectivePrice().' desc'),
             'rating' => $query->orderByDesc('products.avr_rating'),
-            default => $query->orderByDesc('products.created_at'),
+            default => $query->orderByDesc('products.updated_at'),
         };
     }
 

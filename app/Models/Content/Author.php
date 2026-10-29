@@ -2,8 +2,8 @@
 
 namespace App\Models\Content;
 
-use App\Models\Traits\HasActiveScope;
 use App\Models\Traits\HasMedia;
+use App\Models\Traits\HasScope;
 use App\Models\Traits\HasSeoMeta;
 use App\Models\Traits\HasSlug;
 use App\Models\Traits\Translatable;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Author extends Model
 {
     /** @use HasFactory<AuthorFactory> */
-    use HasActiveScope, HasFactory, HasMedia, HasSeoMeta, HasSlug, Translatable;
+    use HasFactory, HasMedia, HasScope, HasSeoMeta, HasSlug, Translatable;
 
     public array $translatable = ['position', 'bio', 'short_bio'];
 
