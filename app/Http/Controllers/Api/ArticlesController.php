@@ -19,7 +19,8 @@ class ArticlesController extends Controller
             ->active()
             ->with(['slug', 'author.slug', 'media'])
             ->orderByDesc('updated_at')
-            ->paginate(12);
+            ->paginate(12)
+            ->withQueryString();
 
         return ArticleListResource::collection($articles);
     }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\PromotionsController;
 use App\Http\Controllers\Api\RedirectsController;
 use App\Http\Controllers\Api\RobotsTxtController;
 use App\Http\Controllers\Api\ServicesController;
+use App\Http\Controllers\Api\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/config', [ConfigController::class, 'index'])->name('config.get');
@@ -58,9 +59,13 @@ Route::get('/redirects/lookup', [RedirectsController::class, 'show'])->name('red
 
 Route::get('/robots-txt', [RobotsTxtController::class, 'show'])->name('robots-txt.show');
 
+Route::get('/sitemap', [SitemapController::class, 'index'])->name('sitemap.index');
+Route::get('/sitemap/lookup', [SitemapController::class, 'show'])->name('sitemap.show');
+
 // MAKING API ENDPOINTS
 
 // setup sitemap.xml
+// ->withQueryString() after ->paginate(12) in each of the three.
 
 // API ENDPOINTS USER RELATED
 // FINISH ADMIN PANEL

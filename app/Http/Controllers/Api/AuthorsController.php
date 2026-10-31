@@ -21,7 +21,8 @@ class AuthorsController extends Controller
             ->active()
             ->with(['slug', 'media'])
             ->orderBy('name')
-            ->get();
+            ->paginate(12)
+            ->withQueryString();
 
         return AuthorListResource::collection($authors);
     }
@@ -51,7 +52,8 @@ class AuthorsController extends Controller
             ->active()
             ->with(['slug', 'author.slug', 'media'])
             ->orderByDesc('updated_at')
-            ->paginate(12);
+            ->paginate(12)
+            ->withQueryString();
 
         return ArticleListResource::collection($articles);
     }
@@ -67,7 +69,8 @@ class AuthorsController extends Controller
             ->active()
             ->with(['slug', 'author.slug', 'media'])
             ->orderByDesc('updated_at')
-            ->paginate(12);
+            ->paginate(12)
+            ->withQueryString();
 
         return ServiceListResource::collection($services);
     }
