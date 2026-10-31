@@ -7,7 +7,6 @@ use App\Filament\Tables\Columns\UpdatedAtColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 
 class PagesTable
@@ -24,7 +23,6 @@ class PagesTable
             ])
             ->recordActions([
                 DeleteAction::make(),
-                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

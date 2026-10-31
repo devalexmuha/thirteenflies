@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ListProductsRequest;
 use App\Http\Resources\BrandListResource;
 use App\Http\Resources\BrandResource;
+use App\Http\Resources\FilterListResource;
 use App\Http\Resources\ProductListResource;
 use App\Models\Catalog\Brand;
+use App\Services\FilterListing;
 use App\Services\ProductListing;
 use App\Services\SeoMetaResolver;
 
@@ -47,5 +49,13 @@ class BrandsController extends Controller
         $products = $productListing->paginate($brand, $listProductsRequest);
 
         return ProductListResource::collection($products);
+    }
+
+    /**
+     * Listing of all filters which belong to this brand
+     */
+    public function filters(Brand $brand, FilterListing $filterListing)
+    {
+        return FilterListResource::make($filterListing->forModel($brand));
     }
 }

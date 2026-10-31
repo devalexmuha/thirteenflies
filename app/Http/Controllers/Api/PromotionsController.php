@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ListProductsRequest;
+use App\Http\Resources\FilterListResource;
 use App\Http\Resources\ProductListResource;
 use App\Http\Resources\PromotionListResource;
 use App\Http\Resources\PromotionResource;
 use App\Models\Catalog\Promotion;
+use App\Services\FilterListing;
 use App\Services\ProductListing;
 use App\Services\SeoMetaResolver;
 
@@ -46,5 +48,13 @@ class PromotionsController extends Controller
         $products = $productListing->paginate($promotion, $listProductsRequest);
 
         return ProductListResource::collection($products);
+    }
+
+    /**
+     * Listing of all filters which belong to this promotion
+     */
+    public function filters(Promotion $promotion, FilterListing $filterListing)
+    {
+        return FilterListResource::make($filterListing->forModel($promotion));
     }
 }

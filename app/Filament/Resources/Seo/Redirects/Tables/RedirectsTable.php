@@ -8,7 +8,6 @@ use App\Filament\Tables\Columns\UpdatedAtColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -21,12 +20,12 @@ class RedirectsTable
                 NameColumn::make('from_path'),
                 NameColumn::make('to_path'),
                 TextColumn::make('status_code')
-                          ->numeric()
-                          ->sortable(),
+                    ->numeric()
+                    ->sortable(),
                 ActiveColumn::make(),
                 TextColumn::make('hits')
-                          ->numeric()
-                          ->sortable(),
+                    ->numeric()
+                    ->sortable(),
                 UpdatedAtColumn::make('last_hit_at'),
             ])
             ->filters([
@@ -34,7 +33,6 @@ class RedirectsTable
             ])
             ->recordActions([
                 DeleteAction::make(),
-                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

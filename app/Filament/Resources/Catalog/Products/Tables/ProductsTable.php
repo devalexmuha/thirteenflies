@@ -7,7 +7,6 @@ use App\Filament\Tables\Presets\ProductColumnSet;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
@@ -24,7 +23,6 @@ class ProductsTable
             ->filtersFormColumns(5)
             ->recordActions([
                 DeleteAction::make(),
-                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

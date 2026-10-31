@@ -6,7 +6,6 @@ use App\Filament\Tables\Presets\CatalogColumnSet;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 
 class BrandsTable
@@ -20,7 +19,6 @@ class BrandsTable
             ])
             ->recordActions([
                 DeleteAction::make(),
-                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

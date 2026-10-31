@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ListProductsRequest;
 use App\Http\Resources\CategoryListResource;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\FilterListResource;
 use App\Http\Resources\ProductListResource;
 use App\Models\Catalog\Category;
+use App\Services\FilterListing;
 use App\Services\ProductListing;
 use App\Services\SeoMetaResolver;
 
@@ -56,6 +58,15 @@ class CategoriesController extends Controller
 
         return ProductListResource::collection($products);
     }
-}
 
-// build query resolver service
+    /**
+     * Listing of all filters which belong to this category
+     */
+    public function filters(Category $category, FilterListing $filterListing)
+    {
+
+        $filters = $filterListing->forModel($category);
+
+        return FilterListResource::make($filters);
+    }
+}

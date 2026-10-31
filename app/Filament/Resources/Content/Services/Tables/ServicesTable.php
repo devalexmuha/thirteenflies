@@ -10,8 +10,6 @@ use App\Filament\Tables\Columns\UpdatedAtColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class ServicesTable
@@ -31,7 +29,6 @@ class ServicesTable
             ])
             ->recordActions([
                 DeleteAction::make(),
-                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

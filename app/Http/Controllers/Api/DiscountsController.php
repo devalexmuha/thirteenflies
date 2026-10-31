@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ListProductsRequest;
 use App\Http\Resources\DiscountListResource;
 use App\Http\Resources\DiscountResource;
+use App\Http\Resources\FilterListResource;
 use App\Http\Resources\ProductListResource;
 use App\Models\Catalog\Discount;
+use App\Services\FilterListing;
 use App\Services\ProductListing;
 use App\Services\SeoMetaResolver;
 
@@ -45,5 +47,13 @@ class DiscountsController extends Controller
         $products = $productListing->paginate($discount, $listProductsRequest);
 
         return ProductListResource::collection($products);
+    }
+
+    /**
+     * Listing of all filters which belong to this discount
+     */
+    public function filters(Discount $discount, FilterListing $filterListing)
+    {
+        return FilterListResource::make($filterListing->forModel($discount));
     }
 }

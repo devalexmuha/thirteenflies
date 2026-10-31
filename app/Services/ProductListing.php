@@ -20,20 +20,25 @@ class ProductListing
     {
         $validated = $listProductsRequest->validated();
 
-        // a category also lists the products of its child categories, other parents use their products() relation
-        $products = match (true) {
-            $parentModel === null => Product::query(),
-            $parentModel instanceof Category => Product::query()->inCategoryTree($parentModel),
-            default => $parentModel->products(),
-        };
-
-        return $products
+        return $this->productsOf($parentModel)
             ->active()
             ->tap(fn ($query) => $this->applyFilters($query, $parentModel, $validated['filter'] ?? []))
             ->tap(fn ($query) => $this->applySorting($query, $validated['sort'] ?? 'newest'))
             ->with(['slug', 'brand', 'discount', 'media', 'promotions' => fn ($query) => $query->active()])
             ->paginate($validated['per_page'] ?? 24)
             ->withQueryString();
+    }
+
+    /**
+     * A category also lists the products of its child categories, other parents use their products() relation.
+     */
+    public function productsOf(?Model $parentModel): Builder|Relation
+    {
+        return match (true) {
+            $parentModel === null => Product::query(),
+            $parentModel instanceof Category => Product::query()->inCategoryTree($parentModel),
+            default => $parentModel->products(),
+        };
     }
 
     /**
@@ -77,7 +82,7 @@ class ProductListing
      * SQL for the lowest price the customer can pay: regular price, discount price or promotion price.
      * The promotion price is the regular price minus the highest active promotion rate, like Product::bestPromotion().
      */
-    private function effectivePrice(): string
+    public function effectivePrice(): string
     {
         $bestPromotionRate = 'select max(promotions.discount_rate) from promotions
             inner join product_promotion on product_promotion.promotion_id = promotions.id

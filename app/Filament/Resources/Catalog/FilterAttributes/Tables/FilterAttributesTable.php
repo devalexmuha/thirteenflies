@@ -6,7 +6,6 @@ use App\Filament\Tables\Columns\NameColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 
 class FilterAttributesTable
@@ -22,7 +21,6 @@ class FilterAttributesTable
             ])
             ->recordActions([
                 DeleteAction::make(),
-                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

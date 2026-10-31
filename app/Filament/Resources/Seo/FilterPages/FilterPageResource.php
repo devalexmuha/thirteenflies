@@ -8,12 +8,12 @@ use App\Filament\Resources\Seo\FilterPages\Pages\ListFilterPages;
 use App\Filament\Resources\Seo\FilterPages\Schemas\FilterPageForm;
 use App\Filament\Resources\Seo\FilterPages\Tables\FilterPagesTable;
 use App\Models\Filters\FilterPage;
-use UnitEnum;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class FilterPageResource extends Resource
 {
@@ -22,7 +22,13 @@ class FilterPageResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedFunnel;
 
     protected static string|UnitEnum|null $navigationGroup = 'SEO';
+
     protected static ?int $navigationSort = 1;
+
+    public static function canAccess(): bool
+    {
+        return false; // for now this feature stashed
+    }
 
     public static function form(Schema $schema): Schema
     {
