@@ -7,7 +7,7 @@ use App\Filament\Resources\Settings\Admins\Pages\EditAdmin;
 use App\Filament\Resources\Settings\Admins\Pages\ListAdmins;
 use App\Filament\Resources\Settings\Admins\Schemas\AdminForm;
 use App\Filament\Resources\Settings\Admins\Tables\AdminTable;
-use App\Models\Account\User;
+use App\Models\Account\Admin;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -18,21 +18,23 @@ use UnitEnum;
 
 class AdminResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Admin::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShieldCheck;
+
     protected static string|UnitEnum|null $navigationGroup = 'Settings';
+
     protected static ?int $navigationSort = 1;
 
     protected static ?string $modelLabel = 'admin';
+
     protected static ?string $pluralModelLabel = 'admins';
 
-
-//    /** Only admins in this list. */
-//    public static function getEloquentQuery(): Builder
-//    {
-//        return parent::getEloquentQuery()->whereHas('roles', fn (Builder $q) => $q->where('name', 'admin'));
-//    }
+    //    /** Only admins in this list. */
+    //    public static function getEloquentQuery(): Builder
+    //    {
+    //        return parent::getEloquentQuery()->whereHas('roles', fn (Builder $q) => $q->where('name', 'admin'));
+    //    }
 
     public static function form(Schema $schema): Schema
     {

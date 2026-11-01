@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\AddressesController;
 use App\Http\Controllers\Api\ArticlesController;
+use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Auth\SessionController;
 use App\Http\Controllers\Api\AuthorsController;
 use App\Http\Controllers\Api\BrandsController;
 use App\Http\Controllers\Api\CategoriesController;
@@ -13,14 +16,20 @@ use App\Http\Controllers\Api\RedirectsController;
 use App\Http\Controllers\Api\RobotsTxtController;
 use App\Http\Controllers\Api\ServicesController;
 use App\Http\Controllers\Api\SitemapController;
+use App\Http\Controllers\Api\UserProfileController;
+use App\Http\Controllers\Api\WishlistController;
 use Illuminate\Support\Facades\Route;
 
+// Settings
 Route::get('/config', [ConfigController::class, 'index'])->name('config.get');
 
+// Catalog
 Route::get('/categories', [CategoriesController::class, 'index'])->name('categories.index');
 Route::get('/categories/{category}', [CategoriesController::class, 'show'])->name('categories.show');
-Route::get('/categories/{category}/products', [CategoriesController::class, 'products'])->name('categories.products.index');
-Route::get('/categories/{category}/filters', [CategoriesController::class, 'filters'])->name('categories.filters.index');
+Route::get('/categories/{category}/products',
+    [CategoriesController::class, 'products'])->name('categories.products.index');
+Route::get('/categories/{category}/filters',
+    [CategoriesController::class, 'filters'])->name('categories.filters.index');
 
 Route::get('/brands', [BrandsController::class, 'index'])->name('brands.index');
 Route::get('/brands/{brand}', [BrandsController::class, 'show'])->name('brands.show');
@@ -29,17 +38,21 @@ Route::get('/brands/{brand}/filters', [BrandsController::class, 'filters'])->nam
 
 Route::get('/discounts', [DiscountsController::class, 'index'])->name('discounts.index');
 Route::get('/discounts/{discount}', [DiscountsController::class, 'show'])->name('discounts.show');
-Route::get('/discounts/{discount}/products', [DiscountsController::class, 'products'])->name('discounts.products.index');
+Route::get('/discounts/{discount}/products',
+    [DiscountsController::class, 'products'])->name('discounts.products.index');
 Route::get('/discounts/{discount}/filters', [DiscountsController::class, 'filters'])->name('discounts.filters.index');
 
 Route::get('/promotions', [PromotionsController::class, 'index'])->name('promotions.index');
 Route::get('/promotions/{promotion}', [PromotionsController::class, 'show'])->name('promotions.show');
-Route::get('/promotions/{promotion}/products', [PromotionsController::class, 'products'])->name('promotions.products.index');
-Route::get('/promotions/{promotion}/filters', [PromotionsController::class, 'filters'])->name('promotions.filters.index');
+Route::get('/promotions/{promotion}/products',
+    [PromotionsController::class, 'products'])->name('promotions.products.index');
+Route::get('/promotions/{promotion}/filters',
+    [PromotionsController::class, 'filters'])->name('promotions.filters.index');
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
 
+// Content
 Route::get('/articles', [ArticlesController::class, 'index'])->name('articles.index');
 Route::get('/articles/{article}', [ArticlesController::class, 'show'])->name('articles.show');
 
@@ -54,6 +67,7 @@ Route::get('/services/{service}', [ServicesController::class, 'show'])->name('se
 Route::get('/pages', [PagesController::class, 'index'])->name('pages.index');
 Route::get('/pages/{page}', [PagesController::class, 'show'])->name('pages.show');
 
+// SEO
 Route::get('/redirects', [RedirectsController::class, 'index'])->name('redirects.index');
 Route::get('/redirects/lookup', [RedirectsController::class, 'show'])->name('redirects.show');
 
@@ -62,11 +76,23 @@ Route::get('/robots-txt', [RobotsTxtController::class, 'show'])->name('robots-tx
 Route::get('/sitemap', [SitemapController::class, 'index'])->name('sitemap.index');
 Route::get('/sitemap/lookup', [SitemapController::class, 'show'])->name('sitemap.show');
 
-// MAKING API ENDPOINTS
+// User
+Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/login', [SessionController::class, 'store'])->middleware('throttle:10,1');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::delete('/logout', [SessionController::class, 'destroy']);
 
-// setup sitemap.xml
-// ->withQueryString() after ->paginate(12) in each of the three.
+    Route::get('/profile', [UserProfileController::class, 'show'])->name('profile.show');
+    Route::patch('/profile', [UserProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [UserProfileController::class, 'destroy'])->name('profile.destroy');
 
-// API ENDPOINTS USER RELATED
-// FINISH ADMIN PANEL
-// remove claude from repo
+    Route::get('/addresses', [AddressesController::class, 'index'])->name('addresses.index');
+    Route::post('/addresses', [AddressesController::class, 'store'])->name('addresses.store');
+    Route::get('/addresses/{address}', [AddressesController::class, 'show'])->name('addresses.show');
+    Route::patch('/addresses/{address}', [AddressesController::class, 'update'])->name('addresses.update');
+    Route::delete('/addresses/{address}', [AddressesController::class, 'destroy'])->name('addresses.destroy');
+
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->name('wishlist.store');
+    Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
+});

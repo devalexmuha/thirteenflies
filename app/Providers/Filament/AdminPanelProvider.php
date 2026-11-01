@@ -37,6 +37,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->viteTheme('resources/css/filament/admin/theme.css')
+            ->authGuard('admin')
             ->login()
             ->brandName('Thirteen Flies')
             ->favicon(asset('images/fly-shape.png'))

@@ -12,6 +12,13 @@ class Address extends Model
     /** @use HasFactory<AddressFactory> */
     use HasFactory;
 
+    protected $guarded = [];
+
+    protected function casts(): array
+    {
+        return ['is_default' => 'boolean'];
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
