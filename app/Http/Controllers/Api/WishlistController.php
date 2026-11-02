@@ -21,14 +21,14 @@ class WishlistController extends Controller
         return ProductListResource::collection($products);
     }
 
-    public function store(Request $request, string $product)
+    public function store(Request $request, Product $product)
     {
-        $request->user()->wishlist()->syncWithoutDetaching(Product::findOrFail($product));
+        $request->user()->wishlist()->syncWithoutDetaching($product);
 
         return response()->noContent();
     }
 
-    public function destroy(Request $request, string $product)
+    public function destroy(Request $request, Product $product)
     {
         $request->user()->wishlist()->detach($product);
 

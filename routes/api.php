@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\PagesController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\PromotionsController;
 use App\Http\Controllers\Api\RedirectsController;
+use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RobotsTxtController;
 use App\Http\Controllers\Api\ServicesController;
 use App\Http\Controllers\Api\SitemapController;
@@ -93,6 +94,24 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/addresses/{address}', [AddressesController::class, 'destroy'])->name('addresses.destroy');
 
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
-    Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->name('wishlist.store');
-    Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
+    Route::post('/wishlist/{product:id}', [WishlistController::class, 'store'])->name('wishlist.store');
+    Route::delete('/wishlist/{product:id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
+
+    Route::post('/review/{product:id}', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::patch('/review/{product:id}', [ReviewController::class, 'update'])->name('reviews.update');
+    Route::delete('/review/{product:id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 });
+
+Route::get('/review/{product:id}', [ReviewController::class, 'index'])->name('reviews.index');
+
+// implement cart
+
+// implement stripe checkout https://www.youtube.com/watch?v=J13Xe939Bh8
+
+// /orders index
+// /orders/id show
+// /orders/id/cancel delete
+
+// SEEDING DATABASE USER RELATED
+
+// notify user with email with his order created and every time status changes: notify.

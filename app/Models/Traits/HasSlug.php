@@ -13,7 +13,7 @@ trait HasSlug
     public function slug(): MorphOne
     {
         return $this->morphOne(Slug::class, 'sluggable')
-                    ->withAttributes(['locale' => ContentLocale::get()]);
+            ->withAttributes(['locale' => ContentLocale::get()]);
     }
 
     public function slugs(): MorphMany
@@ -23,10 +23,14 @@ trait HasSlug
 
     public function resolveRouteBinding($value, $field = null): ?Model
     {
+        if ($field) {
+            return parent::resolveRouteBinding($value, $field);
+        }
+
         return $this->whereHas('slug', fn ($query) => $query // "Give me 'models' that have such a slug for current locale"
             ->where('slug', $value)
             ->where('locale', app()->getLocale()))
-                    ->first();
+            ->first();
     }
 
     public static function bootHasSlug(): void

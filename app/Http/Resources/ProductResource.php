@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Full product for the product page. Expects the controller to load: slug, slugs, seoMeta, brand.slug, discount,
- * media, categories.slug, attributeValues.attribute, videos, promotions and relatedProducts (with the list relations).
+ * media, categories.slug, attributeValues.attribute, videos, reviews, promotions and relatedProducts (with the list relations).
  */
 class ProductResource extends JsonResource
 {

@@ -35,7 +35,7 @@ class Review extends Model
     protected static function booted(): void
     {
         static::creating(function (Review $review) {
-            $review->author_name = $review->user->profile->first_name;
+            $review->author_name = $review->user->userProfile?->first_name ?? 'Customer';
         });
 
         static::saved(fn (Review $review) => $review->product->refreshRating());

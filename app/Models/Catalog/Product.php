@@ -147,13 +147,6 @@ class Product extends Model
 
     public function refreshRating(): void
     {
-        $stats = $this->reviews()
-            ->selectRaw('COUNT(*) as total, AVG(rating) as average')
-            ->first();
-
-        $this->updateQuietly([
-            'reviews_count' => $stats->total,
-            'rating_avg' => $stats->total ? round($stats->average, 2) : null,
-        ]);
+        $this->updateQuietly(['avr_rating' => (int) round($this->reviews()->avg('rating'))]);
     }
 }
