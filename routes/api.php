@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\ConfigController;
 use App\Http\Controllers\Api\DiscountsController;
+use App\Http\Controllers\Api\OrdersController;
 use App\Http\Controllers\Api\PagesController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\PromotionsController;
@@ -104,6 +105,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/cart/{product:id}', [CartController::class, 'update'])->name('cart.items.update');
     Route::delete('/cart/{product:id}', [CartController::class, 'destroy'])->name('cart.items.destroy');
 
+    Route::get('/orders', [OrdersController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [OrdersController::class, 'show'])->name('orders.show');
+    Route::post('/orders', [OrdersController::class, 'store'])->name('orders.store');
+    Route::patch('/orders/{order}', [OrdersController::class, 'update'])->name('orders.update');
+
     Route::post('/review/{product:id}', [ReviewController::class, 'store'])->name('reviews.store');
     Route::patch('/review/{product:id}', [ReviewController::class, 'update'])->name('reviews.update');
     Route::delete('/review/{product:id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
@@ -111,15 +117,14 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::get('/review/{product:id}', [ReviewController::class, 'index'])->name('reviews.index');
 
-// check cart implementation
-// implement stripe checkout https://www.youtube.com/watch?v=J13Xe939Bh8
-
 // /orders index
 // /orders/id show
-// /orders/id/cancel delete
+// /orders store
+// /orders/id/cancel patch
 
 // SEEDING DATABASE USER RELATED
 
+// Polish Admin panel.
 // notify user with email with his order created and every time status changes: notify.
 
-// Polish DB.
+// implement stripe checkout https://www.youtube.com/watch?v=J13Xe939Bh8
