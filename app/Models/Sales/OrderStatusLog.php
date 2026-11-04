@@ -14,6 +14,8 @@ class OrderStatusLog extends Model
     /** @use HasFactory<OrderStatusLogFactory> */
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $guarded = [];
 
     protected function casts(): array
