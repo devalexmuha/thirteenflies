@@ -30,13 +30,7 @@ class OrderResource extends JsonResource
             'created_at' => $this->created_at,
             'paid_at' => $this->paid_at,
             'canceled_at' => $this->canceled_at,
-            'items' => $this->whenLoaded('items', fn () => $this->items->map(fn ($item) => [
-                'product_id' => $item->product_id,
-                'sku' => $item->sku,
-                'price' => $item->price / 100,
-                'quantity' => $item->quantity,
-                'total' => $item->total / 100,
-            ])),
+            'items' => OrderItemResource::collection($this->whenLoaded('items')),
         ];
     }
 }
