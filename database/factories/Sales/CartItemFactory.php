@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Sales;
 
+use App\Models\Sales\Cart;
 use App\Models\Sales\CartItem;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +19,8 @@ class CartItemFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'cart_id' => Cart::factory(),
+            'quantity' => 1,
         ];
     }
 }

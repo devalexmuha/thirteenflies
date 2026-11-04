@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Sales;
 
+use App\Models\Account\User;
 use App\Models\Sales\Cart;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +19,7 @@ class CartFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
         ];
     }
 }

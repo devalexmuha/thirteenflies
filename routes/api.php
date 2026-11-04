@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\SessionController;
 use App\Http\Controllers\Api\AuthorsController;
 use App\Http\Controllers\Api\BrandsController;
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\ConfigController;
 use App\Http\Controllers\Api\DiscountsController;
@@ -97,6 +98,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/wishlist/{product:id}', [WishlistController::class, 'store'])->name('wishlist.store');
     Route::delete('/wishlist/{product:id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
 
+    Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+    Route::delete('/cart', [CartController::class, 'clear'])->name('cart.clear');
+    Route::post('/cart/{product:id}', [CartController::class, 'store'])->name('cart.items.store');
+    Route::patch('/cart/{product:id}', [CartController::class, 'update'])->name('cart.items.update');
+    Route::delete('/cart/{product:id}', [CartController::class, 'destroy'])->name('cart.items.destroy');
+
     Route::post('/review/{product:id}', [ReviewController::class, 'store'])->name('reviews.store');
     Route::patch('/review/{product:id}', [ReviewController::class, 'update'])->name('reviews.update');
     Route::delete('/review/{product:id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
@@ -104,8 +111,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::get('/review/{product:id}', [ReviewController::class, 'index'])->name('reviews.index');
 
-// implement cart
-
+// check cart implementation
 // implement stripe checkout https://www.youtube.com/watch?v=J13Xe939Bh8
 
 // /orders index
@@ -115,3 +121,5 @@ Route::get('/review/{product:id}', [ReviewController::class, 'index'])->name('re
 // SEEDING DATABASE USER RELATED
 
 // notify user with email with his order created and every time status changes: notify.
+
+// Polish DB.
