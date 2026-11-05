@@ -8,6 +8,7 @@ use Filament\Panel;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Staff who log in to the Filament admin panel. Shop customers are App\Models\Account\User.
@@ -16,7 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<AdminFactory> */
-    use HasFactory;
+    use HasFactory, HasRoles;
 
     protected $guarded = [];
 
