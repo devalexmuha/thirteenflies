@@ -8,7 +8,7 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Njxqlus\Filament\Components\Forms\RelationManager;
+use Njxqlus\Filament\Components\Infolists\RelationManager;
 
 class CustomerInfolist
 {
