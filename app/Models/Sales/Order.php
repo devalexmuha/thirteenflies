@@ -37,8 +37,6 @@ class Order extends Model
         });
     }
 
-    // total
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -8,7 +8,7 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Njxqlus\Filament\Components\Infolists\RelationManager;
+use Njxqlus\Filament\Components\Forms\RelationManager;
 
 class CustomerInfolist
 {
@@ -24,26 +24,26 @@ class CustomerInfolist
                 ]),
             ])->columnSpanFull(),
             Section::make('Addresses')
-                   ->collapsed()
-                   ->schema([
-                       RepeatableEntry::make('addresses')
-                                      ->hiddenLabel()
-                                      ->columns(4)
-                                      ->schema([
-                                          TextEntry::make('full_name'),
-                                          TextEntry::make('phone'),
-                                          TextEntry::make('country'),
-                                          TextEntry::make('state')->placeholder('—'),
-                                          TextEntry::make('city'),
-                                          TextEntry::make('zip'),
-                                          TextEntry::make('address_line_1'),
-                                          TextEntry::make('address_line_2')->placeholder('—'),
-                                      ]),
-                   ])->columnSpanFull(),
+                ->collapsed()
+                ->schema([
+                    RepeatableEntry::make('addresses')
+                        ->hiddenLabel()
+                        ->columns(4)
+                        ->schema([
+                            TextEntry::make('full_name'),
+                            TextEntry::make('phone'),
+                            TextEntry::make('country'),
+                            TextEntry::make('state')->placeholder('—'),
+                            TextEntry::make('city'),
+                            TextEntry::make('zip'),
+                            TextEntry::make('address_line_1'),
+                            TextEntry::make('address_line_2')->placeholder('—'),
+                        ]),
+                ])->columnSpanFull(),
 
             RelationManager::make()
-                           ->manager(OrdersRelationManager::class)
-                           ->lazy(false)
+                ->manager(OrdersRelationManager::class)
+                ->lazy(false),
 
         ])->columns(1);
     }
