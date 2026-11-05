@@ -55,6 +55,11 @@ class ProductForm
                         SeoEditor::make('short_description')->label('Short description'),
                         SeoEditor::make('description')->label('Description'),
                         ImageFieldset::wrap(GalleryPicker::make()->directory('products')),
+                        Group::make()->relationship('video')->schema([
+                            TextInput::make('video_link')
+                                ->label('Youtube video link')
+                                ->placeholder('https://www.youtube.com/watch...'),
+                        ]),
                     ]),
                     Tab::make('Relationships')
                         ->schema([
@@ -127,7 +132,8 @@ class ProductForm
         return Repeater::make('filter_values')
             ->label('Properties')
             ->addActionLabel('Add property')
-            ->addable(fn (Get $get): bool => count($get('filter_values') ?? []) < count(self::applicableAttributes(
+            ->addable(fn (Get $get
+            ): bool => count($get('filter_values') ?? []) < count(self::applicableAttributes(
                 $get('category_id') ?? [],
                 $get('brand_id'),
             )))
@@ -135,50 +141,51 @@ class ProductForm
             ->columns(2)
             ->dehydrated(false)
             ->schema([
-                Select::make('attribute_id')
-                    ->label('Attribute')
-                    ->options(fn (Get $get): array => self::applicableAttributes(
-                        $get('../../category_id') ?? [],
-                        $get('../../brand_id'),
-                    ))
-                    ->required()
-                    ->live()
-                    ->disableOptionsWhenSelectedInSiblingRepeaterItems()
-                    ->afterStateUpdated(fn (Set $set) => $set('value_id', null)),
-                Select::make('value_id')
-                    ->label('Value')
-                    ->options(fn (Get $get) => AttributeValue::query()
-                        ->where('attribute_id', $get('attribute_id'))
-                        ->pluck('value', 'id'))
-                    ->required()
-                    ->disabled(fn (Get $get): bool => blank($get('attribute_id')))
-                    ->createOptionForm([
-                        TextInput::make('value')
-                            ->required()
-                            ->rules([
-                                fn (Get $get): Closure => function (
-                                    string $field,
-                                    $value,
-                                    Closure $fail
-                                ) use ($get) {
-                                    $slug = Str::slug($value, language: ContentLocale::get());
-                                    $attribute = Attribute::find($get('../attribute_id'));
+            Select::make('attribute_id')
+                ->label('Attribute')
+                ->options(fn (Get $get): array => self::applicableAttributes(
+                    $get('../../category_id') ?? [],
+                    $get('../../brand_id'),
+                ))
+                ->required()
+                ->live()
+                ->disableOptionsWhenSelectedInSiblingRepeaterItems()
+                ->afterStateUpdated(fn (Set $set) => $set('value_id', null)),
+            Select::make('value_id')
+                ->label('Value')
+                ->options(fn (Get $get) => AttributeValue::query()
+                    ->where('attribute_id', $get('attribute_id'))
+                    ->pluck('value', 'id'))
+                ->required()
+                ->disabled(fn (Get $get): bool => blank($get('attribute_id')))
+                ->createOptionForm([
+                    TextInput::make('value')
+                        ->required()
+                        ->rules([
+                            fn (Get $get): Closure => function (
+                                string $field,
+                                $value,
+                                Closure $fail
+                            ) use ($get) {
+                                $slug = Str::slug($value, language: ContentLocale::get());
+                                $attribute = Attribute::find($get('../attribute_id'));
 
-                                    if ($attribute?->values()->where('slug', $slug)->exists()) {
-                                        $fail("{$attribute->name} already has the value \"{$value}\".");
-                                    }
-                                },
-                            ]),
-                    ])
-                    ->createOptionUsing(fn (
-                        array $data,
-                        Get $get
-                    ) => Attribute::findOrFail($get('attribute_id'))
+                                if ($attribute?->values()->where('slug', $slug)->exists()) {
+                                    $fail("{$attribute->name} already has the value \"{$value}\".");
+                                }
+                            },
+                        ]),
+                ])
+                ->createOptionUsing(fn (
+                    array $data,
+                    Get $get
+                ) => Attribute::findOrFail($get('attribute_id'))
                         ->values()
                         ->create($data)
                         ->getKey()),
             ]);
     }
+
     /**
      * @param  array<int, int|string>  $categoryIds
      * @return array<int, string>
