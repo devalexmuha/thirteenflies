@@ -9,13 +9,10 @@ use Illuminate\Database\Seeder;
 class AddressSeeder extends Seeder
 {
     /**
-     * Every user gets one default address and up to two more.
+     * Every user gets exactly one address, the default one.
      */
     public function run(): void
     {
-        User::all()->each(function (User $user): void {
-            Address::factory()->for($user)->default()->create();
-            Address::factory()->count(fake()->numberBetween(0, 2))->for($user)->create();
-        });
+        User::all()->each(fn (User $user) => Address::factory()->for($user)->default()->create());
     }
 }

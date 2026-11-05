@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             //            ServiceSeeder::class,
             //            ArticleSeeder::class,
             //            PageSeeder::class,
-            ReviewSeeder::class,
+//            ReviewSeeder::class,
+            OrderSeeder::class,
         ]);
     }
 }

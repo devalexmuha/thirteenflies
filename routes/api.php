@@ -116,15 +116,3 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/review/{product:id}', [ReviewController::class, 'index'])->name('reviews.index');
-
-// /orders index
-// /orders/id show
-// /orders store
-// /orders/id/cancel patch
-
-// SEEDING DATABASE USER RELATED
-
-// Polish Admin panel.
-// notify user with email with his order created and every time status changes: notify.
-
-// implement stripe checkout https://www.youtube.com/watch?v=J13Xe939Bh8
