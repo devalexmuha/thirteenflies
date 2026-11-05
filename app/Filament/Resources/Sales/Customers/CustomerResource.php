@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources\Sales\Customers;
 
-use App\Filament\Resources\Sales\Customers\Pages\CreateCustomer;
-use App\Filament\Resources\Sales\Customers\Pages\EditCustomer;
 use App\Filament\Resources\Sales\Customers\Pages\ListCustomers;
-use App\Filament\Resources\Sales\Customers\Schemas\CustomerForm;
+use App\Filament\Resources\Sales\Customers\Pages\ViewCustomer;
+use App\Filament\Resources\Sales\Customers\Schemas\CustomerInfolist;
 use App\Filament\Resources\Sales\Customers\Tables\CustomersTable;
 use App\Models\Account\User;
 use BackedEnum;
@@ -29,9 +28,11 @@ class CustomerResource extends Resource
 
     protected static ?string $pluralModelLabel = 'customers';
 
-    public static function form(Schema $schema): Schema
+    protected static ?string $recordTitleAttribute = 'email';
+
+    public static function infolist(Schema $schema): Schema
     {
-        return CustomerForm::configure($schema);
+        return CustomerInfolist::configure($schema);
     }
 
     public static function table(Table $table): Table
@@ -50,8 +51,7 @@ class CustomerResource extends Resource
     {
         return [
             'index' => ListCustomers::route('/'),
-            'create' => CreateCustomer::route('/create'),
-            'edit' => EditCustomer::route('/{record}/edit'),
+            'view' => ViewCustomer::route('/{record}'),
         ];
     }
 }

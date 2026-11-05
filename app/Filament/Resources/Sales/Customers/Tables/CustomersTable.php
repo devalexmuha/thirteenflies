@@ -3,8 +3,7 @@
 namespace App\Filament\Resources\Sales\Customers\Tables;
 
 use App\Filament\Tables\Columns\NameColumn;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class CustomersTable
@@ -13,16 +12,27 @@ class CustomersTable
     {
         return $table
             ->columns([
-                NameColumn::make('userProfile.first_name')
-                    ->label('First Name'),
+                TextColumn::make('email')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('userProfile.first_name')
+                    ->label('First Name')
+                    ->searchable()
+                    ->placeholder('—'),
+                TextColumn::make('userProfile.last_name')
+                    ->label('Last Name')
+                    ->searchable()
+                    ->placeholder('—'),
+                TextColumn::make('orders_count')
+                    ->label('Orders')
+                    ->counts('orders')
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 }

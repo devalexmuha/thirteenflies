@@ -26,7 +26,7 @@ class UserPolicy
 
     public function update(AuthUser $authUser): bool
     {
-        return $authUser->can('Update:User');
+        return false;
     }
 
     public function delete(AuthUser $authUser): bool

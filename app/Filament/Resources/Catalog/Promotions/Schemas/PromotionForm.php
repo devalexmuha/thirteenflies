@@ -12,7 +12,6 @@ use App\Filament\Forms\Fields\TextFields\NameInput;
 use App\Filament\Forms\Fields\ToggleFields\ActiveToggle;
 use App\Filament\Forms\Layouts\Tabs\SeoTab;
 use App\Filament\Resources\Catalog\Promotions\RelationManagers\ProductsRelationManager;
-use App\Filament\Schemas\SharedFields;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Tabs;

@@ -3,17 +3,16 @@
 namespace App\Filament\Resources\Sales\Customers\Pages;
 
 use App\Filament\Resources\Sales\Customers\CustomerResource;
-use Filament\Actions\DeleteAction;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 
-class EditCustomer extends EditRecord
+class ViewCustomer extends ViewRecord
 {
     protected static string $resource = CustomerResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            //
         ];
     }
 }
