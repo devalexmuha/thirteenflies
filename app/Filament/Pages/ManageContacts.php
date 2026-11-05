@@ -6,6 +6,7 @@ use App\Enums\Locale;
 use App\Filament\Forms\Fields\ImageFields\IconPicker;
 use App\Settings\ContactSettings;
 use BackedEnum;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -18,6 +19,8 @@ use UnitEnum;
 
 class ManageContacts extends SettingsPage
 {
+    use HasPageShield;
+
     protected static string $settings = ContactSettings::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhone;

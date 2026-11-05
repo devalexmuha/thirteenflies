@@ -116,3 +116,5 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/review/{product:id}', [ReviewController::class, 'index'])->name('reviews.index');
+
+// claude --resume 368e1ac3-85a1-42c9-85ba-d99a77bfba8f

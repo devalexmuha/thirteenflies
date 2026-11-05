@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Settings\SeoSettings;
 use BackedEnum;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Forms\Components\Textarea;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Schema;
@@ -12,6 +13,8 @@ use UnitEnum;
 
 class ManageRobots extends SettingsPage
 {
+    use HasPageShield;
+
     protected static string $settings = SeoSettings::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
