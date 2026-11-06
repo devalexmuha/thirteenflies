@@ -14,56 +14,33 @@ class OrdersTable
         return $table
             ->columns([
                 TextColumn::make('number')
-                    ->searchable(),
-                TextColumn::make('user.id')
-                    ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
-                TextColumn::make('status')
-                    ->badge()
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('payment_status')
                     ->badge()
+                    ->sortable(),
+                TextColumn::make('status')
+                          ->badge()
+                          ->sortable(),
+                TextColumn::make('email')
+                    ->label('Email address')
+                    ->sortable()
                     ->searchable(),
-                TextColumn::make('subtotal')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('shipping_total')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('tax_total')
-                    ->numeric()
-                    ->sortable(),
                 TextColumn::make('total')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('currency')
-                    ->searchable(),
-                TextColumn::make('locale')
-                    ->searchable(),
-                TextColumn::make('paid_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('canceled_at')
-                    ->dateTime()
+                    ->money('USD', divideBy: 100)
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
+                TextColumn::make('paid_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                TextColumn::make('canceled_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ]);
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Sales\Orders\Pages;
 
 use App\Filament\Resources\Sales\Orders\OrderResource;
-use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListOrders extends ListRecords
@@ -13,7 +12,7 @@ class ListOrders extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            //
         ];
     }
 }

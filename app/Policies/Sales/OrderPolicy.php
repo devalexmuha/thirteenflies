@@ -24,7 +24,7 @@ class OrderPolicy
 
     public function create(AuthUser $authUser): bool
     {
-        return $authUser->can('Create:Order');
+        return false;
     }
 
     public function update(AuthUser $authUser, Order $order): bool
@@ -34,12 +34,12 @@ class OrderPolicy
 
     public function delete(AuthUser $authUser, Order $order): bool
     {
-        return $authUser->can('Delete:Order');
+        return false;
     }
 
     public function deleteAny(AuthUser $authUser): bool
     {
-        return $authUser->can('DeleteAny:Order');
+        return false;
     }
 
     public function restore(AuthUser $authUser, Order $order): bool
@@ -49,12 +49,12 @@ class OrderPolicy
 
     public function forceDelete(AuthUser $authUser, Order $order): bool
     {
-        return $authUser->can('ForceDelete:Order');
+        return false;
     }
 
     public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $authUser->can('ForceDeleteAny:Order');
+        return false;
     }
 
     public function restoreAny(AuthUser $authUser): bool

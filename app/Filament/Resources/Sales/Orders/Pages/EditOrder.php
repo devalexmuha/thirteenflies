@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Sales\Orders\Pages;
 
 use App\Filament\Resources\Sales\Orders\OrderResource;
-use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditOrder extends EditRecord
@@ -13,7 +12,12 @@ class EditOrder extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            //
         ];
+    }
+
+    public function getTitle(): string
+    {
+        return "Edit '{$this->getRecord()->number}' ".ucfirst(static::getResource()::getModelLabel());
     }
 }
