@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Sales\Orders;
 
+use App\Enums\OrderStatus;
 use App\Filament\Resources\Sales\Orders\Pages\EditOrder;
 use App\Filament\Resources\Sales\Orders\Pages\ListOrders;
 use App\Filament\Resources\Sales\Orders\Schemas\OrderForm;
@@ -23,6 +24,21 @@ class OrderResource extends Resource
     protected static string|UnitEnum|null $navigationGroup = 'Sales';
 
     protected static ?int $navigationSort = 2;
+
+    public static function getNavigationBadge(): ?string
+    {
+        return Order::where('status', OrderStatus::Pending)->count() ?: null;
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return OrderStatus::Pending->getColor();
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return 'Pending orders';
+    }
 
     public static function form(Schema $schema): Schema
     {

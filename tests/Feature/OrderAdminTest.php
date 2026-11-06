@@ -2,6 +2,7 @@
 
 use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
+use App\Filament\Resources\Sales\Orders\OrderResource;
 use App\Filament\Resources\Sales\Orders\Pages\EditOrder;
 use App\Filament\Resources\Sales\Orders\RelationManagers\OrderItemsRelationManager;
 use App\Models\Account\Admin;
@@ -48,4 +49,15 @@ it('lists the items with the price saved on the item and a link to the product',
         ->assertSee('$10.00')
         ->assertSee('$20.00')
         ->assertSeeHtml('/admin/catalog/products/'.$product->id.'/edit');
+});
+
+it('shows the number of pending orders in the sidebar and hides the badge at zero', function () {
+    Order::factory()->count(2)->create(['status' => OrderStatus::Pending]);
+    Order::factory()->create(['status' => OrderStatus::Complete]);
+
+    expect(OrderResource::getNavigationBadge())->toBe('3');
+
+    Order::query()->update(['status' => OrderStatus::Complete]);
+
+    expect(OrderResource::getNavigationBadge())->toBeNull();
 });
