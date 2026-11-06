@@ -2,8 +2,6 @@
 
 namespace App\Filament\Resources\Sales\Orders\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -20,8 +18,8 @@ class OrdersTable
                     ->badge()
                     ->sortable(),
                 TextColumn::make('status')
-                          ->badge()
-                          ->sortable(),
+                    ->badge()
+                    ->sortable(),
                 TextColumn::make('email')
                     ->label('Email address')
                     ->sortable()
@@ -30,9 +28,8 @@ class OrdersTable
                     ->money('USD', divideBy: 100)
                     ->sortable(),
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->dateTime('M j, Y H:i')
+                    ->sortable(),
                 TextColumn::make('paid_at')
                     ->dateTime()
                     ->sortable()
@@ -41,6 +38,7 @@ class OrdersTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 }
