@@ -86,6 +86,8 @@ return [
 
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
+    'admin_path' => env('ADMIN_PATH', 'admin'),
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
