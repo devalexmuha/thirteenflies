@@ -4,6 +4,8 @@ namespace App\Models\Sales;
 
 use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
+use App\Jobs\NotifyOrderCreation;
+use App\Jobs\NotifyOrderStatus;
 use App\Models\Account\User;
 use Database\Factories\Sales\OrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,6 +36,14 @@ class Order extends Model
     {
         static::creating(function (Order $order) {
             $order->number ??= 'TF-'.now()->format('ymdHis').'-'.Str::upper(Str::random(5));
+        });
+
+        static::created(fn (Order $order) => NotifyOrderCreation::dispatch($order)->afterCommit());
+
+        static::updated(function (Order $order) {
+            if ($order->wasChanged('status')) {
+                NotifyOrderStatus::dispatch($order);
+            }
         });
     }
 
