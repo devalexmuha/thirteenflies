@@ -1,26 +1,26 @@
 <?php
 
-use App\Http\Controllers\Api\AddressesController;
-use App\Http\Controllers\Api\ArticlesController;
-use App\Http\Controllers\Api\Auth\RegisterController;
-use App\Http\Controllers\Api\Auth\SessionController;
-use App\Http\Controllers\Api\AuthorsController;
-use App\Http\Controllers\Api\BrandsController;
-use App\Http\Controllers\Api\CartController;
-use App\Http\Controllers\Api\CategoriesController;
-use App\Http\Controllers\Api\ConfigController;
-use App\Http\Controllers\Api\DiscountsController;
-use App\Http\Controllers\Api\OrdersController;
-use App\Http\Controllers\Api\PagesController;
-use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\PromotionsController;
-use App\Http\Controllers\Api\RedirectsController;
-use App\Http\Controllers\Api\ReviewController;
-use App\Http\Controllers\Api\RobotsTxtController;
-use App\Http\Controllers\Api\ServicesController;
-use App\Http\Controllers\Api\SitemapController;
-use App\Http\Controllers\Api\UserProfileController;
-use App\Http\Controllers\Api\WishlistController;
+use App\Http\Controllers\Api\V1\AddressesController;
+use App\Http\Controllers\Api\V1\ArticlesController;
+use App\Http\Controllers\Api\V1\Auth\RegisterController;
+use App\Http\Controllers\Api\V1\Auth\SessionController;
+use App\Http\Controllers\Api\V1\AuthorsController;
+use App\Http\Controllers\Api\V1\BrandsController;
+use App\Http\Controllers\Api\V1\CartController;
+use App\Http\Controllers\Api\V1\CategoriesController;
+use App\Http\Controllers\Api\V1\ConfigController;
+use App\Http\Controllers\Api\V1\DiscountsController;
+use App\Http\Controllers\Api\V1\OrdersController;
+use App\Http\Controllers\Api\V1\PagesController;
+use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\Api\V1\PromotionsController;
+use App\Http\Controllers\Api\V1\RedirectsController;
+use App\Http\Controllers\Api\V1\ReviewController;
+use App\Http\Controllers\Api\V1\RobotsTxtController;
+use App\Http\Controllers\Api\V1\ServicesController;
+use App\Http\Controllers\Api\V1\SitemapController;
+use App\Http\Controllers\Api\V1\UserProfileController;
+use App\Http\Controllers\Api\V1\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 // Settings
