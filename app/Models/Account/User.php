@@ -26,6 +26,11 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
+    protected static function booted(): void
+    {
+        static::created(fn (User $user) => $user->userProfile()->create());
+    }
+
     /**
      * Get the attributes that should be cast.
      *

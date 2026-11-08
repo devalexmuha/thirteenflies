@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V1\ConfigController;
 use App\Http\Controllers\Api\V1\DiscountsController;
 use App\Http\Controllers\Api\V1\OrdersController;
 use App\Http\Controllers\Api\V1\PagesController;
+use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\PromotionsController;
 use App\Http\Controllers\Api\V1\RedirectsController;
@@ -82,6 +83,11 @@ Route::get('/sitemap/lookup', [SitemapController::class, 'show'])->name('sitemap
 // User
 Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/login', [SessionController::class, 'store'])->middleware('throttle:10,1');
+
+Route::get('/review/{product:id}', [ReviewController::class, 'index'])->name('reviews.index');
+
+Route::post('/payment/webhook', [PaymentController::class, 'webhook'])->name('payment.webhook');
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/logout', [SessionController::class, 'destroy']);
 
@@ -99,6 +105,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/wishlist/{product:id}', [WishlistController::class, 'store'])->name('wishlist.store');
     Route::delete('/wishlist/{product:id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
 
+    Route::post('/review/{product:id}', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::patch('/review/{product:id}', [ReviewController::class, 'update'])->name('reviews.update');
+    Route::delete('/review/{product:id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+
     Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
     Route::delete('/cart', [CartController::class, 'clear'])->name('cart.clear');
     Route::post('/cart/{product:id}', [CartController::class, 'store'])->name('cart.items.store');
@@ -110,11 +120,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/orders', [OrdersController::class, 'store'])->name('orders.store');
     Route::patch('/orders/{order}', [OrdersController::class, 'update'])->name('orders.update');
 
-    Route::post('/review/{product:id}', [ReviewController::class, 'store'])->name('reviews.store');
-    Route::patch('/review/{product:id}', [ReviewController::class, 'update'])->name('reviews.update');
-    Route::delete('/review/{product:id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+    Route::post('/payment/{order}', [PaymentController::class, 'store'])->name('payment.store')->middleware('throttle:2,1');
+    Route::get('/payment/status', [PaymentController::class, 'status'])->name('payment.status');
 });
-
-Route::get('/review/{product:id}', [ReviewController::class, 'index'])->name('reviews.index');
 
 // claude --resume 368e1ac3-85a1-42c9-85ba-d99a77bfba8f

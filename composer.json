@@ -22,7 +22,7 @@
         "njxqlus/filament-relation-manager-component": "*",
         "spatie/laravel-settings": "*",
         "spatie/laravel-translatable": "*",
-        "stripe/stripe-php": "*"
+        "stripe/stripe-php": "^22.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

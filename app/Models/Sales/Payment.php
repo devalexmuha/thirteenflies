@@ -15,10 +15,21 @@ class Payment extends Model
 
     protected $guarded = [];
 
+    protected static function booted(): void
+    {
+        static::updated(function (Payment $payment): void {
+            if ($payment->status === PaymentStatus::Paid) {
+                $payment->order->update([
+                    'payment_status' => PaymentStatus::Paid,
+                ]);
+            }
+        });
+    }
+
     protected function casts(): array
     {
         return [
-            'status' => PaymentStatus::class,
+            'status'  => PaymentStatus::class,
             'payload' => 'array',
             'paid_at' => 'datetime',
         ];

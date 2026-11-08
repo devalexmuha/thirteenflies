@@ -26,8 +26,6 @@ class RegisterController extends Controller
             'locale' => app()->getLocale(),
         ]);
 
-        $user->userProfile()->create();
-
         return response()->json([
             'data' => [
                 'user' => UserResource::make($user),

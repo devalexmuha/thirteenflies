@@ -15,7 +15,9 @@ class UserSeeder extends Seeder
     {
         User::factory()
             ->count(5)
-            ->has(UserProfile::factory(), 'userProfile')
-            ->create(['password' => 'pass']);
+            ->create(['password' => 'pass'])
+            ->each(fn (User $user) => $user->userProfile->update(
+                UserProfile::factory()->raw(['user_id' => $user->id])
+            ));
     }
 }

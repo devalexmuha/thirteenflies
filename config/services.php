@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'stripe' => [
+        'secret' => env('STRIPE_SECRET'),
+        'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+        'success_url' => env('FRONTEND_URL').'/checkout/success?session_id={CHECKOUT_SESSION_ID}',
+        'cancel_url' => env('FRONTEND_URL').'/checkout/cancel',
+    ],
+
 ];
