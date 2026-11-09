@@ -17,7 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         apiPrefix: 'api/v1',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->prepend([AcceptOnlyJson::class, SetLocale::class]);
+        $middleware->api(prepend: [AcceptOnlyJson::class, SetLocale::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->render(function (NotFoundHttpException $e) {
