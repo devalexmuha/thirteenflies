@@ -123,5 +123,3 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/payment/{order}', [PaymentController::class, 'store'])->name('payment.store')->middleware('throttle:2,1');
     Route::get('/payment/status', [PaymentController::class, 'status'])->name('payment.status');
 });
-
-// claude --resume 368e1ac3-85a1-42c9-85ba-d99a77bfba8f

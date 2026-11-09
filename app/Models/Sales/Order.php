@@ -5,6 +5,7 @@ namespace App\Models\Sales;
 use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
 use App\Jobs\NotifyOrderCreation;
+use App\Jobs\NotifyOrderPaymentPaid;
 use App\Jobs\NotifyOrderStatus;
 use App\Models\Account\User;
 use Database\Factories\Sales\OrderFactory;
@@ -43,6 +44,9 @@ class Order extends Model
         static::updated(function (Order $order) {
             if ($order->wasChanged('status')) {
                 NotifyOrderStatus::dispatch($order);
+            }
+            if ($order->wasChanged('payment_status') && $order->payment_status === PaymentStatus::Paid) {
+                NotifyOrderPaymentPaid::dispatch($order);
             }
         });
     }
