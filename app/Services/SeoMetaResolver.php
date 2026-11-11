@@ -22,7 +22,7 @@ class SeoMetaResolver
      */
     public function resolve(Model $model): SeoMeta
     {
-        $meta = $model->seoMeta;
+        $meta = $model->seoMeta ?? new SeoMeta;
         $templates = $this->templatesFor($model);
 
         foreach (self::TEMPLATED_FIELDS as $field) {

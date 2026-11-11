@@ -36,7 +36,7 @@ class ProductController extends Controller
             'media',
             'categories.slug',
             'attributeValues.attribute',
-            'videos',
+            'video',
             'promotions' => fn ($query) => $query->active(),
             'relatedProducts' => fn ($query) => $query
                 ->active()
